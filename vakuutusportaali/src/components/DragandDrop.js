@@ -7,8 +7,7 @@ class DragandDrop extends Component {
 
     state = {
         price: 0,
-        insurances: [],
-        theChosenOnes: []
+        insurances: []
     };
 
     componentDidMount() {
@@ -20,7 +19,7 @@ class DragandDrop extends Component {
                     let insurance = insurances[i];
                     insurance.category = insurances[i].insurancetype;
                     if (insurance.price) {
-                        console.log(insurance.price)
+                        console.log("Vakuutuksen hinta: ", insurance.price)
                     }
                     else {
                         insurance.price = 50;
@@ -70,9 +69,9 @@ class DragandDrop extends Component {
                 <div key={insurance._id}
                      onDragStart={(e) => this.onDragStart(e, insurance.name)}
                      draggable
-                     className="draggable" style={{backgroundColor: "yellow"}}>
-                    {insurance.name} <br/>
-                    {insurance.price} euroa
+                     className="draggable" style={{backgroundColor: "yellow"}}
+                     about={insurance.price}>
+                    {insurance.name}
                 </div>
             );
         });
@@ -98,7 +97,7 @@ class DragandDrop extends Component {
             for (let i = 0; i < insObject.chosenInsurances.length; i++) {
                 insurancesToBeCalculated.push(insObject.chosenInsurances[i].key)
             }
-            console.log("ins",insurancesToBeCalculated);
+            console.log("ins", insurancesToBeCalculated);
             let data = JSON.stringify(insurancesToBeCalculated);
             console.log(data);
             axios.post('http://localhost:4000/calculator', {
@@ -108,19 +107,17 @@ class DragandDrop extends Component {
             });
         };
 
-        console.log("valitut", insObject.chosenInsurances);
-
         return (
             <div>
                 <h1 className="header">Vakuutukset</h1>
-                <Calculator data={this.state.theChosenOnes}/>
+                <Calculator data={insObject.chosenInsurances}/>
                 <Grid fluid className="info_cards">
                     <Row className="show-grid cards text-center">
                         <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
                              onDrop={(e) => this.onDrop(e, "chosenInsurances")}>
                             <h4>Pudota vakuutukset tähän</h4>
                             {insObject.chosenInsurances}
-                            <Button bsClass="insurance_button" onClick={sendChosenInsurancestoTheServer.bind(this)}> Submit </Button>
+                            <Button bsClass="insurance_button" onClick={sendChosenInsurancestoTheServer.bind(this)}>Lähetä</Button>
                         </div>
                         {categoriesToPage}
                     </Row>
