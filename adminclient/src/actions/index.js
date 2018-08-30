@@ -2,7 +2,7 @@ import axios from 'axios';
 export const FETCH_USERS = 'fetch_users';
 export const FETCH_USERPROFILE = 'fetch_userprofile';
 const ROOT_URL = 'http://localhost:3000/customerprofile/all';
-const USERPROFILE_URL = 'http://localhost:3000/customerprofile'
+const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer'
 
 export function fetchUsers() {
     const request = axios.get(ROOT_URL);
@@ -13,7 +13,7 @@ export function fetchUsers() {
 }
 
 export function fetchUserProfile(id) {
-    const request = axios.get(`${USERPROFILE_URL}/customer/${id}`);
+    const request = axios.get(`${USERPROFILE_URL}/${id}`);
     return {
         type: FETCH_USERPROFILE,
         payload: request
