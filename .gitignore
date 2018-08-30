@@ -81,7 +81,10 @@ vakuutusportaali/node_modules
 vakuutusportaali/package-lock.json
 vakuutusportaali/config
 
-
+adminclient/.idea
+adminclient/node_modules
+adminclient/package-lock.json
+adminclient/config
 
 adminportaali/.idea
 adminportaali/node_modules
