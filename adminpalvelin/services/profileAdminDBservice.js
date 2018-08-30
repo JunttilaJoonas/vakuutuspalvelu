@@ -3,9 +3,11 @@ const Profile = require('../models/profile');
 
 //FINDS ALL PROFILES
 
-function findAll() {
-    //findAllProfile
+function findAll(req, res) {
+    Profile.find({})
+        .then(profiles => res.json(profiles))
 }
+
 
 // FINDS PROFILE BY ID
 
