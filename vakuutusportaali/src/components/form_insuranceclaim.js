@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import {addPost} from '../actions/postActions';
 import TextAreaFieldGroup from './TextAreaFieldGroup';
+import axios from 'axios';
 class form_insuranceclaim extends Component {
     
-constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-        }
-    }
+    state = {
+      profile: {},
+      text: ''
+    };
+  
+    componentWillMount() {
+      axios.get("http://localhost:4000/profiili/current")
+          .then(res => {
+              this.setState({profile: res.data});
+          })
+  }
 
     componentWillReceiveProps(newProps) {
       if (newProps.errors) {
@@ -20,11 +26,13 @@ constructor(props) {
     onSubmit(e) {
       e.preventDefault();
       const { user } = this.props.auth;
+      console.log(this.props.auth);
       const newPost = {
         text: this.state.text,
-        name: user.name,
+        userid: this.state.profile._id,
+        email: this.state.profile.email
       };
-  
+      console.log(newPost)
       this.props.addPost(newPost);
       this.setState({ text: '' });
     }

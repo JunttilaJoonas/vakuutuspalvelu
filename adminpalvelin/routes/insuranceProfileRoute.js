@@ -30,6 +30,7 @@ router.get('/customer/:id', passport.authenticate('jwt',
 
 
 router.post('/updatecustomer', (req, res, next) => {
+    console.log("helo")
     profiledbservice.updateCustomerById(req.body)
 })
 
