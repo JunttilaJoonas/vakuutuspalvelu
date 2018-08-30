@@ -9,6 +9,7 @@ import store from './store';
 import FrontPage from './components/page_index';
 import InsurancePage from './components/page_insurances';
 import MyInsurances from './components/page_myinsurances';
+import InsuranceClaim from './components/page_insuranceclaim';
 import CountInsurances from './components/page_countinsurances';
 import Navigation from './components/page_navigation';
 import Register from './components/auth/register';
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path="/laskevakuutus" component={CountInsurances} />
         <Route path="/omavakuutus" component={MyInsurances} />
         <Route path="/vakuutukset" component={InsurancePage} />
+        <Route path="/vahinkoilmoitus" component = {InsuranceClaim} />
         <Route path="/" component={FrontPage} />
       </Switch>
     </div>

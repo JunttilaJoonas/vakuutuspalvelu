@@ -1,11 +1,13 @@
 const express = require('express');
-const Profile = require('../models/profile');
+const Profile = require('../models/Profile');
 
 //FINDS ALL PROFILES
 
-function findAll() {
-    //findAllProfile
+function findAll(req, res) {
+    Profile.find({})
+        .then(profiles => res.json(profiles))
 }
+
 
 // FINDS PROFILE BY ID
 

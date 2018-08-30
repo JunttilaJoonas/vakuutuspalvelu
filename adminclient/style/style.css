@@ -1,0 +1,85 @@
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+.splash {
+    background-image: url('../background.jpg');
+    background-size: cover;
+    padding-top: 50px;
+}
+
+.draggable {
+    padding: 20px;
+    opacity: 0.9;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.droppable {
+    margin: 30px;
+    background-color: #FFF;
+    opacity: 0.6;
+    padding: 10px 0px 10px 0px;
+}
+
+.information {
+    padding-left: 150px;
+    padding-right: 150px;  
+    padding-top: 150px;
+    padding-bottom: 150px; 
+}
+
+.information_box {
+    padding-left: 150px;
+    padding-right: 150px;  
+    padding-bottom: 150px;
+}
+
+.userprofile {
+    background-color: #FFF;
+    padding-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 200px;
+}
+
+.information h3 {
+    color: #FFF;
+    text-shadow: 1px 1px #000;
+}
+
+.information h1 {
+    color: #FFF;
+    text-shadow: 1px 1px #000;
+}
+
+
+.insurance_button {
+    margin-top: 20px;
+    background-color: red;
+    text-decoration: none;
+    border: 0;
+    border-radius: 5px;
+    padding: 20px;
+    color: #FFF;
+}
+
+.info_cards {
+    margin-top: 20px;
+}
+
+.insurance_selector {
+    margin: 15px;
+}
+
+.insurance_category {
+    height: 370px;
+    display: inline;
+}
+
+.insurance_selector_vehicles {
+    height: 300px;
+}
+
+.info_image {
+    margin-bottom: 20px;
+}

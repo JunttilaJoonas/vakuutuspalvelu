@@ -8,13 +8,16 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const User = require('../models/User');
 
+router.get('/all', (req, res) => {
+    profiledbservice.findAll(req, res)
+})
 
 //@Route /current
 //GET this shows the current profile information
 //Private
 //TODO THIS WILL CHANGE WHEN AUTHENTICATION IS ADDED
 
-router.get('/:id', passport.authenticate('jwt',
+router.get('/customer/:id', passport.authenticate('jwt',
 {session: false}), (req, res) => {
     profiledbservice.findOneById(req, res)
   });
