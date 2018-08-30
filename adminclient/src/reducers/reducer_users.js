@@ -10,6 +10,6 @@ export default function(state = {}, action) {
         return state;
 
         case FETCH_USERPROFILE:
-        return { ...state, [action.payload.data._id]: console.log(action.payload.data)};
+        return { ...state, [action.payload.data._id]: action.payload.data};
     }
 }
