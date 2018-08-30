@@ -65,3 +65,24 @@ typings/
 
 package-lock.json
 .idea/
+
+adminpalvelin/.idea
+adminpalvelin/node_modules
+adminpalvelin/package-lock.json
+adminpalvelin/bin
+adminpalvelin/obj
+adminpalvelin/config
+
+vakuutuspalvelin/config
+vakuutuspalvelin/.idea
+vakuutuspalvelin/node_modules
+vakuutuspalvelin/package-lock.json
+vakuutuspalvelin/bin
+vakuutuspalvelin/obj
+
+vakuutusportaali/.idea
+vakuutusportaali/node_modules
+vakuutusportaali/package-lock.json
+vakuutusportaali/bin
+vakuutusportaali/obj
+vakuutusportaali/config
