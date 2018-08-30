@@ -25,9 +25,6 @@ router.get('/customer/:id', (req, res) => {
 //GET this shows the information of one information
 //Private
 
-
-
-
 router.post('/updatecustomer', (req, res, next) => {
     console.log("helo")
     profiledbservice.updateCustomerById(req.body)

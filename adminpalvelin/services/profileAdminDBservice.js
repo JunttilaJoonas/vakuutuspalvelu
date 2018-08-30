@@ -34,7 +34,8 @@ function updateCustomerClaims(customerId, data) {
 // FINDS PROFILE BY ID
 
 function findOneById(req, res, next) {
-    console.log(req.params.id);
+    console.log(req.params);
+    console.log('Hello Hallo')
     Profile.findOne({_id: req.params.id})
         .populate("profilesinsurances")
         .populate("profileclaims")

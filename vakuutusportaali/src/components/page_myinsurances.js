@@ -14,9 +14,7 @@ class MyInsurance extends Component {
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
-            })
-
-            
+            })        
     }
 
  

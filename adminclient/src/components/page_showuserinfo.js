@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 class ShowUserInfo extends Component {
 
     componentDidMount() {
-        const { _id } = this.props.match.params;
-        this.props.fetchUserProfile(_id);
+        const { id } = this.props.match.params;
+        this.props.fetchUserProfile(id);
     }
 
   render() {
@@ -19,13 +19,16 @@ class ShowUserInfo extends Component {
         return <div>Ladataan profiilia</div>
     }
 
-    const insurances =  user.profilesinsurances.map(insurances => {
-        return (
-            <div key={insurances._id}>
-            <li>{insurances.insurancetype} Voimassa: {insurances.valid} Seuraava eräpäivä: {insurances.nextPaymentDate}</li>
-            </div>
-        )
-    })
+    
+    let insuranceList = this.props.user.profilesinsurances;
+    console.log(this.props.user)
+    let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
+            return (
+                <li key={ins._id}>
+                    
+                </li>
+            )
+        }) : [];
 
     return (
       
@@ -54,13 +57,13 @@ class ShowUserInfo extends Component {
                     <Panel id="collapsible-panel-example-2">
                         <Panel.Heading>
                             <Panel.Title toggle>
-                                <p>Vakuutukset</p>
+                                Vakuutukset
                             </Panel.Title>
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
                                 
-                                <p>{insurances}</p>
+                                <p>{insuranceClaimNodes}</p>
                                 
                             </Panel.Body>
                         </Panel.Collapse>
