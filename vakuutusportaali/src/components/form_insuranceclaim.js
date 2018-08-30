@@ -22,7 +22,7 @@ class form_insuranceclaim extends Component {
         this.setState({ errors: newProps.errors });
       }
     }
-  
+
     onSubmit(e) {
       e.preventDefault();
       const { user } = this.props.auth;

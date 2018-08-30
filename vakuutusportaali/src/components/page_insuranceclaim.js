@@ -5,6 +5,9 @@ import ClaimForm from './form_insuranceclaim';
 import {addPost} from '../actions/postActions';
 
 export default class page_insuranceclaim extends Component {
+
+  
+ 
  
   render() {
     return (

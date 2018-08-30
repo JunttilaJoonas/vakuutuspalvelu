@@ -45,9 +45,14 @@ router.post('/register', (req, res) => {
 //DEV ROUTE add a claim to the claim database from Customer Clien
 
 
-router.post('/insuranceclaims', (req, res) =>{
+router.post('/createinsuranceclaims', (req, res) =>{
     adminInsuranceClaimService.createClaim(req, res)
 })
+
+router.post('/getinsuranceclaims', (req, res) =>{
+    adminInsuranceClaimService.findById(req, res)
+})
+
 
 
 router.post('/login', (req, res) => {
