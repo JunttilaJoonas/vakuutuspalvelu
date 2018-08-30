@@ -1,4 +1,4 @@
-const Insurance = require('../models/insurance');
+const Insurance = require('../models/Insurance');
 
 function findOneById(req, res) {
     Insurance.findById({_id: req.params.id}).then(insurance => res.json(insurance))
