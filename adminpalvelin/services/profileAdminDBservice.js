@@ -22,12 +22,25 @@ function updateCustomerClaims(customerId, data) {
     let id = customerId
     console.log("CUSTOMERID"+ customerId);
     console.log("DATA" + data);
-
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")
     .then(profile => Profile.update({_id: profile._id}, {$push: {"profileclaims": data}}))
 
+}
+
+function sendCustomerAMessage(req, res) {
+    console.log("Hello")
+    const message= {
+        "id" : req.body.userid,
+        "Message" : req.body.text,
+        "Sender" : req.body.sender,
+        "messageId": req.body.messageId
+    }
+    console.log(message);
+    Profile.update({_id: req.body.userid}, {$push: {"profilemessages" : message}}).then(profile => {
+        res.json(profile)
+    })
 }
 
 
@@ -86,4 +99,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {updateCustomerClaims, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {sendCustomerAMessage, updateCustomerClaims, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}

@@ -30,6 +30,9 @@ var ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'insurances'
     }],
+    profilemessages: {
+        type: Object
+    }
     
 }
 , {collection: 'profiles'});

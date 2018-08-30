@@ -26,12 +26,11 @@ router.get('/customer/:id', (req, res) => {
 //Private
 
 
-
-
-router.post('/updatecustomer', (req, res, next) => {
-    console.log("helo")
-    profiledbservice.updateCustomerById(req.body)
+router.post('/message', (req, res, next) => {
+    profiledbservice.sendCustomerAMessage(req, res);
 })
+
+
 
 router.post('/createProfile', (req, res) => {
     User.findOne({email: req.body.email})

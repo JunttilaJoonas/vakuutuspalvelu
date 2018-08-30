@@ -9,13 +9,12 @@ class MyInsurance extends Component {
         profile: {},
         profileclaims: []
     };
-
+    
     componentWillMount() {
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
             })
-
             
     }
 
@@ -36,17 +35,30 @@ class MyInsurance extends Component {
         }) : [];
 
         let insuranceClaims = this.state.profile.profileclaims;
-        console.log("PROFILE" + this.state.profile)
-        console.log("PROFILECLAIMS:" + insuranceClaims);
         let insuranceClaimNodes = insuranceClaims ? insuranceClaims.map(ins => {
             return (
                 <li key={ins._id}>
                     <p> Vakuutustyyppi: {ins.text} <br/>
-                        Vakuutuksen tunniste: {ins._id}
+                        Vakuutuksen tila: {ins.handled} <br/>
+                        Vakuutuksen tunniste: {ins._id} <br/>
+                        Hakemuspäivä: {ins.date} <br/>
                     </p>
                 </li>
             )
         }) : [];
+
+        let profileMessages = this.state.profile.profilemessages;
+        console.log(profileMessages);
+        let profileMessageNodes = profileMessages ? profileMessages.map(msg => {
+            return (
+                <li key={msg.messageId}>
+                    <p> Viesti: {msg.Message} <br/>
+                        Lähettäjä: {msg.Sender} <br/>
+                    </p>
+                </li>
+            )
+        }) : [];
+ 
  
 
 
@@ -123,7 +135,7 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        Tänne tulee viestit
+                                        {profileMessageNodes}
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
