@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminDBservice = require('../services/adminDBservice');
+const adminInsuranceClaimService = require('../services/adminInsuranceClaimService');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
@@ -13,7 +14,6 @@ router.get('/profile', passport.authenticate('jwt',
 })
 
 router.post('/register', (req, res) => {
-
     Admin.findOne({email: req.body.email})
         .then(admin => {
             if(admin) {
@@ -41,6 +41,18 @@ router.post('/register', (req, res) => {
 }
 
 )
+
+//DEV ROUTE add a claim to the claim database from Customer Clien
+
+
+router.post('/createinsuranceclaims', (req, res) =>{
+    adminInsuranceClaimService.createClaim(req, res)
+})
+
+router.post('/getinsuranceclaims', (req, res) =>{
+    adminInsuranceClaimService.findById(req, res)
+})
+
 
 
 router.post('/login', (req, res) => {

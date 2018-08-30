@@ -6,7 +6,8 @@ import axios from 'axios';
 class MyInsurance extends Component {
 
     state = {
-        profile: {}
+        profile: {},
+        profileclaims: []
     };
 
     componentWillMount() {
@@ -14,7 +15,17 @@ class MyInsurance extends Component {
             .then(res => {
                 this.setState({profile: res.data});
             })
+
+            
     }
+
+    getProfileClaims() {
+        console.log(this.state.profile)
+            axios.post("http://localhost:3000/getinsuranceclaims", this.state.profile)
+            .then(res => {
+                    this.setState({profileclaims : res.data})
+                })
+        }
 
     render() {
         let insurances = this.state.profile.profilesinsurances;
@@ -28,6 +39,19 @@ class MyInsurance extends Component {
                 </li>
             )
         }) : [];
+
+        let insuranceClaims = this.state.profileclaims;
+        console.log("PROFILECLAIMS:" + insuranceClaims);
+        let insuranceClaimNodes = insuranceClaims ? insuranceClaims.map(ins => {
+            return (
+                <li key={ins._id}>
+                    <p> Vakuutustyyppi: {ins.text} <br/>
+                        Vakuutuksen tunniste: {ins._id}
+                    </p>
+                </li>
+            )
+        }) : [];
+ 
 
 
         return (
@@ -67,7 +91,7 @@ class MyInsurance extends Component {
                                 </Panel.Collapse>
                             </Panel>
 
-                            <Panel id="collapsible-panel-example-2">
+                            <Panel id="collapsible-panel-example-2" onClick={this.getProfileClaims.bind(this)}>
                                 <Panel.Heading>
                                     <Panel.Title toggle>
                                         Vahinkotapahumat
@@ -75,7 +99,9 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        Tänne tulee vahinkotapahtumat
+                                       <ol>
+                                {insuranceClaimNodes}
+                                       </ol>
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>

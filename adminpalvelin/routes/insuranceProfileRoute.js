@@ -29,6 +29,7 @@ router.get('/customer/:id', (req, res) => {
 
 
 router.post('/updatecustomer', (req, res, next) => {
+    console.log("helo")
     profiledbservice.updateCustomerById(req.body)
 })
 

@@ -25,6 +25,10 @@ var ProfileSchema = new Schema({
     profilesinsurances: [{
         type: Schema.Types.ObjectId,
         ref: 'insurances'
+    }],
+    profileclaims: [{
+        type: Schema.Types.ObjectId,
+        ref: 'insuranceclaims'
     }]}
 , {collection: 'profiles'});
 
