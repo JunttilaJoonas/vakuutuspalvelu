@@ -1,11 +1,15 @@
 const express = require('express');
 const InsuranceClaim = require('../models/InsuranceClaim');
+const profileAdminDBservice = require('../services/profileAdminDBservice')
 
 
 
 function createClaim(req, res) {
+    let customerId = req.body.userid;
+    console.log(req.body);
     InsuranceClaim.create(req.body)
-        .then(res.send("Claim received"));
+        .then((document) =>
+        profileAdminDBservice.updateCustomerClaims(document.userid, document._id));
 }
 
 function findById(req, res) {

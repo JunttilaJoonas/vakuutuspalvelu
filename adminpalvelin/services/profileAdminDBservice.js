@@ -1,5 +1,6 @@
 const express = require('express');
 const Profile = require('../models/Profile');
+const InsuranceClaim = require('../models/InsuranceClaim')
 
 //FINDS ALL PROFILES
 
@@ -8,13 +9,35 @@ function findAll(req, res) {
         .then(profiles => res.json(profiles))
 }
 
+function findByEmail(req, res) {
+    let email = req.body.email
+    console.log(email)
+    Profile.findOne({email: email})
+        .populate("profilesinsurances")
+        .populate("profileclaims")
+        .then(profile => res.json(profile));
+}
+
+function updateCustomerClaims(customerId, data) {
+    let id = customerId
+    console.log("CUSTOMERID"+ customerId);
+    console.log("DATA" + data);
+
+    Profile.findOne({_id: id})
+    .populate("profilesinsurances")
+    .populate("profileclaims")
+    .then(profile => Profile.update({_id: profile._id}, {$push: {"profileclaims": data}}))
+
+}
+
 
 // FINDS PROFILE BY ID
 
 function findOneById(req, res, next) {
-    let id = req.param._id
-    Profile.findOne({id: id})
+    console.log(req.params.id);
+    Profile.findOne({_id: req.params.id})
         .populate("profilesinsurances")
+        .populate("profileclaims")
         .then(profile => res.json(profile));
 }
 
@@ -63,4 +86,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {updateCustomerClaims, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}

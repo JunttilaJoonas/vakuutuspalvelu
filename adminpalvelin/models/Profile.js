@@ -22,10 +22,16 @@ var ProfileSchema = new Schema({
         type: String,
         required: [true]
     },
+    profileclaims: [{
+        type: Schema.Types.ObjectId,
+        ref: 'insuranceclaims'
+    }],
     profilesinsurances: [{
         type: Schema.Types.ObjectId,
         ref: 'insurances'
-    }]}
+    }],
+    
+}
 , {collection: 'profiles'});
 
 const Profile = mongoose.model('profiles', ProfileSchema);

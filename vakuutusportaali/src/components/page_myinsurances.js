@@ -19,15 +19,10 @@ class MyInsurance extends Component {
             
     }
 
-    getProfileClaims() {
-        console.log(this.state.profile)
-            axios.post("http://localhost:3000/getinsuranceclaims", this.state.profile)
-            .then(res => {
-                    this.setState({profileclaims : res.data})
-                })
-        }
+ 
 
     render() {
+        console.log(this.state.profile)
         let insurances = this.state.profile.profilesinsurances;
         let insuranceNodes = insurances ? insurances.map(ins => {
             return (
@@ -40,7 +35,8 @@ class MyInsurance extends Component {
             )
         }) : [];
 
-        let insuranceClaims = this.state.profileclaims;
+        let insuranceClaims = this.state.profile.profileclaims;
+        console.log("PROFILE" + this.state.profile)
         console.log("PROFILECLAIMS:" + insuranceClaims);
         let insuranceClaimNodes = insuranceClaims ? insuranceClaims.map(ins => {
             return (
@@ -91,7 +87,7 @@ class MyInsurance extends Component {
                                 </Panel.Collapse>
                             </Panel>
 
-                            <Panel id="collapsible-panel-example-2" onClick={this.getProfileClaims.bind(this)}>
+                            <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
                                         Vahinkotapahumat

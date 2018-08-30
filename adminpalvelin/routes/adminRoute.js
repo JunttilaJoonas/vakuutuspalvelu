@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminDBservice = require('../services/adminDBservice');
+const profileService = require('../services/profileAdminDBservice')
 const adminInsuranceClaimService = require('../services/adminInsuranceClaimService');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -41,6 +42,9 @@ router.post('/register', (req, res) => {
 }
 
 )
+router.post('/dev', (req, res) => {
+    profileService.findByEmail(req, res)
+})
 
 //DEV ROUTE add a claim to the claim database from Customer Clien
 
