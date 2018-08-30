@@ -15,7 +15,7 @@ class InsuranceIndex extends Component {
             .then(res => {
                 const newArrayofInsurance = res.data;
                 this.setState({ arrayofInsurance: newArrayofInsurance }, function () {
-                    console.log(this.state.arrayofInsurance);
+                    // console.log(this.state.arrayofInsurance);
                 });
             })
     }
@@ -29,9 +29,9 @@ class InsuranceIndex extends Component {
                 selectedInsurance = this.state.arrayofInsurance[i]
             }
         }
-        console.log(selectedInsurance);
+        // console.log(selectedInsurance);
         this.setState({ insuranceToBeDisplayed: selectedInsurance }, () => {
-            console.log(this.state.insuranceToBeDisplayed)
+            // console.log(this.state.insuranceToBeDisplayed)
         })
     }
     /*
@@ -57,9 +57,9 @@ class InsuranceIndex extends Component {
                         <h3>Valitse vakuutustyyppi</h3>
                         <DropdownButton
                             title={"Ajoneuvovakuutukset"}
-                            key={"avain"}
+                            key={"ajoneuvot"}
                             className="insurance_selector"
-                            id="vain"
+                            id="ajoneuvot"
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Henkilöauto">Henkilöauto</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Pakettiauto">Pakettiauto</MenuItem>
@@ -77,8 +77,9 @@ class InsuranceIndex extends Component {
 
                         <DropdownButton
                             title="Koti & omaisuus"
-                            key={"avain"}
+                            key={"koti"}
                             className="insurance_selector"
+                            id="koti"
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Kerrostalo">Kerrostalo</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Rivitalo">Rivitalo</MenuItem>
@@ -93,8 +94,9 @@ class InsuranceIndex extends Component {
 
                         <DropdownButton
                             title="Matka"
-                            key={"avain"}
+                            key={"matka"}
                             className="insurance_selector"
+                            id={"matka"}
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Matkavakuutus">Matkavakuutus</MenuItem>
                         </DropdownButton>
@@ -102,8 +104,9 @@ class InsuranceIndex extends Component {
 
                         <DropdownButton
                             title="Henkilöt"
-                            key={"avain"}
+                            key={"henkilot"}
                             className="insurance_selector"
+                            id={"henkilot"}
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Vauva">Vauva(raskaus)</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Lapsi">Lapsi(7 vrk - 14 v)</MenuItem>
@@ -114,8 +117,9 @@ class InsuranceIndex extends Component {
 
                         <DropdownButton
                             title="Eläimet"
-                            key={"avain"}
+                            key={"elaimet"}
                             className="insurance_selector"
+                            id={"elaimet"}
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Koira">Koira</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Kissa">Kissa</MenuItem>
