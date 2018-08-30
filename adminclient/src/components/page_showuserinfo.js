@@ -25,10 +25,28 @@ class ShowUserInfo extends Component {
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
             return (
                 <li key={ins._id}>
-                    
+                    Vakuutustyyppi: {ins.insurancetype} Laskun eräpäivä: {ins.nextPaymentDate}  Voimassa: {ins.valid}
                 </li>
             )
         }) : [];
+
+    let userClaims = this.props.user.profileclaims;
+    let userClaimsNodes = userClaims ? userClaims.map(claims => {
+        return (
+            <li key={claims._id}>
+                Syy: {claims.text} Tila: {claims.handled}
+            </li>
+        )
+    }) : [];
+
+    let messageList = this.props.user.profilemessages;
+    let messageNodes = messageList ? messageList.map(msg => {
+        return (
+            <li key={msg._id}>
+                Viesti: {msg.Message} Lähettäjä: {msg.Sender}
+            </li>
+        )
+    }): [];
 
     return (
       
@@ -77,9 +95,7 @@ class ShowUserInfo extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
-                               <ol>
-                                Tänne vahinkotapahtumat
-                               </ol>
+                               {userClaimsNodes}
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
@@ -105,7 +121,7 @@ class ShowUserInfo extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
-                                Tänne tulee viestit
+                                {messageNodes}
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
