@@ -3,6 +3,7 @@ import { Table, Row, Col, Image, Button } from 'react-bootstrap';
 import { fetchUsers } from '../actions';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class ClientList extends Component {
 
@@ -14,8 +15,11 @@ class ClientList extends Component {
         return _.map(this.props.users, user => {
             return (
                 <tr key={user._id}>
-                <td>{user.nimi}</td>
-                <td>{user.sähköposti}</td>
+                <Link to={`/${user._id}`}>
+                <td>{user._id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                </Link>
                 </tr>
             );
         });
@@ -23,9 +27,18 @@ class ClientList extends Component {
 
   render() {
     return (
-     
         <Table responsive>
+        <thead>
+        <tr>
+        <th>#</th>
+        <th>Nimi</th>
+        <th>Sähköposti</th>
+        </tr>
+        </thead>
+        <tbody>
         {this.renderUsers()}
+        </tbody>
+
         </Table>
 
     );
@@ -33,7 +46,8 @@ class ClientList extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {users: state.users};
 }
 
-export default connect(mapStateToProps, { fetchUsers })(ClientList)
+export default connect(mapStateToProps, { fetchUsers })(ClientList);

@@ -17,8 +17,7 @@ router.get('/all', (req, res) => {
 //Private
 //TODO THIS WILL CHANGE WHEN AUTHENTICATION IS ADDED
 
-router.get('/customer/:id', passport.authenticate('jwt',
-{session: false}), (req, res) => {
+router.get('/customer/:id', (req, res) => {
     profiledbservice.findOneById(req, res)
   });
 
