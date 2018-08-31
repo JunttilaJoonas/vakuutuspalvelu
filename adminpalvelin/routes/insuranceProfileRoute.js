@@ -32,7 +32,12 @@ router.delete('/customer/:id', (req, res) => {
 
 router.post('/message', (req, res, next) => {
     profiledbservice.sendCustomerAMessage(req, res);
-})
+});
+
+router.post('/updatecustomer', (req, res, next) => {
+    console.log("helo")
+    profiledbservice.updateCustomerById(req.body)
+ });
 
 router.post('/createProfile', (req, res) => {
     User.findOne({email: req.body.email})
@@ -57,8 +62,8 @@ router.post('/createProfile', (req, res) => {
                             .catch(err => console.log(err));
                         })
                 } 
-            )
-    })
+            )};
+        });
 });
 
 
