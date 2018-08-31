@@ -1,5 +1,5 @@
 const Insurance = require('../models/Insurance');
-const profileDBService = require('../services/profileAdminDBService');
+const profileDBService = require('./profileAdminDBservice');
 
 function findOneById(req, res) {
     Insurance.findById({_id: req.params.id}).then(insurance => res.json(insurance))
