@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Grid, Panel, Button } from 'react-bootstrap';
+import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { fetchUserProfile, deleteUserProfile, deleteUserInsurance } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -40,17 +40,13 @@ class ShowUserInfo extends Component {
     // Map and return list of insurances to user
     let insuranceList = this.props.user.profilesinsurances;
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
+            console.log(ins);
             return (
-                <li key={ins._id}>
-                    Vakuutuksen id: {ins._id} 
-                    Vakuutustyyppi: {ins.insurancetype} 
-                    Laskun eräpäivä: {ins.nextPaymentDate}  
-                    Voimassa: {ins.valid} 
-                    <Button value={ins._id} 
-                            id={ins._id} 
-                            className="btn btn-danger pull-xs-right"
-                            onClick={this.onClickDeleteInsurance.bind(this)}>Poista vakuutus</Button>    
-                </li>
+                <ListGroup key={ins._id}>
+                <ListGroupItem><b>Id: </b>{ins._id}</ListGroupItem>
+                <ListGroupItem><b>Tyyppi: </b>{ins.insurancetype}</ListGroupItem>
+                <ListGroupItem><b>Voimassa: </b>{ins.valid}</ListGroupItem>
+                </ListGroup>
             )
         }) : [];
     
@@ -96,10 +92,10 @@ class ShowUserInfo extends Component {
                         <Panel.Collapse>
                             <Panel.Body>
         
-                            <p>{user._id}</p>
-                            <p>{user.name}</p>
-                            <p>{user.email}</p>
-                            <p>{user.phone}</p>
+                            <p><b>Käyttäjä id: </b>{user._id}</p>
+                            <p><b>Nimi: </b>{user.name}</p>
+                            <p><b>Sähköposti: </b>{user.email}</p>
+                            <p><b>Puh: </b>{user.phone}</p>
 
                             </Panel.Body>
                         </Panel.Collapse>
@@ -158,7 +154,7 @@ class ShowUserInfo extends Component {
                             <Panel.Body>
 
                                 {messageNodes}
-                                
+
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
