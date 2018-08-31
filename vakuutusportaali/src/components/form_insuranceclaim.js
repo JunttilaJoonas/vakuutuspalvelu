@@ -32,7 +32,7 @@ class form_insuranceclaim extends Component {
         userid: this.state.profile._id,
         email: this.state.profile.email
       };
-      console.log(newPost)
+      console.log(newPost);
       this.props.addPost(newPost);
       this.setState({ text: '' });
     }

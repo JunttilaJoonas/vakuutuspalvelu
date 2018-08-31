@@ -32,25 +32,25 @@ router.get('/current', passport.authenticate('jwt',
 
 router.get('/omavakuutus/:vakuutusId', (req, res, next) => {
     res.json("This shows insurance")
-}) 
+});
 
 router.get('/omavakuutus/paivita', (req, res, next) => {
     res.json("this updates insurance")
-})
+});
 
 router.post('/omavakuutus/paivitatietoja', (req, res, next) => {
     res.json("this updates information")
-})
+});
 
 router.get('/testi', passport.authenticate('jwt',
 {session: false}), (req, res) => {
     res.json("Testi toimii")
-})
+});
 
 
 router.post('/luoprofiili', (req, res, next) => {
     profiledbservice.AddProfile(req, res);
-})
+});
 
 router.post('/login', (req, res) => {
     const errors = {};
@@ -62,7 +62,7 @@ router.post('/login', (req, res) => {
     User.findOne({ email }).then(user => {
       // Check for user
       if (!user) {
-        console.log("error: user not found")
+        console.log("error: user not found");
         return res.status(404);
       }
       // Check Password
@@ -118,7 +118,7 @@ router.post('/register', (req, res) => {
             }
         }
     )
-})
+});
 
 
 module.exports = router; 

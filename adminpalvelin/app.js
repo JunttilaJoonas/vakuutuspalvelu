@@ -1,10 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var methodOverride = require('method-override');
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const db = require('./config/keys').mongoURI;
 
@@ -13,10 +13,7 @@ const insuranceProfileRoute = require('./routes/insuranceProfileRoute');
 const adminInsuranceRoute = require('./routes/adminInsuranceRoute');
 
 
-
-
-
-var app = express();
+const app = express();
 
 //Database connection
 mongoose.connect(db);
@@ -52,7 +49,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
