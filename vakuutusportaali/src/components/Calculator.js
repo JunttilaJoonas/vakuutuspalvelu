@@ -2,11 +2,12 @@ import React from "react";
 
 export class Calculator extends React.Component {
     render(){
-        const insurances = this.props.data;
+        const data = this.props.data;
         let totalPrice = 0;
 
-        for (let i = 0; i < insurances.length; i++) {
-            totalPrice += Number(insurances[i].props.about);
+        for (let i = 0; i < data.length; i++) {
+            let insurance = data[i].props.about;
+            totalPrice += insurance.price;
         }
 
         return (

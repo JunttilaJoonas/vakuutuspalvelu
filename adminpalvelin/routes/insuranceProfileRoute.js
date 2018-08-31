@@ -19,7 +19,7 @@ router.get('/all', (req, res) => {
 
 router.get('/customer/:id', (req, res) => {
     profiledbservice.findOneById(req, res)
-  });
+});
 
 router.delete('/customer/:id', (req, res) => {
         console.log("are we where?")
@@ -58,10 +58,8 @@ router.post('/createProfile', (req, res) => {
                         })
                 } 
             )
-            }
-        }
-    )
-})
+    })
+});
 
 
-module.exports = router; 
+module.exports = router;
