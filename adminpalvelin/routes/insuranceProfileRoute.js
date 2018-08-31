@@ -21,6 +21,11 @@ router.get('/customer/:id', (req, res) => {
     profiledbservice.findOneById(req, res)
 });
 
+router.delete('/customer/:id', (req, res) => {
+        console.log("are we where?")
+      profiledbservice.deleteProfile(req, res)
+  });
+
 //@Route /omavakuutus/:vakuutusID
 //GET this shows the information of one information
 //Private
@@ -30,38 +35,36 @@ router.post('/message', (req, res, next) => {
 });
 
 router.post('/updatecustomer', (req, res, next) => {
-    console.log("helo");
-    profiledbservice.updateCustomerById(req.body);
 
+    console.log("helo")
+    profiledbservice.updateCustomerById(req.body)
+ });
 
-    router.post('/createProfile', (req, res) => {
-        User.findOne({email: req.body.email})
-            .then(user => {
-                    if (user) {
-
-                        return res.status(400);
-                    } else {
-
-                        const newUser = new User({
-                            name: req.body.name,
-                            email: req.body.email,
-                            password: req.body.password
-
-                        });
-                        bcrypt.genSalt(10, (err, salt) => {
-                                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                                    if (err) throw err;
-                                    newUser.password = hash;
-                                    newUser.save()
-                                        .then(user => res.json(user))
-                                        .catch(err => console.log(err));
-                                })
-                            }
-                        )
-                    }
-                }
-            )
-    })
+router.post('/createProfile', (req, res) => {
+    User.findOne({email: req.body.email})
+        .then(user => {
+            if(user) {
+  
+                return res.status(400);
+            } else {
+      
+                const newUser = new User({
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: req.body.password
+                    
+                });
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if(err) throw err;
+                        newUser.password = hash;
+                        newUser.save()
+                            .then( user => res.json(user))
+                            .catch(err => console.log(err));
+                        })
+                } 
+            )};
+        });
 });
 
 

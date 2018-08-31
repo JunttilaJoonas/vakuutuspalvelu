@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Table, Row, Col, Grid, Panel, Image, Button } from 'react-bootstrap';
-import { fetchUserProfile } from '../actions';
+import { fetchUserProfile, deleteUserProfile } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,13 @@ class ShowUserInfo extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.fetchUserProfile(id);
+    }
+
+    onClickDelete() {
+        const { id } = this.props.match.params;
+        this.props.deleteUserProfile(id, () => {
+            this.props.history.push('/');
+        });
     }
 
   render() {
@@ -57,6 +64,8 @@ class ShowUserInfo extends Component {
                 <Col xs={12} sm={8} className="userprofile">
                     
                     <Link to="/">Takaisin tuloksiin</Link>
+                    <Button className="btn btn-danger pull-xs-right"
+                    onClick={this.onClickDelete.bind(this)}>Poista käyttäjä</Button>
                     <Panel id="collapsible-panel-example-2" defaultExpanded>
                         <Panel.Heading>
                             <Panel.Title toggle>
@@ -139,4 +148,4 @@ function mapStateToProps({ users }, ownProps) {
     return {user: users[ownProps.match.params.id] };
 }
 
-export default connect(mapStateToProps, { fetchUserProfile })(ShowUserInfo);
+export default connect(mapStateToProps, { fetchUserProfile, deleteUserProfile })(ShowUserInfo);
