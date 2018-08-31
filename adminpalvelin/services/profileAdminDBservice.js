@@ -93,11 +93,11 @@ function AddProfile(req, res) {
 }
 
 function deleteProfile(req, res) {
-    Profile.deleteOneById({_id: req.body.id}, (err, profile) => {
+    Profile.deleteOne({_id: req.params.id}, (err, profile) => {
         res.send('Profile deleted')
     })
 }
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {sendCustomerAMessage, updateCustomerClaims, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {sendCustomerAMessage, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}

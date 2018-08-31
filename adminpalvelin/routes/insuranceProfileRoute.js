@@ -21,23 +21,18 @@ router.get('/customer/:id', (req, res) => {
     profiledbservice.findOneById(req, res)
   });
 
+router.delete('/customer/:id', (req, res) => {
+        console.log("are we where?")
+      profiledbservice.deleteProfile(req, res)
+  });
+
 //@Route /omavakuutus/:vakuutusID
 //GET this shows the information of one information
 //Private
 
-<<<<<<< HEAD
-
 router.post('/message', (req, res, next) => {
     profiledbservice.sendCustomerAMessage(req, res);
 })
-
-
-=======
-router.post('/updatecustomer', (req, res, next) => {
-    console.log("helo")
-    profiledbservice.updateCustomerById(req.body)
-})
->>>>>>> 5eaccc6f3625cdec95561e89b1619cd9ce65883f
 
 router.post('/createProfile', (req, res) => {
     User.findOne({email: req.body.email})
