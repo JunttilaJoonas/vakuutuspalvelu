@@ -68,7 +68,7 @@ class ShowUserInfo extends Component {
                         >
                             <MenuItem eventKey="Handled">Käsitelty</MenuItem>
                             <MenuItem eventKey="Pending">Käsittelyssä</MenuItem>
-</DropdownButton></ListGroupItem>
+                </DropdownButton></ListGroupItem>
                  </ListGroup>
             )
         }) : [];
