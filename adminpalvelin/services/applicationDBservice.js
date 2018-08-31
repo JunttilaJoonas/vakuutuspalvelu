@@ -19,7 +19,14 @@ function findAll(req, res, next) {
         .then(applications => res.json(applications));
 }
 
+function deleteOneById(id, req, res) {
+    console.log("ID" + id);
+    InsuranceApplication.deleteOne({_id: id}, function(err, insurance) {
+       console.log("We are done!")
+      }).catch(next);
+}
+
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {createOne, findOneById, findAll}
+module.exports = {createOne, findOneById, deleteOneById, findAll}

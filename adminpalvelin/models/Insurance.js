@@ -17,12 +17,11 @@ const InsuranceSchema = new Schema({
         type: String
     },
     valid: {
-        type: String,
-        required: [true]
+        type: String
     },
     nextPaymentDate: {
-        type: String,
-        required: [true]
+        type: String
+
     },
     expires: {
         type: String

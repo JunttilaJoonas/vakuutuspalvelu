@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const profiledbservice = require('../services/profileAdminDBservice');
 const applicationDBservice = require('../services/applicationDBservice');
+const insuranceDBService = require('../services/insuranceAdminDBservice')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
@@ -16,6 +17,14 @@ router.get('/id', (req, res) => {
 
 router.post('/create', (req, res) => {
     applicationDBservice.createOne(req, res)
+})
+
+router.post('/save', (req, res) => {
+    let id = req.body.id
+    console.log(id);
+    insuranceDBService.addOne(req.body)
+    .then(applicationDBservice.deleteOneById(id, req, res)).then
+    (data => {res.json(data)})
 })
 
 router.get('/all', (req, res) => {

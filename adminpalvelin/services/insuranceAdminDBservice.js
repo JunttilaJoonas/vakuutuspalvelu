@@ -17,11 +17,12 @@ function findAll() {
 }
 
 function addOne(data) {
+    console.log(data)
     return Insurance.create(data)
         .then(createdInsurance => {
-            return createdInsurance;
+            console.log(createdInsurance);
         }).catch(error => {
-            return error;
+            console.log(error)
     });
 }
 
