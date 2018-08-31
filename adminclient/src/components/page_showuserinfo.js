@@ -28,7 +28,7 @@ class ShowUserInfo extends Component {
 
     
     let insuranceList = this.props.user.profilesinsurances;
-    console.log(this.props.user)
+    console.log(this.props.user);
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
             return (
                 <li key={ins._id}>

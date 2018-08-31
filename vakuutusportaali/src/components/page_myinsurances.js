@@ -17,7 +17,7 @@ class MyInsurance extends Component {
             })}
 
     render() {
-        console.log(this.state.profile)
+        console.log(this.state.profile);
         let insurances = this.state.profile.profilesinsurances;
         let insuranceNodes = insurances ? insurances.map(ins => {
             return (

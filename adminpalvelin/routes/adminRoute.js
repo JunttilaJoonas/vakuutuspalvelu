@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminDBservice = require('../services/adminDBservice');
-const profileService = require('../services/profileAdminDBservice')
+const profileService = require('../services/profileAdminDBservice');
 const adminInsuranceClaimService = require('../services/adminInsuranceClaimService');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -12,7 +12,7 @@ const Admin = require('../models/Admin');
 router.get('/profile', passport.authenticate('jwt',
 {session: false}), (req, res, next) => {
     adminDBservice.findOneById(req, res);
-})
+});
 
 router.post('/register', (req, res) => {
     Admin.findOne({email: req.body.email})
@@ -41,21 +41,21 @@ router.post('/register', (req, res) => {
     )
 }
 
-)
+);
 router.post('/dev', (req, res) => {
     profileService.findByEmail(req, res)
-})
+});
 
 //DEV ROUTE add a claim to the claim database from Customer Clien
 
 
 router.post('/createinsuranceclaims', (req, res) =>{
     adminInsuranceClaimService.createClaim(req, res)
-})
+});
 
 router.post('/getinsuranceclaims', (req, res) =>{
     adminInsuranceClaimService.findById(req, res)
-})
+});
 
 
 
@@ -66,7 +66,7 @@ router.post('/login', (req, res) => {
     Admin.findOne({ email }).then(admin => {
       // Check for user
       if (!admin) {
-        console.log("error: user not found")
+        console.log("error: user not found");
         return res.status(404);
       }
       // Check Password

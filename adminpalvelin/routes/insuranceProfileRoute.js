@@ -10,7 +10,7 @@ const User = require('../models/User');
 
 router.get('/all', (req, res) => {
     profiledbservice.findAll(req, res)
-})
+});
 
 //@Route /current
 //GET this shows the current profile information
@@ -36,6 +36,7 @@ router.post('/message', (req, res, next) => {
 
 
 router.post('/updatecustomer', (req, res, next) => {
+
     console.log("helo")
     profiledbservice.updateCustomerById(req.body)
 })

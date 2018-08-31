@@ -7,8 +7,8 @@ function findAll() {
 }
 
 function findOneById(req, res, next) {
-    let email = req.user.email
-    console.log(email)
+    let email = req.user.email;
+    console.log(email);
     Profile.findOne({email: email})
         .populate("profilesinsurances")
         .populate("profileclaims")
@@ -45,4 +45,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer};

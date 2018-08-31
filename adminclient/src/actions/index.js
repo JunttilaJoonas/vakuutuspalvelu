@@ -3,7 +3,7 @@ export const FETCH_USERS = 'fetch_users';
 export const FETCH_USERPROFILE = 'fetch_userprofile';
 export const DELETE_USERPROFILE = 'delete_userprofile';
 const ROOT_URL = 'http://localhost:3000/customerprofile/all';
-const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer'
+const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer';
 
 export function fetchUsers() {
     const request = axios.get(ROOT_URL);

@@ -1,6 +1,6 @@
 const express = require('express');
 const InsuranceClaim = require('../models/InsuranceClaim');
-const profileAdminDBservice = require('../services/profileAdminDBservice')
+const profileAdminDBservice = require('../services/profileAdminDBservice');
 
 
 
@@ -20,4 +20,4 @@ function findById(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {createClaim, findById}
+module.exports = {createClaim, findById};

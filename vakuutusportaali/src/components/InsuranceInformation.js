@@ -5,7 +5,7 @@ import { Grid, Row, Col, Panel } from 'react-bootstrap';
 export default class InsuranceInformation extends Component {
   state = {
     insurancetobedisplayed: []
-  }
+  };
 
   render() {
     return (
