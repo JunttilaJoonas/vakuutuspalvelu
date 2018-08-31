@@ -19,6 +19,11 @@ router.get('/all', (req, res) => {
 
 router.get('/customer/:id', (req, res) => {
     profiledbservice.findOneById(req, res)
+});
+
+router.delete('/customer/:id', (req, res) => {
+        console.log("are we where?")
+      profiledbservice.deleteProfile(req, res)
   });
 
 //@Route /omavakuutus/:vakuutusID
@@ -27,7 +32,7 @@ router.get('/customer/:id', (req, res) => {
 
 router.post('/message', (req, res, next) => {
     profiledbservice.sendCustomerAMessage(req, res);
-})
+});
 
 
 router.post('/updatecustomer', (req, res, next) => {
@@ -58,11 +63,9 @@ router.post('/createProfile', (req, res) => {
                             .catch(err => console.log(err));
                         })
                 } 
-            )
-            }
-        }
-    )
-})
+            )};
+        });
+});
 
 
-module.exports = router; 
+module.exports = router;

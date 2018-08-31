@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {Provider} from 'react-redux';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser } from './actions/authActions';
+import {setCurrentUser} from './actions/authActions';
 import store from './store';
 import FrontPage from './components/page_index';
 import InsurancePage from './components/page_insurances';
@@ -15,36 +15,38 @@ import Navigation from './components/page_navigation';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
 import reducers from './reducers';
+import {InsuranceForm} from "./components/page_buy_insurances";
 
 
 // Check for auth token
-if(localStorage.jwtToken) {
+if (localStorage.jwtToken) {
 
-  // Set auth token header
-  setAuthToken(localStorage.jwtToken);
+    // Set auth token header
+    setAuthToken(localStorage.jwtToken);
 
-  // Decode auth token and get user info
-  const decoded = jwt_decode(localStorage.jwtToken);
+    // Decode auth token and get user info
+    const decoded = jwt_decode(localStorage.jwtToken);
 
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
+    // Set user and isAuthenticated
+    store.dispatch(setCurrentUser(decoded));
 }
 
 ReactDOM.render(
-  <Provider store={ store }>
-    <BrowserRouter>
-    <div>
-      <Navigation />
-      <Switch>
-        <Route path="/kirjaudu" component={Login} />
-        <Route path="/rekisteroidy" component={Register} />
-        <Route path="/laskevakuutus" component={CountInsurances} />
-        <Route path="/omavakuutus" component={MyInsurances} />
-        <Route path="/vakuutukset" component={InsurancePage} />
-        <Route path="/vahinkoilmoitus" component = {InsuranceClaim} />
-        <Route path="/" component={FrontPage} />
-      </Switch>
-    </div>
-    </BrowserRouter>
-  </Provider>
-  , document.querySelector('.container-fluid'));
+    <Provider store={store}>
+        <BrowserRouter>
+            <div>
+                <Navigation/>
+                <Switch>
+                    <Route path="/haevakuutusta" component={InsuranceForm}/>
+                    <Route path="/kirjaudu" component={Login}/>
+                    <Route path="/rekisteroidy" component={Register}/>
+                    <Route path="/laskevakuutus" component={CountInsurances}/>
+                    <Route path="/omavakuutus" component={MyInsurances}/>
+                    <Route path="/vakuutukset" component={InsurancePage}/>
+                    <Route path="/vahinkoilmoitus" component={InsuranceClaim}/>
+                    <Route path="/" component={FrontPage}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
+    </Provider>
+    , document.querySelector('.container-fluid'));

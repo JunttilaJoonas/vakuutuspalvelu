@@ -33,13 +33,13 @@ class Login extends Component {
         const userData = {
             email: this.state.email,
             password: this.state.password
-        }
+        };
         this.props.loginUser(userData);
     }
 
     testAuth() {
         axios.get("http://localhost:4000/profiili/current")
-        .then((res) => {console.log(res)});
+        .then(res => {console.log("res", res)});
     }
 
     render() {
@@ -51,12 +51,7 @@ class Login extends Component {
                             Email
                         </Col>
                         <Col sm={10}>
-                            <FormControl 
-                            value={this.state.email} 
-                            onChange={this.onChange} 
-                            type="email" 
-                            name="email"
-                            placeholder="Email" />
+                            <FormControl value={this.state.email} onChange={this.onChange} type="email" name="email" placeholder="Email" />
                         </Col>
                     </FormGroup>
 
@@ -65,12 +60,7 @@ class Login extends Component {
                             Password
                         </Col>
                         <Col sm={10}>
-                            <FormControl 
-                            value={this.state.password} 
-                            onChange={this.onChange} 
-                            type="password" 
-                            name="password"
-                            placeholder="Password" />
+                            <FormControl value={this.state.password} onChange={this.onChange} type="password" name="password" placeholder="Password" />
                         </Col>
                     </FormGroup>
 
