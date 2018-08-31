@@ -18,13 +18,26 @@ class AddInsurance extends Component {
         );
     }
 
+    renderDropDown(field) {
+        const className = 'form-group';
+        return (
+            <div className={className}>
+            <label>{field.label}</label>
+            <select className="form-control" {...field.input} >
+            <option>True</option>
+            <option>False</option>
+            </select>
+            </div>
+        );
+    }
+
     onSubmit(values) {
         // Kun formi on lähetetty ohjataan 
         // käyttäjä takaisin juureen
         
         this.props.postInsurances(values, () =>{
             
-            this.context.history.push('/')
+            this.props.history.push('/')
         })
      
     }
@@ -42,10 +55,9 @@ class AddInsurance extends Component {
                     name="userid"
                     component={this.renderField} />
                 <Field
-                    label="Validi"
-                    placeholder="Onko validi?"
+                    label="Voimassa"
                     name="valid"
-                    component={this.renderField} />
+                    component={this.renderDropDown} />
                 <Field
                     label="Vakuutuksen tyyppi"
                     placeholder="Anna vakuutuksen tyyppi"

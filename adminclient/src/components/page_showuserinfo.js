@@ -24,7 +24,7 @@ class ShowUserInfo extends Component {
         let iidee = e.target.id;
         console.log(iidee)
         this.props.deleteUserInsurance(iidee, () => {
-            this.context.history.push('/');
+            this.props.history.push('/');
         });
     }
 
@@ -76,11 +76,13 @@ class ShowUserInfo extends Component {
     // Map and return list of messages from insurance handler to user
     let messageList = this.props.user.profilemessages;
     let messageNodes = messageList ? messageList.map(msg => {
+            console.log(msg);
             return (
-                <li key={msg._id}>
-                    Viesti: {msg.Message} 
-                    Lähettäjä: {msg.Sender}
-                </li>
+                <ListGroup key={msg.id}>
+                <ListGroupItem><b>Id: </b>{msg.id}</ListGroupItem>
+                <ListGroupItem><b>Viesti: </b>{msg.Message}</ListGroupItem>
+                <ListGroupItem><b>Lähettäjä: </b><i>{msg.Sender}</i></ListGroupItem>
+                </ListGroup>
             )
         }): [];
 

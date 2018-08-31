@@ -14,13 +14,12 @@ const DELETEINSURANCE_URL = 'http://localhost:3000/customerprofile/insurancedele
 
 // Delete one insurance from user
 export function deleteUserInsurance(id, callback) {
-    console.log("ID:" + id);
     const request = axios.post(`${DELETEINSURANCE_URL}`, id)
     .then(() => callback());
-    dispatch ({
+    return {
         type: DELETE_USERINSURANCE,
         payload: request
-    });
+    };
 }
 
 // Fetch all users 
