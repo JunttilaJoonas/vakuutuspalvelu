@@ -20,8 +20,6 @@ function findByEmail(req, res) {
 
 function updateCustomerClaims(customerId, data) {
     let id = customerId;
-    console.log("CUSTOMERID"+ customerId);
-    console.log("DATA" + data);
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")
@@ -40,15 +38,15 @@ function updateProfileInsurances(data, customerId) {
 }
 
 function sendCustomerAMessage(req, res) {
-    console.log("Hello");
+    console.log(req.body);
     const message= {
-        "id" : req.body.userid,
-        "Message" : req.body.text,
-        "Sender" : req.body.sender,
+        "id" : req.body.id,
+        "Message" : req.body.Message,
+        "Sender" : req.body.Sender,
         "messageId": req.body.messageId
     };
     console.log(message);
-    Profile.update({_id: req.body.userid}, {$push: {"profilemessages" : message}}).then(profile => {
+    Profile.update({_id: req.body.id}, {$push: {"profilemessages" : message}}).then(profile => {
         res.json(profile)
     })
 }
