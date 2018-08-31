@@ -6,17 +6,26 @@ import axios from 'axios';
 class MyInsurance extends Component {
 
     state = {
-        profile: {}
+        profile: {},
+        profileclaims: []
     };
-
+    
     componentWillMount() {
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
+<<<<<<< HEAD
             })
+            
+=======
+            })        
+>>>>>>> 5eaccc6f3625cdec95561e89b1619cd9ce65883f
     }
 
+ 
+
     render() {
+        console.log(this.state.profile)
         let insurances = this.state.profile.profilesinsurances;
         let insuranceNodes = insurances ? insurances.map(ins => {
             return (
@@ -28,6 +37,33 @@ class MyInsurance extends Component {
                 </li>
             )
         }) : [];
+
+        let insuranceClaims = this.state.profile.profileclaims;
+        let insuranceClaimNodes = insuranceClaims ? insuranceClaims.map(ins => {
+            return (
+                <li key={ins._id}>
+                    <p> Vakuutustyyppi: {ins.text} <br/>
+                        Vakuutuksen tila: {ins.handled} <br/>
+                        Vakuutuksen tunniste: {ins._id} <br/>
+                        Hakemuspäivä: {ins.date} <br/>
+                    </p>
+                </li>
+            )
+        }) : [];
+
+        let profileMessages = this.state.profile.profilemessages;
+        console.log(profileMessages);
+        let profileMessageNodes = profileMessages ? profileMessages.map(msg => {
+            return (
+                <li key={msg.messageId}>
+                    <p> Viesti: {msg.Message} <br/>
+                        Lähettäjä: {msg.Sender} <br/>
+                    </p>
+                </li>
+            )
+        }) : [];
+ 
+ 
 
 
         return (
@@ -75,7 +111,9 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        Tänne tulee vahinkotapahtumat
+                                       <ol>
+                                {insuranceClaimNodes}
+                                       </ol>
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
@@ -101,7 +139,7 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        Tänne tulee viestit
+                                        {profileMessageNodes}
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>

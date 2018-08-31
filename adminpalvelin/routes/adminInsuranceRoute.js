@@ -32,6 +32,8 @@ router.post('/update', (req, res, next) => {
     insurancedbservice.updateOneById(req.body)
 });
 
+//DEV ROUTE add a claim to the claim database from Customer Clien
+
 
 
 module.exports = router; 

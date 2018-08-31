@@ -1,5 +1,6 @@
 const express = require('express');
 const Profile = require('../models/profile');
+const InsuranceClaims = require('../models/InsuranceClaim');
 
 function findAll() {
     //findAllProfile
@@ -10,6 +11,7 @@ function findOneById(req, res, next) {
     console.log(email)
     Profile.findOne({email: email})
         .populate("profilesinsurances")
+        .populate("profileclaims")
         .then(profile => res.json(profile));
 }
 
