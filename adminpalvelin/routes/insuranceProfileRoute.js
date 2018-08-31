@@ -22,8 +22,6 @@ router.get('/customer/:id', (req, res) => {
 });
 
 router.post('/insurancedelete', (req, res) => {
-    console.log("Testi: ")
-    console.log(req.body);
     let object = req.body;
     let id =  (Object.keys(object)[0])
     insuranceDBservice.deleteCustomerInsurance(id)
@@ -36,7 +34,6 @@ router.post('/insurancedelete', (req, res) => {
 router.post('/message', (req, res, next) => {
     profiledbservice.sendCustomerAMessage(req, res);
 });
-
 
 router.post('/updatecustomer', (req, res, next) => {
 

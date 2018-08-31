@@ -4,7 +4,6 @@ const Admin = require('../models/Admin');
 
 function findOneById(req, res, next) {
     let email = req.user.email;
-    console.log(email);
     Admin.findOne({email: email})
         .then(profile => res.json(profile));
 }
