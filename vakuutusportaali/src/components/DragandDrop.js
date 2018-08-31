@@ -70,7 +70,7 @@ class DragandDrop extends Component {
                      onDragStart={(e) => this.onDragStart(e, insurance.name)}
                      draggable
                      className="draggable" style={{backgroundColor: "yellow"}}
-                     about={insurance.price}>
+                     about={insurance}>
                     {insurance.name}
                 </div>
             );
