@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 const passport = require('passport');
 const db = require('./config/keys').mongoURI;
@@ -27,7 +27,7 @@ mongoose.connection.on('connected', function() {
 
 mongoose.connection.on('error', function(err) {
   console.log('Mongoose error' + err);
-})
+});
 
 mongoose.Promise = global.Promise;
 
