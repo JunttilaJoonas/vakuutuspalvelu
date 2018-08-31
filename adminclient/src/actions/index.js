@@ -5,6 +5,7 @@ export const DELETE_USERPROFILE = 'delete_userprofile';
 export const DELETE_USERINSURANCE = 'delete_userinsurance';
 export const POST_INSURANCES = "post_insurances";
 export const POST_MESSAGES = "post_messages";
+export const POST_PROFILE = "post_profile";
 const ROOT_URL = 'http://localhost:3000/customerprofile/all';
 const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer'
 const USERINSURANCE_URL = 'http://localhost:3000/document/customer'
@@ -56,6 +57,15 @@ export function postMessages(values, callback) {
     .then(() => callback());
     return {
         type: POST_MESSAGES,
+        payload: request
+    }
+}
+
+export function postProfile(values, callback) {
+    const request = axios.post('http://localhost:3000/customerprofile/addprofile', values)
+    .then(() => callback());
+    return {
+        type: POST_PROFILE,
         payload: request
     }
 }

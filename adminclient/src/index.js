@@ -7,6 +7,7 @@ import FrontPage from './components/page_index';
 import UserInfoPage from './components/page_showuserinfo';
 import AddInsurance from './components/page_addinsurance';
 import AddMessage from './components/page_addmessage';
+import AddProfile from './components/page.addprofile';
 import reducers from './reducers';
 import Navigation from './components/page_navigation';
 import promise from 'redux-promise';
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route exact path="/" component={FrontPage} />
         <Route exact path="/addinsurance" component= {AddInsurance}/>
         <Route exact path="/createmessage" component= {AddMessage}/>
+        <Route exact path="/createprofile" component ={AddProfile} />
       </Switch>
     </div>
     </BrowserRouter>
