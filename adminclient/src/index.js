@@ -18,9 +18,9 @@ ReactDOM.render(
     <div>
       <Navigation />
       <Switch>
-        <Route path="/:id" component={UserInfoPage} />
-        <Route path="/" component={FrontPage} />
-        <Route path="/apina" component= {AddInsurance}/>
+        <Route  exact path="/customer/:id" component={UserInfoPage} />
+        <Route  exact path="/" component={FrontPage} />
+        <Route exact path="/apina" component= {AddInsurance}/>
       </Switch>
     </div>
     </BrowserRouter>

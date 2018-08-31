@@ -11,7 +11,7 @@ export default class page_addinsurance extends Component {
       <div>
             <Grid fluid className="splash"> 
                     <Row className="show-grid cards text-center">
-                        <p> "Hello world!" </p>
+                        < InsuranceForm />
                     </Row>
                 </Grid>
       </div>
