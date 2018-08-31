@@ -9,7 +9,7 @@ class CountInsurance extends Component {
                 <Grid fluid className="splash">
                     <Row className="show-grid text-center information">
                         <Col xs={12} sm={12}>
-                          < DragandDrop /> 
+                          < DragandDrop {...this.props} />
                         </Col>
                     </Row>
                 </Grid>
