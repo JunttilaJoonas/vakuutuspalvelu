@@ -3,6 +3,7 @@ export const FETCH_USERS = 'fetch_users';
 export const FETCH_USERPROFILE = 'fetch_userprofile';
 export const DELETE_USERPROFILE = 'delete_userprofile';
 export const DELETE_USERINSURANCE = 'delete_userinsurance';
+export const POST_INSURANCES = "post_insurances";
 const ROOT_URL = 'http://localhost:3000/customerprofile/all';
 const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer'
 const USERINSURANCE_URL = 'http://localhost:3000/document/customer'
@@ -37,6 +38,18 @@ export function fetchUserProfile(id) {
         payload: request
     };
 }
+
+//Posts insurance
+
+export function postInsurances(values, callback) {
+    const request = axios.post('http://localhost:3000/document/create', values)
+    .then(() => callback());
+    return {
+        type: POST_INSURANCES,
+        payload: request
+    }
+}
+
 
 // Delete user
 export function deleteUserProfile(id, callback) {
