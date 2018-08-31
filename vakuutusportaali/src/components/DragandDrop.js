@@ -5,10 +5,13 @@ import {Calculator} from "./Calculator";
 
 class DragandDrop extends Component {
 
-    state = {
-        price: 0,
-        insurances: []
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            price: 0,
+            insurances: []
+        };
+    }
 
     componentDidMount() {
         axios.get('http://localhost:4000/insurancetypes')
@@ -18,12 +21,7 @@ class DragandDrop extends Component {
                 for (let i = 0; i < insurances.length; i++) {
                     let insurance = insurances[i];
                     insurance.category = insurances[i].insurancetype;
-                    if (insurance.price) {
-                        console.log("Vakuutuksen hinta: ", insurance.price)
-                    }
-                    else {
-                        insurance.price = 50;
-                    }
+                    if (!insurance.price) insurance.price = 50;
                 }
 
                 this.setState({insurances: insurances});
@@ -54,6 +52,7 @@ class DragandDrop extends Component {
     };
 
     render() {
+        const history = this.props.history;
         let insObject = {chosenInsurances: []};
         let categories = [];
 
@@ -89,23 +88,22 @@ class DragandDrop extends Component {
             )
         });
 
-        //TODO: Korjaa post-pyyntö. Nyt se ei lähde mihinkään.
-        //Seuraava funktio katsoo, mitkä ovat chosenInsurances ja sen jälkeen lähettää tiedot palvelimelle.
-        //Palvelinkutsu ei vielä toimi, mutta se nyt on vain viilauskysymys (lähettää nyt muutenkin ihan dummy-apiin tietoa)
-        const sendChosenInsurancestoTheServer = (req) => {
-            let insurancesToBeCalculated = [];
-            for (let i = 0; i < insObject.chosenInsurances.length; i++) {
-                insurancesToBeCalculated.push(insObject.chosenInsurances[i].key)
-            }
-            console.log("ins", insurancesToBeCalculated);
-            let data = JSON.stringify(insurancesToBeCalculated);
-            console.log(data);
-            axios.post('http://localhost:4000/calculator', {
-                body: data
-            }).then((res) => {
-                console.log(res)
+        function submitInsurances(){
+            let chosenOnes = [];
+            insObject.chosenInsurances.forEach(element => {
+                let insurance = {
+                    id: element.props.about._id,
+                    category: element.props.about.insurancetype,
+                    name: element.props.about.name,
+                    defaultPrice: element.props.about.price
+                };
+                chosenOnes.push(insurance);
             });
-        };
+
+            console.log("Haettavat insurances:",chosenOnes);
+            sessionStorage.setItem("chosenOnes", JSON.stringify(chosenOnes));
+            history.push("/haevakuutusta");
+        }
 
         return (
             <div>
@@ -117,7 +115,7 @@ class DragandDrop extends Component {
                              onDrop={(e) => this.onDrop(e, "chosenInsurances")}>
                             <h4>Pudota vakuutukset tähän</h4>
                             {insObject.chosenInsurances}
-                            <Button bsClass="insurance_button" onClick={sendChosenInsurancestoTheServer.bind(this)}>Lähetä</Button>
+                            <Button bsClass="insurance_button" onClick={submitInsurances}>Lähetä</Button>
                         </div>
                         {categoriesToPage}
                     </Row>
