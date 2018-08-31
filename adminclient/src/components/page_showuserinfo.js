@@ -118,7 +118,7 @@ class ShowUserInfo extends Component {
                     <Panel id="collapsible-panel-example-2">
                         <Panel.Heading>
                             <Panel.Title toggle>
-                                Vakuutukset
+                                Vakuutukset ({insuranceClaimNodes.length})
                             </Panel.Title>
                         </Panel.Heading>
                         <Panel.Collapse>
@@ -133,7 +133,7 @@ class ShowUserInfo extends Component {
                     <Panel id="collapsible-panel-example-2">
                         <Panel.Heading>
                             <Panel.Title toggle>
-                                Vahinkotapahumat
+                                Vahinkotapahumat ({userClaimsNodes.length})
                             </Panel.Title>
                         </Panel.Heading>
                         <Panel.Collapse>
@@ -161,7 +161,7 @@ class ShowUserInfo extends Component {
                     <Panel id="collapsible-panel-example-2">
                         <Panel.Heading>
                             <Panel.Title toggle>
-                                Viestit
+                                Viestit ({messageNodes.length})
                             </Panel.Title>
                         </Panel.Heading>
                         <Panel.Collapse>

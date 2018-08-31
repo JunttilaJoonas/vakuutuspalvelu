@@ -22,13 +22,13 @@ class PageNavigation extends Component {
                             Etusivu
                         </NavItem>
                         <NavItem eventKey={2} componentClass={Link} href="/" to="/addinsurance">
-                            Add insurance
+                            Lisää vakuutus
                         </NavItem>
                         <NavItem eventKey={3} componentClass={Link} href="/" to="/createmessage">
-                            Add message
+                            Lisää viesti
                         </NavItem>
                         <NavItem eventKey={4} componentClass={Link} href="/" to="/createprofile">
-                            Add profile
+                            Lisää profiili
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
