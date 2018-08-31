@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postInsurances } from '../actions'
+import { postMessages } from '../actions'
 
-class AddInsurance extends Component {
+class AddMessage extends Component {
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
@@ -22,7 +22,7 @@ class AddInsurance extends Component {
         // Kun formi on lähetetty ohjataan 
         // käyttäjä takaisin juureen
         
-        this.props.postInsurances(values, () =>{
+        this.props.postMessages(values, () =>{
             
             this.context.history.push('/')
         })
@@ -37,19 +37,24 @@ class AddInsurance extends Component {
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Vakuutuksenottajan käyttäjätunnus"
+                    label="Viestinsaajan käyttäjätunnus"
                     placeholder="Anna vakuutuksenottajan käyttäjätunnus"
-                    name="userid"
+                    name="id"
                     component={this.renderField} />
                 <Field
-                    label="Validi"
+                    label="Viesti"
                     placeholder="Onko validi?"
-                    name="valid"
+                    name="Message"
                     component={this.renderField} />
                 <Field
-                    label="Vakuutuksen tyyppi"
+                    label="Viestin lähettäjä"
                     placeholder="Anna vakuutuksen tyyppi"
-                    name="insurancetype"
+                    name="Sender"
+                    component={this.renderField} />
+                <Field
+                    label="Viestin id"
+                    placeholder="Anna vakuutukselle tunnsu"
+                    name="messageId"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
@@ -62,7 +67,7 @@ class AddInsurance extends Component {
 // Uuden ravintolan lisäämisen formin virhekäsittely
 
 export default reduxForm({
-    form: 'InsuranceNewForm' // Arvon pitää olla uniikki
+    form: 'MessageNewForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { postInsurances })(AddInsurance)
+    connect(null, { postMessages })(AddMessage)
 );

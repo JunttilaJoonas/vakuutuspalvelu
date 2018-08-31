@@ -42,6 +42,10 @@ router.post('/updatecustomer', (req, res, next) => {
     profiledbservice.updateCustomerById(req.body)
 })
 
+router.post('/addprofile', (req, res) => {
+    profiledbservice.AddProfile(req, res)
+})
+
 router.post('/createProfile', (req, res) => {
     User.findOne({email: req.body.email})
         .then(user => {
