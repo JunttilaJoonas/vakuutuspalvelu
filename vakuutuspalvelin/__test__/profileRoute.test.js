@@ -21,7 +21,7 @@ describe('Profile REST', () => {
                 id = res.body._id;
                 console.log("id", id);
             })
-    })
+    });
 
     it('should GET the previously created insurance', function () {
         return request(app)

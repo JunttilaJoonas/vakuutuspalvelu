@@ -6,34 +6,17 @@ import axios from 'axios';
 class form_insuranceclaim extends Component {
     
     state = {
-      profile: {},
       text: ''
     };
   
-    componentWillMount() {
-      axios.get("http://localhost:4000/profiili/current")
-          .then(res => {
-              this.setState({profile: res.data});
-          })
-  }
 
-    componentWillReceiveProps(newProps) {
-      if (newProps.errors) {
-        this.setState({ errors: newProps.errors });
-      }
-    }
 
     onSubmit(e) {
       e.preventDefault();
-      const { user } = this.props.auth;
-      console.log(this.props.auth);
       const newPost = {
         text: this.state.text,
-        userid: this.state.profile._id,
-        email: this.state.profile.email
       };
       console.log(newPost);
-      this.props.addPost(newPost);
       this.setState({ text: '' });
     }
   

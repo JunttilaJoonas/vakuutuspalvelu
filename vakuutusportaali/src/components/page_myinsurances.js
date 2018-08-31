@@ -14,14 +14,10 @@ class MyInsurance extends Component {
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
-            })
-            
-    }
-
- 
+            })}
 
     render() {
-        console.log(this.state.profile)
+        console.log(this.state.profile);
         let insurances = this.state.profile.profilesinsurances;
         let insuranceNodes = insurances ? insurances.map(ins => {
             return (

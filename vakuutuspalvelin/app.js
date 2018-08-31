@@ -1,10 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var methodOverride = require('method-override')
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const methodOverride = require('method-override');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const db = require('./config/keys').mongoURI;
 
@@ -17,7 +17,7 @@ mongoose.connection.on('connected', function() {
 
 mongoose.connection.on('error', function(err) {
   console.log('Mongoose error' + err);
-})
+});
 
 mongoose.Promise = global.Promise;
 
@@ -25,10 +25,11 @@ mongoose.Promise = global.Promise;
 
 const insuranceTypeRouter = require('./routes/insuranceTypeRoute');
 const profileRouter = require('./routes/profileRoute');
-const insuranceRouter = require('./routes/insuranceRoute')
+const insuranceRouter = require('./routes/insuranceRoute');
 const calculatorRouter = require('./routes/calculatorRoute');
+// const applicationRouter = require('./routes/applicationRoute')
 
-var app = express();
+const app = express();
 
 //Passport settings
 
@@ -50,7 +51,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -66,6 +67,7 @@ app.use('/', insuranceTypeRouter);
 app.use('/profiili', profileRouter);
 app.use('/insurances', insuranceRouter);
 app.use('/calculator', calculatorRouter);
+// app.use('/application', applicationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

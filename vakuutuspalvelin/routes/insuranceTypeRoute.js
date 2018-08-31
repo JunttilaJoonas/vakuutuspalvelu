@@ -13,6 +13,6 @@ router.post('/insurancetypes', (req, res, next) => {
 
 router.get('/test', passport.authenticate('jwt',
 {session: false}), (req, res) => 
-{res.send(req.user.email)})
+{res.send(req.user.email)});
 
 module.exports = router;

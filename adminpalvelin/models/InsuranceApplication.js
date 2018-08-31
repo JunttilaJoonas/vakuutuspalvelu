@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const InsuranceSchema = new Schema({
+const InsuranceApplicationSchema = new Schema({
     insurancetype: {
         type: String,
         required: [true]
@@ -16,18 +16,17 @@ const InsuranceSchema = new Schema({
     gender: {
         type: String
     },
+    address: {
+        type: String
+    },
+    year: {
+        type: Number
+    },
     valid: {
         type: String
     },
-    nextPaymentDate: {
-        type: String
-
-    },
     expires: {
         type: String
-    },
-    priceperyear: {
-        type: Number
     },
     deductible: {
         type: Number
@@ -38,11 +37,9 @@ const InsuranceSchema = new Schema({
     notification: {
         type: Object
     }
-}, {collection: 'insurances'});
+}, {collection: 'insuranceapplications'});
+
+const InsuranceApplication = mongoose.model('insuranceapplications', InsuranceApplicationSchema);
 
 
-
-const Insurance = mongoose.model('insurances', InsuranceSchema);
-
-
-module.exports = Insurance;
+module.exports = InsuranceApplication;

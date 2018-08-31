@@ -80,11 +80,11 @@ Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
     errors: state.errors
-})
+});
 
 export default connect(mapStateToProps,  { loginUser })(Login);

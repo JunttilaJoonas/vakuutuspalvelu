@@ -1,6 +1,6 @@
 const express = require('express');
 const Profile = require('../models/Profile');
-const InsuranceClaim = require('../models/InsuranceClaim')
+const InsuranceClaim = require('../models/InsuranceClaim');
 
 //FINDS ALL PROFILES
 
@@ -10,8 +10,8 @@ function findAll(req, res) {
 }
 
 function findByEmail(req, res) {
-    let email = req.body.email
-    console.log(email)
+    let email = req.body.email;
+    console.log(email);
     Profile.findOne({email: email})
         .populate("profilesinsurances")
         .populate("profileclaims")
@@ -19,7 +19,7 @@ function findByEmail(req, res) {
 }
 
 function updateCustomerClaims(customerId, data) {
-    let id = customerId
+    let id = customerId;
     console.log("CUSTOMERID"+ customerId);
     console.log("DATA" + data);
     Profile.findOne({_id: id})
@@ -29,14 +29,24 @@ function updateCustomerClaims(customerId, data) {
 
 }
 
+function updateProfileInsurances(data, customerId) {
+    let id = customerId;
+    console.log("CUSTOMERID"+ customerId);
+    console.log("DATA" + data);
+    Profile.findOne({_id: id})
+    .populate("profilesinsurances")
+    .populate("profileclaims")
+    .then(profile => Profile.update({_id: id}, {$push: {"profilesinsurances": data}}))
+}
+
 function sendCustomerAMessage(req, res) {
-    console.log("Hello")
+    console.log("Hello");
     const message= {
         "id" : req.body.userid,
         "Message" : req.body.text,
         "Sender" : req.body.sender,
         "messageId": req.body.messageId
-    }
+    };
     console.log(message);
     Profile.update({_id: req.body.userid}, {$push: {"profilemessages" : message}}).then(profile => {
         res.json(profile)
@@ -48,7 +58,7 @@ function sendCustomerAMessage(req, res) {
 
 function findOneById(req, res, next) {
     console.log(req.params);
-    console.log('Hello Hallo')
+    console.log('Hello Hallo');
     Profile.findOne({_id: req.params.id})
         .populate("profilesinsurances")
         .populate("profileclaims")
@@ -100,4 +110,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {sendCustomerAMessage, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {sendCustomerAMessage, updateProfileInsurances, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}

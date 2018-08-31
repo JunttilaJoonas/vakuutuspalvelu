@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Grid, Row, Col, Image, Button, Table } from 'react-bootstrap';
 import ClientList from '../components/page_clientlist';
+/*import AddInsurance from '../components/page_addinsurance';*/
 
 class IndexPage extends Component {
 
@@ -16,10 +17,13 @@ class IndexPage extends Component {
                 
                 <ClientList />
 
+
                 </Col>
+              
 
                 <Col xs={12} sm={2}></Col>
                </Row>
+              
             </Grid>
             </div>
         );
