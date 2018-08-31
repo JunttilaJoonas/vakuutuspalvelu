@@ -15,7 +15,7 @@ class ClientList extends Component {
         return _.map(this.props.users, user => {
             return (
                 <tr key={user._id}>
-                <td><Link to={`/${user._id}`}>
+                <td><Link to={`/customer/${user._id}`}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>

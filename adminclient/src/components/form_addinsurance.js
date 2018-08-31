@@ -6,21 +6,36 @@ import axios from 'axios';
 class form_insuranceclaim extends Component {
     
     state = {
-      text: ''
+      text: '',
+      insurancetype: '',
+      userid: '',
+      valid: ''
     };
-  
+
+    componentWillReceiveProps(newProps) {
+      if (newProps.errors) {
+        this.setState({ errors: newProps.errors });
+      }
+    }
+
 
 
     onSubmit(e) {
       e.preventDefault();
       const newPost = {
-        text: this.state.text,
+        insurancetype: this.state.insurancetype,
+        userid: this.state.userid,
+        valid: this.state.valid
       };
       console.log(newPost);
-      this.setState({ text: '' });
+      this.props.addPost(newPost);
+      this.setState({ insurancetype: '',
+     userid: '', 
+      valid: ''});
     }
   
     onChange(e) {
+      console.log("why")
       this.setState({ [e.target.name]: e.target.value });
     }
 
@@ -33,13 +48,32 @@ class form_insuranceclaim extends Component {
           <div className="card-body">
             <form onSubmit={this.onSubmit.bind(this)}>
               <div className="form-group">
-                <TextAreaFieldGroup
+              <TextAreaFieldGroup
                   placeholder="Create a post"
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange.bind(this)}
                 />
+                <TextAreaFieldGroup
+                  placeholder="Insurance type"
+                  name="text"
+                  value={this.state.insurancetype}
+                  onChange={this.onChange.bind(this)}
+                />
+                  <TextAreaFieldGroup
+                  placeholder="userId"
+                  name="text"
+                  value={this.state.userid}
+                  onChange={this.onChange.bind(this)}
+                />
+                  <TextAreaFieldGroup
+                  placeholder="valid (I don't know why)"
+                  name="text"
+                  value={this.state.valid}
+                  onChange={this.onChange.bind(this)}
+                />
               </div>
+      
               <button type="submit" className="btn btn-dark">
                 Submit
               </button>
