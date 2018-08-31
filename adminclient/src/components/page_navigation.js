@@ -21,6 +21,9 @@ class PageNavigation extends Component {
                         <NavItem eventKey={1} componentClass={Link} href="/" to="/">
                             Etusivu
                         </NavItem>
+                        <NavItem eventKey={2} componentClass={Link} href="/" to="/apina">
+                            Add insurance
+                        </NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

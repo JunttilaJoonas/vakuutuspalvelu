@@ -1,4 +1,5 @@
 const Insurance = require('../models/Insurance');
+const profileDBService = require('../services/profileAdminDBService');
 
 function findOneById(req, res) {
     Insurance.findById({_id: req.params.id}).then(insurance => res.json(insurance))
@@ -33,11 +34,17 @@ function updateOneById(data) {
     });
 }
 
+function createInsuranceAndUpdateCustomer(req, res) {
+    Insurance.create(req.body).then(document => {
+        profileDBService.updateProfileInsurances(document._id, document.userid )})
+
+}
+
 function deleteOneById(id){
     Insurance.deleteOne({_id: id}, (err, result) => {
         console.log("poistettu");
     });
 }
 
-module.exports = {findOneById, findAllByUserID, findAll, addOne, updateOneById, deleteOneById};
+module.exports = {findOneById, createInsuranceAndUpdateCustomer, findAllByUserID, findAll, addOne, updateOneById, deleteOneById};
 

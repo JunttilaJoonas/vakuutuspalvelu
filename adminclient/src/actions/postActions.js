@@ -5,7 +5,7 @@ import {
 } from './types';
 
 //ADD post
-//THIS NEEDS TO POST TO THE CUSTOMER SERVER, NOT TO THE ADMIN SERVER. SHOULD BE EASY TO FIX /KPU
+
 export const addPost = postData => dispatch => {
     axios
         .post('http://localhost:3000/createinsuranceclaims', postData)

@@ -29,6 +29,16 @@ function updateCustomerClaims(customerId, data) {
 
 }
 
+function updateProfileInsurances(data, customerId) {
+    let id = customerId;
+    console.log("CUSTOMERID"+ customerId);
+    console.log("DATA" + data);
+    Profile.findOne({_id: id})
+    .populate("profilesinsurances")
+    .populate("profileclaims")
+    .then(profile => Profile.update({_id: id}, {$push: {"profilesinsurances": data}}))
+}
+
 function sendCustomerAMessage(req, res) {
     console.log("Hello");
     const message= {
@@ -100,4 +110,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {sendCustomerAMessage, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {sendCustomerAMessage, updateProfileInsurances, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
