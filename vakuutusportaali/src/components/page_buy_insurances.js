@@ -8,26 +8,60 @@ export class InsuranceForm extends React.Component {
         let insurances = sessionStorage.getItem("chosenOnes");
         insurances = JSON.parse(insurances);
 
+        let insurancesGrouped = {};
+        let categories = [];
+
+        insurances.forEach(insurance => {
+            let category = insurance.category;
+            if (!insurancesGrouped[category]) {
+                insurancesGrouped[category] = [];
+            }
+
+            if (!categories[category]) {
+                categories.push(category);
+            }
+
+            insurancesGrouped[category].push(insurance);
+
+        });
+
         this.state = {
+            insurancesGroupedByCategory : insurancesGrouped,
+            categories : categories,
             insurances : insurances
         }
     }
 
     render(){
-        let insuranceNodes = this.state.insurances.map(insurance => {
-           return(
-               <div key={insurance.id}>
-                   <h3>{insurance.category} - {insurance.name}</h3>
-                   <p>Omavastuu: <input type="number"/></p>
-                   <p>Vakuutussumma: <input type="number"/></p>
-               </div>
-           )
+
+        let object = this.state.insurancesGroupedByCategory;
+        let entries = Object.entries(object);
+        console.log("entries:", entries);
+        let nodes = entries.map(array => {
+            let category = array[0];
+            let insurances = array[1];
+            let insuranceNodes = insurances.map(insurance => {
+                return (
+                    <div key={insurance.id}>
+                        {insurance.name}
+                    </div>
+                )
+            });
+
+            return(
+                <div key={category}>
+                    <h3>{category}</h3>
+                    {insuranceNodes}
+                </div>
+            );
+
         });
+
 
         return (
             <div>
-                <h1>Osta vakuutukset</h1>
-                {insuranceNodes}
+                <h1>Osta vakuutuksia</h1>
+                {nodes}
                 <input type="submit"/>
             </div>
 
