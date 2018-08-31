@@ -1,8 +1,9 @@
 import React from "react";
+import axios from "axios/index";
 
 export class InsuranceForm extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         let insurances = sessionStorage.getItem("chosenOnes");
@@ -26,32 +27,48 @@ export class InsuranceForm extends React.Component {
         });
 
         this.state = {
-            insurancesGroupedByCategory : insurancesGrouped,
-            categories : categories,
-            insurances : insurances
+            insurancesGroupedByCategory: insurancesGrouped,
+            profile: {}
         }
     }
 
-    render(){
+    componentDidMount() {
+        axios.get("http://localhost:4000/profiili/current")
+            .then(res => {
+                this.setState({profile: res.data});
+            })
+    }
 
-        let object = this.state.insurancesGroupedByCategory;
-        let entries = Object.entries(object);
-        console.log("entries:", entries);
-        let nodes = entries.map(array => {
+    onSubmit(e) {
+        e.preventDefault();
+        const {user} = this.props.auth;
+        console.log(this.props.auth);
+        this.setState({text: ''});
+    }
+
+    onChange(e) {
+        this.setState({[e.target.name]: e.target.value});
+    }
+
+    render() {
+
+        let insurances = this.state.insurancesGroupedByCategory;
+        let entries = Object.entries(insurances);
+        let categoryNodes = entries.map(array => {
             let category = array[0];
             let insurances = array[1];
             let insuranceNodes = insurances.map(insurance => {
                 return (
-                    <div key={insurance.id}>
+                    <li key={insurance.id}>
                         {insurance.name}
-                    </div>
+                    </li>
                 )
             });
 
-            return(
+            return (
                 <div key={category}>
                     <h3>{category}</h3>
-                    {insuranceNodes}
+                    <ul>{insuranceNodes}</ul>
                 </div>
             );
 
@@ -61,7 +78,7 @@ export class InsuranceForm extends React.Component {
         return (
             <div>
                 <h1>Osta vakuutuksia</h1>
-                {nodes}
+                {categoryNodes}
                 <input type="submit"/>
             </div>
 
