@@ -60,7 +60,15 @@ export class InsuranceForm extends React.Component {
             let insuranceNodes = insurances.map(insurance => {
                 return (
                     <li key={insurance.id}>
-                        {insurance.name}
+                        Vakuutuksen tyyppi: {insurance.name} <br/>
+                        Haluttu omavastuu:
+                        <select name="omavastuu" id="1234">
+                            <option>50</option>
+                            <option>100</option>
+                            <option>150</option>
+                            <option>200</option>
+                            <option>250</option>
+                        </select>
                     </li>
                 )
             });
