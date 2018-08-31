@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Table, Row, Col, Grid, Panel, Image, Button } from 'react-bootstrap';
-import { fetchUserProfile, deleteUserProfile } from '../actions';
+import { fetchUserProfile, deleteUserProfile, deleteUserInsurance } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +14,14 @@ class ShowUserInfo extends Component {
     onClickDelete() {
         const { id } = this.props.match.params;
         this.props.deleteUserProfile(id, () => {
+            this.props.history.push('/');
+        });
+    }
+
+    onClickDeleteInsurance() {
+        const { id } = this.props.match.params;
+        console.log(this.props.user.profilesinsurances[0]._id)
+        this.props.deleteUserInsurance(id, () => {
             this.props.history.push('/');
         });
     }
@@ -32,7 +40,8 @@ class ShowUserInfo extends Component {
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
             return (
                 <li key={ins._id}>
-                    Vakuutustyyppi: {ins.insurancetype} Laskun eräpäivä: {ins.nextPaymentDate}  Voimassa: {ins.valid}
+                    Vakuutustyyppi: {ins.insurancetype} Laskun eräpäivä: {ins.nextPaymentDate}  Voimassa: {ins.valid} <Button className="btn btn-danger pull-xs-right"
+                    onClick={this.onClickDeleteInsurance.bind(this)}>Poista vakuutus</Button>    
                 </li>
             )
         }) : [];
@@ -148,4 +157,4 @@ function mapStateToProps({ users }, ownProps) {
     return {user: users[ownProps.match.params.id] };
 }
 
-export default connect(mapStateToProps, { fetchUserProfile, deleteUserProfile })(ShowUserInfo);
+export default connect(mapStateToProps, { fetchUserProfile, deleteUserProfile, deleteUserInsurance })(ShowUserInfo);

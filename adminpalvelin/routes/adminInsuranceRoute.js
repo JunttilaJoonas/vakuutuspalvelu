@@ -19,6 +19,12 @@ router.get('/id/:id', passport.authenticate('jwt',
     insurancedbservice.findOneById(req, res);
   });
 
+router.get('/customer/:id', (req, res) => {
+console.log("are we where?")
+    insurancedbservice.deleteCustomerInsurance(req, res);
+});
+
+
 router.get('/customer/:id', passport.authenticate('jwt',
 {session: false}), (req, res) => {
         insurancedbservice.findAllByUserID(req, res)

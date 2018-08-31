@@ -23,7 +23,7 @@ router.get('/customer/:id', (req, res) => {
 
 router.delete('/customer/:id', (req, res) => {
         console.log("are we where?")
-      profiledbservice.deleteProfile(req, res)
+      insuranceDBservice.deleteCustomerInsurance(req, res)
   });
 
 //@Route /omavakuutus/:vakuutusID

@@ -9,6 +9,12 @@ function findAllByUserID(req, res) {
     .then((insurance) => {res.json(insurance)})
 }
 
+function deleteCustomerInsurance(req, res) {
+    console.log(req.params.id)
+    Insurance.deleteOne({})
+    .then((insurance) => {res.json(insurance)})
+}
+
 function findAll() {
     return Insurance.find({}, (err, insurances) => {
         if (err) throw err;
@@ -38,5 +44,5 @@ function deleteOneById(id){
     });
 }
 
-module.exports = {findOneById, findAllByUserID, findAll, addOne, updateOneById, deleteOneById};
+module.exports = {findOneById, findAllByUserID, deleteCustomerInsurance, findAll, addOne, updateOneById, deleteOneById};
 
