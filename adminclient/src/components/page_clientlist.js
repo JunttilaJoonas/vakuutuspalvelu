@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Row, Col, Image, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { fetchUsers } from '../actions';
 import _ from 'lodash';
 import { connect } from 'react-redux';

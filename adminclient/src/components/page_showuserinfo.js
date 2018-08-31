@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Table, Row, Col, Grid, Panel, Image, Button } from 'react-bootstrap';
+import { Row, Col, Grid, Panel, Button } from 'react-bootstrap';
 import { fetchUserProfile, deleteUserProfile, deleteUserInsurance } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class ShowUserInfo extends Component {
 
@@ -12,6 +11,7 @@ class ShowUserInfo extends Component {
         this.props.fetchUserProfile(id);
     }
 
+    // Delete user profile
     onClickDelete() {
         const { id } = this.props.match.params;
         this.props.deleteUserProfile(id, () => {
@@ -19,11 +19,12 @@ class ShowUserInfo extends Component {
         });
     }
 
+    // Delete insurance from user
     onClickDeleteInsurance(e) {
         let iidee = e.target.id;
         console.log(iidee)
         this.props.deleteUserInsurance(iidee, () => {
-            this.props.history.push('/');
+            this.context.history.push('/');
         });
     }
 
@@ -31,39 +32,49 @@ class ShowUserInfo extends Component {
     
     const { user } = this.props;
 
+    // If data is not loaded display this message
     if(!user) {
         return <div>Ladataan profiilia</div>
     }
 
-    
+    // Map and return list of insurances to user
     let insuranceList = this.props.user.profilesinsurances;
-    console.log(this.props.user);
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
             return (
                 <li key={ins._id}>
-                    Vakuutuksen id: {ins._id} Vakuutustyyppi: {ins.insurancetype} Laskun eräpäivä: {ins.nextPaymentDate}  Voimassa: {ins.valid} <Button value={ins._id} id={ins._id} className="btn btn-danger pull-xs-right"
-                    onClick={this.onClickDeleteInsurance.bind(this)}>Poista vakuutus</Button>    
+                    Vakuutuksen id: {ins._id} 
+                    Vakuutustyyppi: {ins.insurancetype} 
+                    Laskun eräpäivä: {ins.nextPaymentDate}  
+                    Voimassa: {ins.valid} 
+                    <Button value={ins._id} 
+                            id={ins._id} 
+                            className="btn btn-danger pull-xs-right"
+                            onClick={this.onClickDeleteInsurance.bind(this)}>Poista vakuutus</Button>    
                 </li>
             )
         }) : [];
-
+    
+    // Map and return list of insurance claims to user
     let userClaims = this.props.user.profileclaims;
     let userClaimsNodes = userClaims ? userClaims.map(claims => {
-        return (
-            <li key={claims._id}>
-                Syy: {claims.text} Tila: {claims.handled}
-            </li>
-        )
-    }) : [];
-
+            return (
+                <li key={claims._id}>
+                    Syy: {claims.text} 
+                    Tila: {claims.handled}
+                </li>
+            )
+        }) : [];
+    
+    // Map and return list of messages from insurance handler to user
     let messageList = this.props.user.profilemessages;
     let messageNodes = messageList ? messageList.map(msg => {
-        return (
-            <li key={msg._id}>
-                Viesti: {msg.Message} Lähettäjä: {msg.Sender}
-            </li>
-        )
-    }): [];
+            return (
+                <li key={msg._id}>
+                    Viesti: {msg.Message} 
+                    Lähettäjä: {msg.Sender}
+                </li>
+            )
+        }): [];
 
     return (
       
@@ -74,8 +85,8 @@ class ShowUserInfo extends Component {
                 <Col xs={12} sm={8} className="userprofile">
                     
                     <Link to="/">Takaisin tuloksiin</Link>
-                    <Button className="btn btn-danger pull-xs-right"
-                    onClick={this.onClickDelete.bind(this)}>Poista käyttäjä</Button>
+                    <Button className="btn btn-danger pull-right" bsSize="small"
+                    onClick={this.onClickDelete.bind(this)}>Poista asiakas</Button>
                     <Panel id="collapsible-panel-example-2" defaultExpanded>
                         <Panel.Heading>
                             <Panel.Title toggle>
@@ -84,9 +95,12 @@ class ShowUserInfo extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
+        
                             <p>{user._id}</p>
                             <p>{user.name}</p>
                             <p>{user.email}</p>
+                            <p>{user.phone}</p>
+
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
@@ -100,7 +114,7 @@ class ShowUserInfo extends Component {
                         <Panel.Collapse>
                             <Panel.Body>
                                 
-                                <p>{insuranceClaimNodes}</p>
+                                {insuranceClaimNodes}
                                 
                             </Panel.Body>
                         </Panel.Collapse>
@@ -114,7 +128,9 @@ class ShowUserInfo extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
+
                                {userClaimsNodes}
+
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
@@ -140,7 +156,9 @@ class ShowUserInfo extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
+
                                 {messageNodes}
+                                
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>
