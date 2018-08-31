@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
 import { fetchUserProfile, deleteUserProfile, deleteUserInsurance } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class ShowUserInfo extends Component {
-
+  
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.fetchUserProfile(id);
@@ -40,10 +40,12 @@ class ShowUserInfo extends Component {
     // Map and return list of insurances to user
     let insuranceList = this.props.user.profilesinsurances;
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
-            console.log(ins);
             return (
                 <ListGroup key={ins._id}>
-                <ListGroupItem><b>Id: </b>{ins._id}</ListGroupItem>
+                <ListGroupItem><b>Id: </b>{ins._id}<Glyphicon 
+                value={ins._id} 
+                id={ins._id} 
+                onClick={this.onClickDeleteInsurance.bind(this)} glyph="remove" className="pull-right" /></ListGroupItem>
                 <ListGroupItem><b>Tyyppi: </b>{ins.insurancetype}</ListGroupItem>
                 <ListGroupItem><b>Voimassa: </b>{ins.valid}</ListGroupItem>
                 </ListGroup>
@@ -54,10 +56,20 @@ class ShowUserInfo extends Component {
     let userClaims = this.props.user.profileclaims;
     let userClaimsNodes = userClaims ? userClaims.map(claims => {
             return (
-                <li key={claims._id}>
-                    Syy: {claims.text} 
-                    Tila: {claims.handled}
-                </li>
+                 <ListGroup key={claims._id}>
+                 <ListGroupItem><b>Id: </b>{claims._id}</ListGroupItem>
+                 <ListGroupItem><b>Syy: </b>{claims.text}</ListGroupItem>
+                 <ListGroupItem><b>Tila: </b>{claims.handled}</ListGroupItem>
+                 <ListGroupItem><DropdownButton
+                            title={"Tila"}
+                            key={"claims"}
+                            className="insurance_selector"
+                            id="claims"
+                        >
+                            <MenuItem eventKey="Handled">Käsitelty</MenuItem>
+                            <MenuItem eventKey="Pending">Käsittelyssä</MenuItem>
+</DropdownButton></ListGroupItem>
+                 </ListGroup>
             )
         }) : [];
     
