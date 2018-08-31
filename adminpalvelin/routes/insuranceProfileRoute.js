@@ -23,6 +23,7 @@ router.get('/customer/:id', (req, res) => {
 
 router.post('/insurancedelete', (req, res) => {
     let object = req.body;
+
     let id =  (Object.keys(object)[0])
     insuranceDBservice.deleteCustomerInsurance(id)
   });
