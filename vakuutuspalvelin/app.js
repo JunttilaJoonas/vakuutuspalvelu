@@ -27,7 +27,7 @@ const insuranceTypeRouter = require('./routes/insuranceTypeRoute');
 const profileRouter = require('./routes/profileRoute');
 const insuranceRouter = require('./routes/insuranceRoute');
 const calculatorRouter = require('./routes/calculatorRoute');
-const applicationRouter = require('./routes/applicationRoute')
+// const applicationRouter = require('./routes/applicationRoute')
 
 const app = express();
 
@@ -67,7 +67,7 @@ app.use('/', insuranceTypeRouter);
 app.use('/profiili', profileRouter);
 app.use('/insurances', insuranceRouter);
 app.use('/calculator', calculatorRouter);
-app.use('/application', applicationRouter);
+// app.use('/application', applicationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
