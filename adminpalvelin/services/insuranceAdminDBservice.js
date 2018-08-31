@@ -52,5 +52,5 @@ function deleteOneById(id){
     });
 }
 
-module.exports = {findOneById, findAllByUserID, deleteCustomerInsurance, findAll, addOne, updateOneById, deleteOneById};
+module.exports = {findOneById, createInsuranceAndUpdateCustomer, findAllByUserID, deleteCustomerInsurance, findAll, addOne, updateOneById, deleteOneById};
 

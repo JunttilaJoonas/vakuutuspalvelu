@@ -3,15 +3,14 @@ import {connect} from 'react-redux';
 import {addPost} from '../actions/postActions';
 import TextAreaFieldGroup from './TextAreaFieldGroup';
 import axios from 'axios';
-class form_insuranceclaim extends Component {
-    
+class form_addinsurance extends Component {
+ 
     state = {
       text: '',
       insurancetype: '',
       userid: '',
       valid: ''
     };
-
     componentWillReceiveProps(newProps) {
       if (newProps.errors) {
         this.setState({ errors: newProps.errors });
@@ -50,25 +49,23 @@ class form_insuranceclaim extends Component {
               <div className="form-group">
               <TextAreaFieldGroup
                   placeholder="Create a post"
-                  name="text"
-                  value={this.state.text}
-                  onChange={this.onChange.bind(this)}
-                />
-                <TextAreaFieldGroup
-                  placeholder="Insurance type"
-                  name="text"
+                  name="insurancetype"
                   value={this.state.insurancetype}
                   onChange={this.onChange.bind(this)}
                 />
-                  <TextAreaFieldGroup
-                  placeholder="userId"
-                  name="text"
+               <TextAreaFieldGroup
+                  placeholder="Userid"
+                  name="userid"
                   value={this.state.userid}
                   onChange={this.onChange.bind(this)}
                 />
-                  <TextAreaFieldGroup
+                 
+              </div>
+              <div>
+                
+              <TextAreaFieldGroup
                   placeholder="valid (I don't know why)"
-                  name="text"
+                  name="valid"
                   value={this.state.valid}
                   onChange={this.onChange.bind(this)}
                 />
@@ -90,5 +87,5 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addPost })(form_insuranceclaim);
+export default connect(mapStateToProps, { addPost })(form_addinsurance);
 
