@@ -6,14 +6,16 @@ export const DELETE_USERINSURANCE = 'delete_userinsurance';
 const ROOT_URL = 'http://localhost:3000/customerprofile/all';
 const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer'
 const USERINSURANCE_URL = 'http://localhost:3000/document/customer'
+const DELETEINSURANCE_URL = 'http://localhost:3000/customerprofile/insurancedelete'
 
 export function deleteUserInsurance(id, callback) {
-    const request = axios.delete(`${USERINSURANCE_URL}/${id}`)
+    console.log("ID:" + id);
+    const request = axios.post(`${DELETEINSURANCE_URL}`, id)
     .then(() => callback());
-    return {
+    dispatch( {
         type: DELETE_USERINSURANCE,
-        payload: id
-    };
+        payload: request
+    });
 }
 
 export function fetchUsers() {

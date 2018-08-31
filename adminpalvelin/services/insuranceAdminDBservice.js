@@ -1,5 +1,5 @@
 const Insurance = require('../models/Insurance');
-const profileDBService = require('../services/profileAdminDBService');
+const profileDBService = require('./profileAdminDBservice');
 
 function findOneById(req, res) {
     Insurance.findById({_id: req.params.id}).then(insurance => res.json(insurance))
@@ -10,9 +10,9 @@ function findAllByUserID(req, res) {
     .then((insurance) => {res.json(insurance)})
 }
 
-function deleteCustomerInsurance(req, res) {
-    console.log(req.params.id)
-    Insurance.deleteOne({})
+function deleteCustomerInsurance(id) {
+    console.log(id)
+    Insurance.deleteOne({_id: id})
     .then((insurance) => {res.json(insurance)})
 }
 

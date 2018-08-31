@@ -18,8 +18,8 @@ ReactDOM.render(
     <div>
       <Navigation />
       <Switch>
-        <Route  exact path="/customer/:id" component={UserInfoPage} />
-        <Route  exact path="/" component={FrontPage} />
+        <Route exact path="/customer/:id" component={UserInfoPage} />
+        <Route exact path="/" component={FrontPage} />
         <Route exact path="/apina" component= {AddInsurance}/>
       </Switch>
     </div>

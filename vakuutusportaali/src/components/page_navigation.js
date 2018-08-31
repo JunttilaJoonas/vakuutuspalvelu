@@ -70,7 +70,7 @@ class PageNavigation extends Component {
             <Navbar fluid collapseOnSelect className="nav_custom">
             <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#home">Vakuutusprojekti</a>
+                        <a href="/">Vakuutusprojekti</a>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Navbar.Header>
