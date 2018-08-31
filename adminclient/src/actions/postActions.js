@@ -8,7 +8,7 @@ import {
 
 export const addPost = postData => dispatch => {
     axios
-        .post('http://localhost:3000/createinsuranceclaims', postData)
+        .post('http://localhost:3000/document/create', postData)
         .then(res => {
             dispatch({
                 type: ADD_POST,

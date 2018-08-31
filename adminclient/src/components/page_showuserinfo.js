@@ -3,6 +3,7 @@ import { Table, Row, Col, Grid, Panel, Image, Button } from 'react-bootstrap';
 import { fetchUserProfile, deleteUserProfile, deleteUserInsurance } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class ShowUserInfo extends Component {
 
@@ -18,10 +19,10 @@ class ShowUserInfo extends Component {
         });
     }
 
-    onClickDeleteInsurance() {
-        const { id } = this.props.match.params;
-        console.log(this.props.user.profilesinsurances[0]._id)
-        this.props.deleteUserInsurance(id, () => {
+    onClickDeleteInsurance(e) {
+        let iidee = e.target.id;
+        console.log(iidee)
+        this.props.deleteUserInsurance(iidee, () => {
             this.props.history.push('/');
         });
     }
@@ -40,7 +41,7 @@ class ShowUserInfo extends Component {
     let insuranceClaimNodes = insuranceList ? insuranceList.map(ins => {
             return (
                 <li key={ins._id}>
-                    Vakuutustyyppi: {ins.insurancetype} Laskun eräpäivä: {ins.nextPaymentDate}  Voimassa: {ins.valid} <Button className="btn btn-danger pull-xs-right"
+                    Vakuutuksen id: {ins._id} Vakuutustyyppi: {ins.insurancetype} Laskun eräpäivä: {ins.nextPaymentDate}  Voimassa: {ins.valid} <Button value={ins._id} id={ins._id} className="btn btn-danger pull-xs-right"
                     onClick={this.onClickDeleteInsurance.bind(this)}>Poista vakuutus</Button>    
                 </li>
             )

@@ -21,9 +21,12 @@ router.get('/customer/:id', (req, res) => {
     profiledbservice.findOneById(req, res)
 });
 
-router.delete('/customer/:id', (req, res) => {
-        console.log("are we where?")
-      insuranceDBservice.deleteCustomerInsurance(req, res)
+router.post('/insurancedelete', (req, res) => {
+    console.log("Testi: ")
+    console.log(req.body);
+    let object = req.body;
+    let id =  (Object.keys(object)[0])
+    insuranceDBservice.deleteCustomerInsurance(id)
   });
 
 //@Route /omavakuutus/:vakuutusID
