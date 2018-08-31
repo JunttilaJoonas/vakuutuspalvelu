@@ -11,6 +11,8 @@ const db = require('./config/keys').mongoURI;
 const adminRouter = require('./routes/adminRoute');
 const insuranceProfileRoute = require('./routes/insuranceProfileRoute');
 const adminInsuranceRoute = require('./routes/adminInsuranceRoute');
+const applicationRouter = require('./routes/applicationRoute')
+
 
 
 const app = express();
@@ -64,6 +66,8 @@ app.use(require('express-session')({
 app.use('/', adminRouter);
 app.use('/customerprofile', insuranceProfileRoute);
 app.use('/document', adminInsuranceRoute);
+app.use('/application', applicationRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
