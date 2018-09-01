@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postProfile } from '../actions'
+import { withRouter } from 'react-router-dom';
+import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
+import { registerUser } from '../../actions/authActions';
 
-class AddProfile extends Component {
-
-    state = {
-        profile: []
-    }
+class Register extends Component {
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
@@ -26,46 +24,38 @@ class AddProfile extends Component {
         // Kun formi on lähetetty ohjataan 
         // käyttäjä takaisin juureen
         
-        this.props.postProfile(values, () =>{
+        this.props.registerUser(values, () =>{
             
             this.context.history.push('/')
         })
      
     }
-
-
-
+    
     render() {
-        
         const { handleSubmit } = this.props;
 
+           return (
 
-        return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Name"
-                    placeholder="Anna vakuutuksenottajan käyttäjätunnus"
+                    label="name"
+                    placeholder="Anna nimi"
                     name="name"
                     component={this.renderField} />
                 <Field
                     label="email"
-                    placeholder="Onko validi?"
+                    placeholder="Anna sähköposti"
                     name="email"
                     component={this.renderField} />
                 <Field
-                    label="address"
-                    placeholder="Anna vakuutuksen tyyppi"
-                    name="address"
+                    label="password"
+                    placeholder="Anna salasana"
+                    name="password"
                     component={this.renderField} />
                 <Field
-                    label="City"
-                    placeholder="Anna vakuutukselle tunnsu"
-                    name="city"
-                    component={this.renderField} />
-                <Field
-                    label="Phone"
-                    placeholder="Anna vakuutukselle tunnsu"
-                    name="phone"
+                    label="password2"
+                    placeholder="Anna salasana"
+                    name="password2"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
@@ -78,7 +68,7 @@ class AddProfile extends Component {
 // Uuden ravintolan lisäämisen formin virhekäsittely
 
 export default reduxForm({
-    form: 'ProfileNewForm' // Arvon pitää olla uniikki
+    form: 'AdminNewForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { postProfile })(AddProfile)
+    connect(null, { registerUser })(Register)
 );

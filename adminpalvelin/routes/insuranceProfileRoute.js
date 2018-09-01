@@ -8,7 +8,8 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const User = require('../models/User');
 
-router.get('/all', (req, res) => {
+router.get('/all', passport.authenticate('jwt',
+{session: false}), (req, res) => {
     profiledbservice.findAll(req, res)
 });
 
@@ -32,7 +33,8 @@ router.post('/insurancedelete', (req, res) => {
 //GET this shows the information of one information
 //Private
 
-router.post('/message', (req, res, next) => {
+router.post('/message',  passport.authenticate('jwt',
+{session: false}), (req, res, next) => {
     profiledbservice.sendCustomerAMessage(req, res);
 });
 
@@ -41,7 +43,8 @@ router.post('/updatecustomer', (req, res, next) => {
     profiledbservice.updateCustomerById(req.body)
 })
 
-router.post('/addprofile', (req, res) => {
+router.post('/addprofile', passport.authenticate('jwt',
+{session: false}), (req, res) => {
     profiledbservice.AddProfile(req, res)
 })
 

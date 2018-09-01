@@ -60,7 +60,7 @@ export function postInsurances(values, callback) {
     return {
         type: POST_INSURANCES,
         payload: request
-    }
+    };
 }
 
 export function postMessages(values, callback) {
@@ -69,7 +69,7 @@ export function postMessages(values, callback) {
     return {
         type: POST_MESSAGES,
         payload: request
-    }
+    };
 }
 
 export function postProfile(values, callback) {
