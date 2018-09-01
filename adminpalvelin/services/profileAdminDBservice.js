@@ -1,6 +1,7 @@
 const express = require('express');
 const Profile = require('../models/Profile');
 const InsuranceClaim = require('../models/InsuranceClaim');
+const applicationDBservice = require ('../services/applicationDBservice')
 
 //FINDS ALL PROFILES
 
@@ -27,14 +28,17 @@ function updateCustomerClaims(customerId, data) {
 
 }
 
-function updateProfileInsurances(data, customerId) {
+function updateProfileInsurances(data, customerId, applicationId) {
     let id = customerId;
+    console.log(applicationId);
     console.log("CUSTOMERID"+ customerId);
     console.log("DATA" + data);
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")
-    .then(profile => Profile.update({_id: id}, {$push: {"profilesinsurances": data}}))
+    .then(profile => Profile.updateOne({_id: id}, {$push: {"profilesinsurances": data}})).then(
+        promise => {applicationDBservice.deleteOneById(applicationId)}
+    )
 }
 
 function sendCustomerAMessage(req, res) {
