@@ -20,7 +20,6 @@ router.post('/create', (req, res) => {
 })
 
 router.post('/save', (req, res) => {
-
     let id = req.body.applicationid
     console.log(id);
     insuranceDBService.createInsuranceAndUpdateCustomer(req, res, id)

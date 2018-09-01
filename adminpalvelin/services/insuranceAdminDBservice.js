@@ -41,8 +41,6 @@ function updateOneById(data) {
 }
 
 function createInsuranceAndUpdateCustomer(req, res, id) {
-    console.log("are we here?")
-    console.log(req.body);
     let applicationId = id;
     Insurance.create(req.body).then(document => {
         profileDBService.updateProfileInsurances(document._id, document.userid, applicationId)})
