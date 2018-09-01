@@ -37,8 +37,7 @@ router.post('/message', (req, res, next) => {
 });
 
 router.post('/updatecustomer', (req, res, next) => {
-
-    console.log("helo")
+    console.log("helo");
     profiledbservice.updateCustomerById(req.body)
 })
 

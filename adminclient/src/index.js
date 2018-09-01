@@ -8,6 +8,7 @@ import UserInfoPage from './components/page_showuserinfo';
 import AddInsurance from './components/page_addinsurance';
 import AddMessage from './components/page_addmessage';
 import AddProfile from './components/page.addprofile';
+import UpdateProfile from './components/page_updateprofile';
 import reducers from './reducers';
 import Navigation from './components/page_navigation';
 import promise from 'redux-promise';
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Route exact path="/addinsurance" component= {AddInsurance}/>
         <Route exact path="/createmessage" component= {AddMessage}/>
         <Route exact path="/createprofile" component ={AddProfile} />
+        <Route exact path="/customer/:id/update" component={UpdateProfile} />
       </Switch>
     </div>
     </BrowserRouter>

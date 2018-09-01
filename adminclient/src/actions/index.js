@@ -6,11 +6,23 @@ export const DELETE_USERINSURANCE = 'delete_userinsurance';
 export const POST_INSURANCES = "post_insurances";
 export const POST_MESSAGES = "post_messages";
 export const POST_PROFILE = "post_profile";
+export const UPDATE_USERPROFILE = 'update_userprofile';
 const ROOT_URL = 'http://localhost:3000/customerprofile/all';
-const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer'
-const USERINSURANCE_URL = 'http://localhost:3000/document/customer'
-const DELETEINSURANCE_URL = 'http://localhost:3000/customerprofile/insurancedelete'
+const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer';
+const UPDATEPROFILE_URL = 'http://localhost:3000/customerprofile/updatecustomer';
+const USERINSURANCE_URL = 'http://localhost:3000/document/customer';
+const DELETEINSURANCE_URL = 'http://localhost:3000/customerprofile/insurancedelete';
 
+
+// Update customer profile information
+export function updateUserProfile(values, callback) {
+    const request = axios.post(`${UPDATEPROFILE_URL}`, values)
+    .then(() => callback());
+    return {
+        type: UPDATE_USERPROFILE,
+        payload: request
+    };
+}
 
 // Delete one insurance from user
 export function deleteUserInsurance(id, callback) {
