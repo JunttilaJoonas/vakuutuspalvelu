@@ -17,6 +17,12 @@ class form_addinsurance extends Component {
       }
     }
 
+    componentDidMount() {
+      axios.get("http://localhost:3000/customerprofile/customer/5b897755f009f2c819fd8edb").then(
+          this.setState({profile: res.data})
+      )
+  }
+
 
 
     onSubmit(e) {

@@ -20,7 +20,8 @@ function findAll(req, res, next) {
         .then(applications => res.json(applications));
 }
 
-function deleteOneById(id, req, res) {
+function deleteOneById(id) {
+    console.log("we are here in the delete?")
     console.log("ID" + id);
     InsuranceApplication.deleteOne({_id: id}, function(err, insurance) {
        console.log("We are done!")
