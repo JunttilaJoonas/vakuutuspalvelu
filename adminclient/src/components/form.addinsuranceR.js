@@ -2,9 +2,24 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
 import { postInsurances } from '../actions'
+import axios from 'axios';
 
 class AddInsurance extends Component {
+
+    state = {
+        applications: [],
+        profile: []
+    }
+
+    componentDidMount() {
+        axios.get("http://localhost:3000/application/all").then(res => {
+            this.setState({applications: res.data})})
+    }
+
+    
+
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
@@ -36,36 +51,63 @@ class AddInsurance extends Component {
         // käyttäjä takaisin juureen
         
         this.props.postInsurances(values, () =>{
-            
             this.props.history.push('/')
         })
      
+    }
+
+    fetchApplication(id) {
+        let applicationid = id;
+        axios.get("http://localhost:3000/application/id/" + applicationid).then(res => {
+            this.setState({profile: res.data})}
+        )
     }
 
 
     render() {
         const { handleSubmit } = this.props;
 
-
+        let applicationlist = this.state.applications;
+        let applicationNodes = applicationlist ? applicationlist.map(application => {
+                return (
+                    <ListGroup key ={application._id}>
+                    <ListGroupItem onClick={() => {this.fetchApplication(application._id)}}><b>Hakemus: </b>{application._id}</ListGroupItem>
+                    </ListGroup>
+                )
+            }) : [];
+    
         return (
+            <div>
+            <p>{applicationNodes}</p>
+
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <Panel> {this.state.profile._id} </Panel>
                 <Field
                     label="Vakuutuksenottajan käyttäjätunnus"
-                    placeholder="Anna vakuutuksenottajan käyttäjätunnus"
-                    name="userid"
+                    placeholder={this.state.profile._id}
+                    name="applicationid"
                     component={this.renderField} />
                 <Field
                     label="Voimassa"
                     name="valid"
                     component={this.renderDropDown} />
+                <Panel> {this.state.profile.userid} </Panel>
+                <Field
+                    label="Käyttäjätunnus"
+                    name="userid"
+                    placeholder={this.state.profile.userid}
+                    component={this.renderField}
+                     />
+                <Panel> {this.state.profile.insurancetype} </Panel>
                 <Field
                     label="Vakuutuksen tyyppi"
-                    placeholder="Anna vakuutuksen tyyppi"
+                    placeholder={this.state.profile.insurancetype}
                     name="insurancetype"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
             </form>
+            </div>
         );
     }
 }
