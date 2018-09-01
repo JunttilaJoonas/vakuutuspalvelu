@@ -6,6 +6,10 @@ import { postProfile } from '../actions'
 
 class AddProfile extends Component {
 
+    state = {
+        profile: []
+    }
+
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
 
@@ -30,7 +34,9 @@ class AddProfile extends Component {
     }
 
 
+
     render() {
+        console.log(profile)
         const { handleSubmit } = this.props;
 
 

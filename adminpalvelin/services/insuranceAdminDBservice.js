@@ -29,7 +29,7 @@ function addOne(data) {
         .then(createdInsurance => {
             console.log(createdInsurance);
         }).catch(error => {
-            console.log(error)
+            console.log("VIRHE")
     });
 }
 

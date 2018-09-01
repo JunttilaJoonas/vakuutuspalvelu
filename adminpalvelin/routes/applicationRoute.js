@@ -20,7 +20,9 @@ router.post('/create', (req, res) => {
 })
 
 router.post('/save', (req, res) => {
-    let id = req.body.id
+    console.log("Are whe here?")
+    console.log(req.body);
+    let id = req.body.applicationid
     console.log(id);
     insuranceDBService.addOne(req.body)
     .then(applicationDBservice.deleteOneById(id, req, res)).then

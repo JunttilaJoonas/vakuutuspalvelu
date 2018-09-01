@@ -45,7 +45,6 @@ function sendCustomerAMessage(req, res) {
         "Sender" : req.body.Sender,
         "messageId": req.body.messageId
     };
-    console.log(message);
     Profile.update({_id: req.body.id}, {$push: {"profilemessages" : message}}).then(profile => {
         res.json(profile)
     })

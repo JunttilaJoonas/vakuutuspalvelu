@@ -43,7 +43,7 @@ export function fetchUserProfile(id) {
 //Posts insurance
 
 export function postInsurances(values, callback) {
-    const request = axios.post('http://localhost:3000/document/create', values)
+    const request = axios.post('http://localhost:3000/application/save', values)
     .then(() => callback());
     return {
         type: POST_INSURANCES,
