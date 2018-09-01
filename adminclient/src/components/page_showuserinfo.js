@@ -22,9 +22,8 @@ class ShowUserInfo extends Component {
     // Delete insurance from user
     onClickDeleteInsurance(e) {
         let iidee = e.target.id;
-        console.log(iidee)
         this.props.deleteUserInsurance(iidee, () => {
-            this.props.history.push('/');
+            this.forceUpdate();
         });
     }
 
@@ -76,7 +75,6 @@ class ShowUserInfo extends Component {
     // Map and return list of messages from insurance handler to user
     let messageList = this.props.user.profilemessages;
     let messageNodes = messageList ? messageList.map(msg => {
-            console.log(msg);
             return (
                 <ListGroup key={msg.id}>
                 <ListGroupItem><b>Id: </b>{msg.id}</ListGroupItem>

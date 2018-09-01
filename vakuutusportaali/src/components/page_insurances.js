@@ -128,11 +128,12 @@ class InsuranceIndex extends Component {
                         </DropdownButton>
 
                     </Row>
-                    <Row>
+                    </Grid>
+                    <Grid fluid className="info_cards">
+                    <Row className="show-grid cards text-center">
                         {insuranceData}
                     </Row>
-                </Grid>
-
+                    </Grid>
             </div>
         );
     }
