@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios/index";
+import axios from "axios";
 
 export class InsuranceForm extends React.Component {
 
@@ -32,7 +32,9 @@ export class InsuranceForm extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        console.log("hello");
+        
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
@@ -40,10 +42,29 @@ export class InsuranceForm extends React.Component {
     }
 
     onSubmit(e) {
+        console.log("PROFILE:")
+        console.log(this.state.profile);
         e.preventDefault();
-        const {user} = this.props.auth;
-        console.log(this.props.auth);
         this.setState({text: ''});
+    }
+
+    //beginnings of a buy insurance function
+
+    submitApplication(insurance, value) {
+        console.log(insurance);
+        const application = {
+            userid: this.state.profile._id,
+            insurancetype: insurance.name
+        }
+        console.log(application)
+        axios.post('http://localhost:4000/application/create', application).then(
+            res => {console.log(res)}
+        )
+        fetch('http://localhost:4000/application/create', {
+        method: 'POST',
+        body: application
+        }).then(res => {console.log(res)})
+      
     }
 
     onChange(e) {
@@ -63,13 +84,15 @@ export class InsuranceForm extends React.Component {
                         Vakuutuksen tyyppi: {insurance.name} <br/>
                         Haluttu omavastuu:
                         <select name="omavastuu" id="1234">
-                            <option>50</option>
+                            <option value="50">50</option>
                             <option>100</option>
                             <option>150</option>
                             <option>200</option>
                             <option>250</option>
                         </select>
+                        <button onClick={() => {this.submitApplication(insurance)}}>Hae tätä vakuutusta</button> 
                     </li>
+                   
                 )
             });
 
@@ -87,7 +110,7 @@ export class InsuranceForm extends React.Component {
             <div>
                 <h1>Osta vakuutuksia</h1>
                 {categoryNodes}
-                <input type="submit"/>
+                <input type="submit" onClick ={this.onSubmit.bind(this)}/>
             </div>
 
         )

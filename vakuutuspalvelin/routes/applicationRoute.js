@@ -16,6 +16,8 @@ router.get('/id', (req, res) => {
 })
 
 router.post('/create', (req, res) => {
+    console.log("Hwat")
+    console.log(req.body);
     applicationDBservice.createOne(req, res)
 })
 

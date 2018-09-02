@@ -30,9 +30,6 @@ function updateCustomerClaims(customerId, data) {
 
 function updateProfileInsurances(data, customerId, applicationId) {
     let id = customerId;
-    console.log(applicationId);
-    console.log("CUSTOMERID"+ customerId);
-    console.log("DATA" + data);
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")
