@@ -65,8 +65,6 @@ class Register extends Component {
 }
 
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
-
 export default reduxForm({
     form: 'AdminNewForm' // Arvon pitää olla uniikki
 })(

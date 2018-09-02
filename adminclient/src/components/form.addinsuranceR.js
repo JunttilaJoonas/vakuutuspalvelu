@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
-import { postInsurances } from '../actions'
+import { postInsurances } from '../actions/actions_insurances';
 import axios from 'axios';
 
 class AddInsurance extends Component {
@@ -47,13 +47,9 @@ class AddInsurance extends Component {
     }
 
     onSubmit(values) {
-        // Kun formi on lähetetty ohjataan 
-        // käyttäjä takaisin juureen
-        
-        this.props.postInsurances(values, () =>{
-            this.props.history.push('/')
-        })
-     
+        // When submitted redirect user to '/'
+        this.props.postInsurances(values);
+        this.props.history.push('/');
     }
 
     fetchApplication(id) {
@@ -113,10 +109,13 @@ class AddInsurance extends Component {
 }
 
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
+
+const mapStateToProps = (state) => ({
+    insurances: state.insurances
+});
 
 export default reduxForm({
     form: 'InsuranceNewForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { postInsurances })(AddInsurance)
+    connect(mapStateToProps, { postInsurances })(withRouter(AddInsurance))
 );

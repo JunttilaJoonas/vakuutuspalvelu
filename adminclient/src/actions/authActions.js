@@ -3,6 +3,7 @@ import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 export const REGISTER_ADMIN = 'register_admin';
 export const LOGIN_ADMIN = 'login_admin';
+import { SET_CURRENT_USER } from './types';
 const REGISTER_URL = 'http://localhost:3000/register';
 const LOGIN_URL = 'http://localhost:3000/login';
 
@@ -16,20 +17,15 @@ export function registerUser(values, callback) {
     };
 }
 
-export function loginUser(userData) {
-    return axios.post(`${LOGIN_URL}`, userData)
-    .then((res) => { 
+export const loginUser = userData => dispatch => {
+    axios.post(`${LOGIN_URL}`, userData)
+    .then(res => {
         const {token} = res.data;
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
         const decoded = jwt_decode(token);
-        console.log("Decoded: ", decoded);
         dispatch(setCurrentUser(decoded));
-    return {
-        type: LOGIN_ADMIN,
-        payload: request
-    };
-})
+    })
 }
 
 
@@ -39,5 +35,12 @@ export function setCurrentUser(decoded) {
         payload: decoded
     };
 }
+
+// Logout user
+export const  logoutUser = () => dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
+    };
 
 

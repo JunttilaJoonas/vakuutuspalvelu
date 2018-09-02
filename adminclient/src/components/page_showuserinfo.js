@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
-import { fetchUserProfile, deleteUserProfile, deleteUserInsurance } from '../actions';
+import { fetchUserProfile, deleteUserProfile } from '../actions/index';
+import { deleteUserInsurance } from '../actions/actions_insurances';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class ShowUserInfo extends Component {
   
@@ -22,9 +23,10 @@ class ShowUserInfo extends Component {
     // Delete insurance from user
     onClickDeleteInsurance(e) {
         let iidee = e.target.id;
-        this.props.deleteUserInsurance(iidee, () => {
-            this.forceUpdate();
-        });
+        let id = this.props.match.params.id;
+        this.props.deleteUserInsurance(iidee)
+        this.props.history.push('/customer/' + id);
+        window.location.reload();
     }
 
   render() {
@@ -180,8 +182,12 @@ class ShowUserInfo extends Component {
   }
 }
 
-function mapStateToProps({ users }, ownProps) {
-    return {user: users[ownProps.match.params.id] };
-}
 
-export default connect(mapStateToProps, { fetchUserProfile, deleteUserProfile, deleteUserInsurance })(ShowUserInfo);
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.users  
+    };
+};
+
+export default connect(mapStateToProps, { fetchUserProfile, deleteUserProfile, deleteUserInsurance })(withRouter(ShowUserInfo));

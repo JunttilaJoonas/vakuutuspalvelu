@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
@@ -14,15 +13,25 @@ import AddProfile from './components/page.addprofile';
 import UpdateProfile from './components/page_updateprofile';
 import Register from './components/auth/page_register';
 import Login from './components/auth/page_login';
-import reducers from './reducers';
 import Navigation from './components/page_navigation';
-import promise from 'redux-promise';
 import store from './store';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
+// Check for auth token
+if (localStorage.jwtToken) {
+  
+  // Set auth token header
+  setAuthToken(localStorage.jwtToken);
+
+  // Decode auth token and get user info
+  const decoded = jwt_decode(localStorage.jwtToken);
+
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+}
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
      <BrowserRouter>
     <div>
       <Navigation />

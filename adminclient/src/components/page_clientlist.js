@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Table } from 'react-bootstrap';
-import { fetchUsers } from '../actions';
+import { fetchAllUsers } from '../actions/index';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class ClientList extends Component {
 
+
     componentDidMount() {
-        this.props.fetchUsers();
+        this.props.fetchAllUsers();
+        console.log(this.props);
     }
+
+
 
     renderUsers() {
         return _.map(this.props.users, user => {
@@ -26,6 +30,7 @@ class ClientList extends Component {
     }
 
   render() {
+    
     return (
         <Table responsive>
         <thead>
@@ -45,8 +50,12 @@ class ClientList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-    return {users: state.users};
-}
+const mapStateToProps = (state) => {
+    console.log(state.users)
+    return {
+        users: state.users  
+    };
+};
 
-export default connect(mapStateToProps, { fetchUsers })(ClientList);
+
+export default connect(mapStateToProps, { fetchAllUsers })(ClientList);

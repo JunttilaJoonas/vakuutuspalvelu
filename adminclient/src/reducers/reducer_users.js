@@ -1,15 +1,20 @@
-import { FETCH_USERS, FETCH_USERPROFILE } from '../actions';
-import _ from 'lodash';
+import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER } from '../actions/types';
 
-export default function(state = {}, action) {
+export default function users(state = [], action)  {
     switch(action.type) {
-
-        case FETCH_USERS:
-        return _.mapKeys(action.payload.data, '_id');
-        default: 
+        case GET_USERS:
+        return action.users;
+        default:
         return state;
 
-        case FETCH_USERPROFILE:
-        return { ...state, [action.payload.data._id]: action.payload.data};
+        case GET_USER_BY_ID:
+        return action.users;
+        
+        case ADD_PROFILE_TO_USER:
+        return action.users;
+
+        case DELETE_USER_BY_ID:
+        return action.users;
+
     }
-}
+};

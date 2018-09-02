@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
 import { loginUser } from '../../actions/authActions';
 
 class Login extends Component {
@@ -20,15 +18,27 @@ class Login extends Component {
         );
     }
 
+    renderPasswordField(field) {
+        const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
+
+        return (
+            <div className={className}>
+                <label>{field.label}</label>
+                <input className="form-control" type="password" placeholder={field.placeholder} {...field.input} />
+                <div className="text-help">{field.meta.touched ? field.meta.error : ''}</div>
+            </div>
+        );
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.auth.isAuthenticated) {
+            this.props.history.push('/');
+        } 
+    }
+
+
     onSubmit(values) {
-        // Kun formi on lähetetty ohjataan 
-        // käyttäjä takaisin juureen
-        
-        this.props.loginUser(values, () =>{
-            
-            this.context.history.push('/')
-        })
-     
+        this.props.loginUser(values)
     }
     
     render() {
@@ -38,27 +48,44 @@ class Login extends Component {
 
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="email"
+                    label="Sähköposti"
                     placeholder="Anna sähköposti"
                     name="email"
                     component={this.renderField} />
                 <Field
-                    label="password"
+                    label="Salasana"
                     placeholder="Anna salasana"
                     name="password"
-                    component={this.renderField} />
-                <button type="submit" className="btn btn-primary">Lisää</button>
-                <Link to="/" className="btn btn-danger">Poistu</Link>
+                    component={this.renderPasswordField} />
+                <button type="submit" className="btn btn-primary">Kirjaudu</button>
             </form>
         );
     }
 }
 
+// Form validation for login
+function validate(values) {
+    
+    const errors = {};
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
+    if (!values.email) {
+        errors.email = "Anna käyttäjätunnus!";
+    }
+
+    if (!values.password) {
+        errors.password = "Anna salasana!";
+    }
+
+    return errors;
+}
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
 
 export default reduxForm({
+    validate,
     form: 'AdminLoginForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { loginUser })(Login)
+    connect(mapStateToProps, { loginUser })(withRouter(Login))
 );

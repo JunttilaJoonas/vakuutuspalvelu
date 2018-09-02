@@ -4,7 +4,11 @@ import ClientList from '../components/page_clientlist';
 
 class IndexPage extends Component {
 
+    
+
     render() {
+        
+
         return (
             <div>
             <Grid fluid> 

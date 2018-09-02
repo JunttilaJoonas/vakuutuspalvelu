@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postMessages } from '../actions'
+import { postMessages } from '../actions/actions_insurances';
 
 class AddMessage extends Component {
 
@@ -19,14 +19,10 @@ class AddMessage extends Component {
     }
 
     onSubmit(values) {
-        // Kun formi on lähetetty ohjataan 
-        // käyttäjä takaisin juureen
-        
-        this.props.postMessages(values, () =>{
-            
-            this.context.history.push('/')
-        })
-     
+        // When submitted redirect user to '/'
+        console.log("are we here?")  
+        this.props.postMessages(values)
+        this.props.history.push('/');     
     }
 
 
@@ -64,10 +60,12 @@ class AddMessage extends Component {
 }
 
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
+const mapStateToProps = (state) => ({
+    insurances: state.insurances
+});
 
 export default reduxForm({
     form: 'MessageNewForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { postMessages })(AddMessage)
+    connect(mapStateToProps, { postMessages })(withRouter(AddMessage))
 );

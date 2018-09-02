@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postProfile } from '../actions'
+import { postProfile } from '../actions/index';
 
 class AddProfile extends Component {
 
@@ -75,10 +75,12 @@ class AddProfile extends Component {
 }
 
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
+const mapStateToProps = (state) => ({
+    user: state.users
+});
 
 export default reduxForm({
     form: 'ProfileNewForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { postProfile })(AddProfile)
+    connect(mapStateToProps, { postProfile })(AddProfile)
 );

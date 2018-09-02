@@ -104,6 +104,7 @@ function AddProfile(req, res) {
 }
 
 function deleteProfile(req, res) {
+    console.log("ollaanko delete profilessa?")
     Profile.deleteOne({_id: req.params.id}, (err, profile) => {
         res.send('Profile deleted')
     })
