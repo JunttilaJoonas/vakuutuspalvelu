@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 
+
 class Chat extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-        username: '',
+        username: "Vakuutuspalvelija",
         message: '',
         messages: []
     };
 
     this.socket = io('localhost:4001');
-
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
@@ -52,7 +52,6 @@ render(){
 
                         </div>
                         <div className="card-footer">
-                            <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
                             <br/>
                             <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                             <br/>
