@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link} from 'react-router-dom';
+import { Link , withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateUserProfile } from '../actions'
 
@@ -24,7 +24,7 @@ class UpdateProfile extends Component {
         
         this.props.updateUserProfile(values, () =>{
             console.log(this.props);
-            this.context.history.push('/')
+            this.props.history.push('/')
         })
      
     }
@@ -66,7 +66,7 @@ class UpdateProfile extends Component {
                     placeholder="Puh"
                     name="phone"
                     component={this.renderField} />
-                <button type="submit" className="btn btn-primary">Lisää</button>
+                <button type="submit" className="btn btn-primary">Päivitä</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
             </form>
         );
@@ -74,10 +74,12 @@ class UpdateProfile extends Component {
 }
 
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
+const mapStateToProps = (state) => ({
+    user: state.users
+});
 
 export default reduxForm({
     form: 'ProfileUpdateForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { updateUserProfile })(UpdateProfile)
+    connect(mapStateToProps, { updateUserProfile })(UpdateProfile)
 );
