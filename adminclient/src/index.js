@@ -11,6 +11,7 @@ import AddInsurance from './components/page_addinsurance';
 import AddMessage from './components/page_addmessage';
 import AddProfile from './components/page.addprofile';
 import AddInvoice from './components/page_addinvoice';
+import Chat from './components/chat.js'
 import UpdateProfile from './components/page_updateprofile';
 import Register from './components/auth/page_register';
 import Login from './components/auth/page_login';
@@ -43,6 +44,7 @@ ReactDOM.render(
         <Route exact path="/createmessage" component= {AddMessage}/>
         <Route exact path="/createprofile" component ={AddProfile} />
         <Route exact path ="/addinvoice" component ={AddInvoice} />
+        <Route exact path ="/chat" component ={Chat} />
         <Route exact path="/customer/:id/update" component={UpdateProfile} />
         <Route path="/rekisteröidy" component={Register} />
         <Route path="/kirjaudu" component={Login} />

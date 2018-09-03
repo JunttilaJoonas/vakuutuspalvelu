@@ -11,6 +11,7 @@ import InsurancePage from './components/page_insurances';
 import MyInsurances from './components/page_myinsurances';
 import InsuranceClaim from './components/page_insuranceclaim';
 import CountInsurances from './components/page_countinsurances';
+import Chat from './components/chat';
 import Navigation from './components/page_navigation';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
@@ -47,6 +48,7 @@ ReactDOM.render(
                     <Route path="/omavakuutus" component={MyInsurances}/>
                     <Route path="/vakuutukset" component={InsurancePage}/>
                     <Route path="/vahinkoilmoitus" component={InsuranceClaim}/>
+                    <Route path="/chat" component= {Chat} />
                     <Route path="/" component={FrontPage}/>
                 </Switch>
             </div>
