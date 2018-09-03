@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 import axios from 'axios';
+import { Button, Panel } from 'react-bootstrap';
 
 class Chat extends Component {
-  constructor(props){
-    super(props);
+  constructor(props, context){
+    super(props, context);
 
     this.state = {
         profile: [],
         message: '',
-        messages: []
+        messages: [],
+        open: false
     };
 
     this.socket = io('localhost:4001');
@@ -33,6 +35,8 @@ class Chat extends Component {
     }
 }
 
+
+
 componentWillMount() {
   axios.get("http://localhost:4000/profiili/current")
       .then(res => {
@@ -41,17 +45,26 @@ componentWillMount() {
 
 render(){
     return (
-        <div className="container">
+    
+        <div className="chat_frame">
+        <Button bsClass="chat_button" onClick={() => this.setState({ open: !this.state.open })}>
+          Avaa chat
+        </Button>
+        <br />
+        <Panel id="collapsible-panel"  expanded={this.state.open}>
+          <Panel.Collapse className="panel_body_chat">
+            <Panel.Body className="panel_body_chat">
+            <div className="chat_container">
             <div className="row">
                 <div className="col-4">
                     <div className="card">
                         <div className="card-body">
-                            <div className="card-title">Global Chat</div>
+                            <div className="card-title">Vakuutuschat</div>
                             <hr/>
                             <div className="messages">
                                 {this.state.messages.map(message => {
                                     return (
-                                        <div>{message.author}: {message.message}</div>
+                                        <div><b>{message.author}</b>: {message.message}</div>
                                     )
                                 })}
                             </div>
@@ -61,12 +74,17 @@ render(){
                             <br/>
                             <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                             <br/>
-                            <button onClick={this.sendMessage} className="btn btn-primary form-control">Send</button>
+                            <button onClick={this.sendMessage} className="btn btn-primary form-control">Lähetä</button>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
+            </Panel.Body>
+          </Panel.Collapse>
+        </Panel>
+        </div>
+
     );
 }
 }

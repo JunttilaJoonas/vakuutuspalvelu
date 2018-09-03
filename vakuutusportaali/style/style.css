@@ -41,11 +41,38 @@
     margin-bottom: 200px;
 }
 
+.chat_container {
+    background-color: #FFF;
+    width: 350px;
+    padding: 30px;
+    bottom: 0;    
+}
+
+.chat_frame {
+    position: fixed;
+    bottom: 0;
+    background: 0%;
+}
+
+.chat_button {
+    padding: 25px 60px 25px 60px;
+    background-color: rgb(92, 131, 240);
+    text-decoration: none;
+    border: 0;
+    color: #FFF;
+}
+
 .information h3 {
     color: #FFF;
     text-shadow: 1px 1px #000;
 }
 
+.panel_body_chat {
+    border: 0;
+    text-decoration: none;
+    box-shadow: 1px 3px 10px rgb(167, 167, 167);
+}
+ 
 .information h1 {
     color: #FFF;
     text-shadow: 1px 1px #000;
