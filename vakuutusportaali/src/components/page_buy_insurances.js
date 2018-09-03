@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
 
 export class InsuranceForm extends React.Component {
 
@@ -76,34 +77,60 @@ export class InsuranceForm extends React.Component {
             let insurances = array[1];
             let insuranceNodes = insurances.map(insurance => {
                 return (
-                    <li key={insurance.id}>
-                        Vakuutuksen tyyppi: {insurance.name} <br/>
-                        Haluttu omavastuu:
-                        <select name="omavastuu" id="omavastuu">
-                            <option value="50">50</option>
-                            <option>100</option>
-                            <option>150</option>
-                            <option>200</option>
-                            <option>250</option>
-                        </select>
-                    </li>
+                    <div key={insurance.id}>
+                        <p><b>{insurance.name}</b></p>
+                        <p>
+                            Haluttu omavastuu:
+                            <select name="omavastuu" id="omavastuu">
+                                <option value="50">50</option>
+                                <option>100</option>
+                                <option>150</option>
+                                <option>200</option>
+                                <option>250</option>
+                            </select>
+                        </p>
+                        <p>
+                            Lisätietoja:
+                            <input type="text" id={insurance.id}/>
+                        </p>
+                    </div>
 
                 )
             });
 
             return (
-                <div key={category}>
-                    <h3>{category}</h3>
-                    <ul>{insuranceNodes}</ul>
-                </div>
+                <Panel key={category} id="collapsible-panel-example-2" defaultExpanded>
+                    <Panel.Heading>
+                        <Panel.Title toggle>
+                            {category}
+                        </Panel.Title>
+                    </Panel.Heading>
+                    <Panel.Collapse>
+                        <Panel.Body>
+                            {insuranceNodes}
+                        </Panel.Body>
+                    </Panel.Collapse>
+                </Panel>
             );
         });
 
         return (
+
+
             <div>
-                <h1>Viimeistele vakuutushakemus</h1>
-                {categoryNodes}
-                <input type="submit" onClick={this.onSubmit.bind(this)}/>
+                <Grid fluid className={"splash"}>
+                    <Row className={"show-grid information"}>
+                        <Col xs={12} sm={2}/>
+                        <Col xs={12} sm={8} className="userprofile">
+                            <h1>Viimeistele vakuutushakemus</h1>
+                            {categoryNodes}
+                            <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>Lähetä</Button>
+                        </Col>
+                        <Col xs={12} sm={2}/>
+
+                    </Row>
+                </Grid>
+
             </div>
 
         )
