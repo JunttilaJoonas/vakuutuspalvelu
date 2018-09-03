@@ -83,7 +83,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        <p>Vakuutukset</p>
+                                        <p>Vakuutukset ({insuranceNodes.length} kpl)</p>
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
@@ -98,7 +98,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Vahinkotapahumat
+                                        Vahinkotapahtumat
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
@@ -126,7 +126,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Viestit
+                                        Viestit ({profileMessageNodes.length} kpl)
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
