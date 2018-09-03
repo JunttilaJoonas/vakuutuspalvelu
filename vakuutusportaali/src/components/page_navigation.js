@@ -45,10 +45,10 @@ class PageNavigation extends Component {
                             Etusivu
                         </NavItem>
                         <NavItem eventKey={2} componentClass={Link} href="/vakuutukset" to="/vakuutukset">
-                            Vakuutukset
+                            Tutustu vakuutuksiin
                         </NavItem>
                         <NavItem eventKey={6} componentClass={Link} href="/" to="/laskevakuutus">
-                            Vakuutuslaskuri
+                            Hae vakuutusta
                         </NavItem>
                         <NavItem eventKey={3} componentClass={Link} href="/" to="/omavakuutus">
                             Oma sivu
