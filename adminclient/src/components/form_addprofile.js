@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Link} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postProfile } from '../actions/index';
 
@@ -82,5 +82,5 @@ const mapStateToProps = (state) => ({
 export default reduxForm({
     form: 'ProfileNewForm' // Arvon pitää olla uniikki
 })(
-    connect(mapStateToProps, { postProfile })(AddProfile)
+    connect(mapStateToProps, { postProfile })(withRouter(AddProfile))
 );
