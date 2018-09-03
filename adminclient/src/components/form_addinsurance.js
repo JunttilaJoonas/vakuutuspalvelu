@@ -4,6 +4,19 @@ import {addPost} from '../actions/postActions';
 import TextAreaFieldGroup from './TextAreaFieldGroup';
 import axios from 'axios';
 class form_addinsurance extends Component {
+
+
+  componentDidMount() {
+    this.handleInitialize();
+}
+
+handleInitialize() {
+    const initData = {
+    "id": this.props.user.id,
+    "message": this.props.user
+};
+
+}
  
     state = {
       text: '',
@@ -90,7 +103,8 @@ class form_addinsurance extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  user: state.users
 });
 
 export default connect(mapStateToProps, { addPost })(form_addinsurance);

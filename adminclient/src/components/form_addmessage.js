@@ -61,7 +61,8 @@ class AddMessage extends Component {
 
 
 const mapStateToProps = (state) => ({
-    insurances: state.insurances
+    insurances: state.insurances,
+    user: state.users
 });
 
 export default reduxForm({
