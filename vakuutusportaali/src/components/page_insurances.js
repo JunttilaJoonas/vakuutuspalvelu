@@ -89,7 +89,6 @@ class InsuranceIndex extends Component {
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Mökki">Mökki</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Sijoitusasunto">Sijoitusasunto</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Metsä">Metsä</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Vene">Vene</MenuItem>
                         </DropdownButton>
 
                         <DropdownButton

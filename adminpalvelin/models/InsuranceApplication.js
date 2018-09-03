@@ -36,10 +36,12 @@ const InsuranceApplicationSchema = new Schema({
     },
     notification: {
         type: Object
+    },
+    additionalinfo: {
+        type: String
     }
 }, {collection: 'insuranceapplications'});
 
 const InsuranceApplication = mongoose.model('insuranceapplications', InsuranceApplicationSchema);
-
 
 module.exports = InsuranceApplication;

@@ -50,9 +50,14 @@ export class InsuranceForm extends React.Component {
         let userid = this.state.profile._id;
 
         insurances.forEach(insurance => {
+            let deductible = document.getElementById("deductible-" + insurance.id).value;
+            let info = document.getElementById("info-" + insurance.id).value;
+
             const application = {
                 userid: userid,
-                insurancetype: insurance.name
+                insurancetype: insurance.name,
+                deductible: deductible,
+                additionalinfo: info
             };
 
             axios.post('http://localhost:4000/application/create', application)
@@ -64,10 +69,6 @@ export class InsuranceForm extends React.Component {
         })
     }
 
-    onChange(e) {
-        this.setState({[e.target.name]: e.target.value});
-    }
-
     render() {
 
         let insurances = this.state.insurancesGroupedByCategory;
@@ -76,25 +77,27 @@ export class InsuranceForm extends React.Component {
             let category = array[0];
             let insurances = array[1];
             let insuranceNodes = insurances.map(insurance => {
+                let deductibleID = "deductible-" + insurance.id;
+                let infoID = "info-" + insurance.id;
+
                 return (
                     <div key={insurance.id}>
                         <p><b>{insurance.name}</b></p>
                         <p>
                             Haluttu omavastuu:
-                            <select name="omavastuu" id="omavastuu">
-                                <option value="50">50</option>
-                                <option>100</option>
-                                <option>150</option>
-                                <option>200</option>
-                                <option>250</option>
+                            <select name="omavastuu" id={deductibleID}>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                                <option value={150}>150</option>
+                                <option value={200}>200</option>
+                                <option value={250}>250</option>
                             </select>
                         </p>
                         <p>
                             Lisätietoja:
-                            <input type="text" id={insurance.id}/>
+                            <input type="text" id={infoID}/>
                         </p>
                     </div>
-
                 )
             });
 

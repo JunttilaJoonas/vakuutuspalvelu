@@ -54,9 +54,6 @@ class MyInsurance extends Component {
                 </li>
             )
         }) : [];
- 
- 
-
 
         return (
             <div>
