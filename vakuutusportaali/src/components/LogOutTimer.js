@@ -1,25 +1,33 @@
-import React, { Component } from 'react'
-import IdleTimer from 'react-idle-timer'
-import {logoutUser} from "../actions/authActions";
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import IdleTimer from 'react-idle-timer';
+import {logoutUser} from '../actions/authActions';
+import {connect} from 'react-redux';
 import {Navbar} from "react-bootstrap";
 import PropTypes from 'prop-types';
 
 
-export class LogOutTimer extends Component {
+class LogOutTimer extends Component {
+    
 
-    _onIdle(e) {
-        alert("Olet ollut passiivisena 5 minuuttia.")
+    _onIdle() {
+        this.props.logoutUser();
+        this.props.history.push('/kirjaudu');
     }
 
     render() {
-        console.log("state",this.state);
         return (
             <IdleTimer
                 ref={ref => { this.idleTimer = ref }}
                 element={document}
                 onIdle={this._onIdle.bind(this)}
-                timeout={1000 * 60 * 5}/>
+                timeout={5000}/>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth
+  });
+
+export default connect(mapStateToProps, { logoutUser })(withRouter(LogOutTimer))

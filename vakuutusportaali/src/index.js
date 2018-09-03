@@ -19,7 +19,7 @@ import reducers from './reducers';
 import {InsuranceForm} from "./components/page_buy_insurances";
 import {logoutUser} from "./actions/authActions";
 import IdleTimer from 'react-idle-timer';
-import {LogOutTimer} from "./components/LogOutTimer";
+import LogOutTimer from "./components/LogOutTimer";
 
 // Check for auth token
 if (localStorage.jwtToken) {
@@ -35,7 +35,7 @@ if (localStorage.jwtToken) {
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(decoded));
 
-    var chatBot = <Chat />
+    var chatBot = <Chat />  
 }
 
 ReactDOM.render(
