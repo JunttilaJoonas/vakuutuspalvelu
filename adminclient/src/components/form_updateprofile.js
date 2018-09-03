@@ -89,13 +89,29 @@ class UpdateProfile extends Component {
     }
 }
 
+function validate(values) {
+    
+    const errors = {};
+
+    if (!values.name) {
+        errors.name = "Nimi ei voi olla tyhjä!";
+    }
+
+    if (!values.email) {
+        errors.email = "Anna sähköposti!";
+    }
+
+    return errors;
+}
+
 
 const mapStateToProps = (state) => ({
     user: state.users
 });
 
 export default reduxForm({
+    validate,
     form: 'ProfileUpdateForm' // Arvon pitää olla uniikki
 })(
-    connect(mapStateToProps, { updateUserProfile })(UpdateProfile)
+    connect(mapStateToProps,  { updateUserProfile })(UpdateProfile)
 );
