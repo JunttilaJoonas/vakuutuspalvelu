@@ -50,9 +50,13 @@ class PageNavigation extends Component {
                         <NavItem eventKey={4} componentClass={Link} href="/" to="/createprofile">
                             Lisää profiili
                         </NavItem>
+                        <NavItem eventKey={5} componentClass={Link} href="/" to="/addinvoice">
+                            Laskutus
+                        </NavItem>
                         <NavItem eventKey={4} componentClass={Link} href="#" to="#" onClick={this.onLogoutClick.bind(this)}>
                             Kirjaudu ulos
                         </NavItem>
+                      
                 </Nav>
             </Navbar.Collapse>
         );

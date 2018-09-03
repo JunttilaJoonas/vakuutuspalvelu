@@ -83,7 +83,7 @@ class ShowUserInfo extends Component {
     let messageList = this.props.user.profilemessages;
     let messageNodes = messageList ? messageList.map(msg => {
             return (
-                <ListGroup key={msg.id}>
+                <ListGroup key={msg.messageid}>
                 <ListGroupItem><b>Id: </b>{msg.id}</ListGroupItem>
                 <ListGroupItem><b>Viesti: </b>{msg.Message}</ListGroupItem>
                 <ListGroupItem><b>Lähettäjä: </b><i>{msg.Sender}</i></ListGroupItem>
@@ -94,10 +94,10 @@ class ShowUserInfo extends Component {
         let invoiceList = this.props.user.profilesinvoices;
         let invoiceNodes = invoiceList ? invoiceList.map(invoice => {
                 return (
-                    <ListGroup key={invoice.id}>
-                    <ListGroupItem><b>Id: </b>{invoice.id}</ListGroupItem>
-                    <ListGroupItem><b>Viesti: </b>{invoice.duedate}</ListGroupItem>
-                    <ListGroupItem><b>Lähettäjä: </b><i>{invoice.referenceNumber}</i></ListGroupItem>
+                    <ListGroup key={invoice._id}>
+                    <ListGroupItem><b>Id: </b>{invoice._id}</ListGroupItem>
+                    <ListGroupItem><b>Eräpäivä </b>{invoice.duedate}</ListGroupItem>
+                    <ListGroupItem><b>Viitenumero: </b><i>{invoice.referenceNumber}</i></ListGroupItem>
                     </ListGroup>
                 )
             }): [];
@@ -166,7 +166,7 @@ class ShowUserInfo extends Component {
                     <Panel id="collapsible-panel-example-2">
                         <Panel.Heading>
                             <Panel.Title toggle>
-                                Laskut
+                                Laskut  ({invoiceNodes.length})
                             </Panel.Title>
                         </Panel.Heading>
                         <Panel.Collapse>

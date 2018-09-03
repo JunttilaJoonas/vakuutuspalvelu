@@ -63,7 +63,7 @@ class AddInsurance extends Component {
         console.log(this.state.profile)
         const initData = {
             "applicationid": this.state.profile._id,
-            "userid": this.state.profile._id,
+            "userid": this.state.profile.userid,
             "insurancetype": this.state.profile.insurancetype
         };
         this.props.initialize(initData);

@@ -3,7 +3,8 @@ const ROOT_URL = 'http://localhost:3000/customerprofile/all';
 const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer';
 const UPDATEPROFILE_URL = 'http://localhost:3000/customerprofile/updatecustomer';
 const ADDPROFILE_URL = 'http://localhost:3000/customerprofile/addprofile';
-import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER, UPDATE_USER_PROFILE } from './types';
+const ADDUSER_URL =  'http://localhost:4000/profiili/register';
+import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, POST_USER, ADD_PROFILE_TO_USER, UPDATE_USER_PROFILE } from './types';
 
 export function fetchUsers(users) {
         return {
@@ -58,6 +59,23 @@ export function addProfile(profile) {
         type: ADD_PROFILE_TO_USER,
         profile
     };
+}
+
+export function postNewUser(values) {
+    return {
+        type: POST_USER,
+        values
+    };
+}
+
+export function postUser(values) {
+    console.log(values);
+    return (dispatch) => {
+        return axios.post(`${ADDUSER_URL}`, values)
+        .then(res => {
+            dispatch(postNewUser(res.data))
+        });
+    }
 }
 
 export function postProfile(values) {

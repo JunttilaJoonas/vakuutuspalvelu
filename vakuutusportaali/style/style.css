@@ -17,8 +17,7 @@
 
 .droppable {
     margin: 30px;
-    background-color: #FFF;
-    opacity: 0.6;
+    opacity: 0.8;
     padding: 10px 0px 10px 0px;
 }
 
@@ -62,6 +61,7 @@
     padding: 20px;
     color: #FFF;
 }
+
 
 .info_cards {
     margin-top: 20px;

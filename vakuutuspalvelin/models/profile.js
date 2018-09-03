@@ -29,6 +29,10 @@ const ProfileSchema = new Schema({
         profileclaims: [{
             type: Schema.Types.ObjectId,
             ref: 'insuranceclaims'
+        }],
+        profilesinvoices: [{
+            type: Schema.Types.ObjectId,
+            ref: 'invoices'
         }]
     }
     , {collection: 'profiles'});

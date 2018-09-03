@@ -1,4 +1,4 @@
-import { DELETE_USER_INSURANCE, POST_INSURANCE, POST_MESSAGE } from '../actions/types';
+import { DELETE_USER_INSURANCE, POST_INSURANCE, POST_MESSAGE, POST_INVOICE } from '../actions/types';
 
 export default function insurances(state = [], action)  {
     switch(action.type) {
@@ -11,6 +11,9 @@ export default function insurances(state = [], action)  {
         return action.insurances;
 
         case POST_MESSAGE:
+        return action.insurances;
+
+        case POST_INVOICE:
         return action.insurances;
 
     }

@@ -29,6 +29,7 @@ router.delete('/customer/:id', (req, res) => {
 
 router.post('/invoice', (req ,res) => {
     console.log("Are we here?")
+    console.log(req.body)
     invoiceDBservice.createInvoice(req, res)
 })
 

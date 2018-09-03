@@ -51,7 +51,10 @@ class DragandDrop extends Component {
         });
     };
 
+    
+
     render() {
+
         const history = this.props.history;
         let insObject = {chosenInsurances: []};
         let categories = [];
@@ -68,7 +71,7 @@ class DragandDrop extends Component {
                 <div key={insurance._id}
                      onDragStart={(e) => this.onDragStart(e, insurance.name)}
                      draggable
-                     className="draggable" style={{backgroundColor: "yellow"}}
+                     className="draggable" style={{backgroundColor: "white"}}
                      about={insurance}>
                     {insurance.name}
                 </div>
@@ -105,19 +108,36 @@ class DragandDrop extends Component {
             history.push("/haevakuutusta");
         }
 
+        let insButton;
+            if(insObject.chosenInsurances.length != 0) {
+                insButton = <Button bsClass="insurance_button" onClick={submitInsurances}>Lähetä</Button>
+            } else {
+                insButton = <p></p>
+            }
+
         return (
             <div>
                 <h1 className="header">Vakuutukset</h1>
+               
                 <Calculator data={insObject.chosenInsurances}/>
                 <Grid fluid className="info_cards">
                     <Row className="show-grid cards text-center">
+                        <Col xs={12} sm={4}/>
+                        <Col xs={12} sm={4}>
                         <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
                              onDrop={(e) => this.onDrop(e, "chosenInsurances")}>
                             <h4>Pudota vakuutukset tähän</h4>
+                 
                             {insObject.chosenInsurances}
-                            <Button bsClass="insurance_button" onClick={submitInsurances}>Lähetä</Button>
+                        
+                            {insButton}
+
                         </div>
+                        </Col>
+                        <Col xs={12} sm={4}/>
+                        <Grid>
                         {categoriesToPage}
+                        </Grid>
                     </Row>
                 </Grid>
             </div>
