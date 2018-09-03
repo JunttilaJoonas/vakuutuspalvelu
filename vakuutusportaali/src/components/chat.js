@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
+import axios from 'axios';
 
 class Chat extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-        username: '',
+        profile: [],
         message: '',
         messages: []
     };
@@ -18,21 +19,26 @@ class Chat extends Component {
     });
 
     const addMessage = data => {
-        console.log(data);
         this.setState({messages: [...this.state.messages, data]});
-        console.log(this.state.messages);
     };
 
     this.sendMessage = ev => {
         ev.preventDefault();
         this.socket.emit('SEND_MESSAGE', {
-            author: this.state.username,
+            author: this.state.profile.email,
             message: this.state.message
         })
         this.setState({message: ''});
 
     }
 }
+
+componentWillMount() {
+  axios.get("http://localhost:4000/profiili/current")
+      .then(res => {
+          this.setState({profile: res.data});
+      })}
+
 render(){
     return (
         <div className="container">
@@ -52,7 +58,6 @@ render(){
 
                         </div>
                         <div className="card-footer">
-                            <input type="text" placeholder="Username" value={this.state.username} onChange={ev => this.setState({username: ev.target.value})} className="form-control"/>
                             <br/>
                             <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                             <br/>
