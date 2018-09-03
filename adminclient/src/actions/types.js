@@ -9,3 +9,4 @@ export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
 export const POST_INSURANCE = 'POST_INSURANCE';
 export const POST_MESSAGE = 'POST_MESSAGE';
 export const POST_INVOICES = 'POST_INVOICES';
+export const POST_USER = 'POST_USER';
