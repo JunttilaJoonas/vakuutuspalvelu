@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import {setCurrentUser} from './actions/authActions';
@@ -17,7 +17,9 @@ import Register from './components/auth/register';
 import Login from './components/auth/login';
 import reducers from './reducers';
 import {InsuranceForm} from "./components/page_buy_insurances";
-
+import {logoutUser} from "./actions/authActions";
+import IdleTimer from 'react-idle-timer';
+import {LogOutTimer} from "./components/LogOutTimer";
 
 // Check for auth token
 if (localStorage.jwtToken) {
@@ -36,6 +38,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
+                <LogOutTimer/>
                 <Navigation/>
                 <Switch>
                     <Route path="/haevakuutusta" component={InsuranceForm}/>

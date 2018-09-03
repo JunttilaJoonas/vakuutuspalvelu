@@ -21,8 +21,7 @@ class IndexPage extends Component {
                                 publishing
                                 software like Aldus PageMaker including versions of Lorem Ipsum.
                             </h3>
-                            <a href="/laskevakuutus"><Button bsClass="insurance_button">Laske hinta
-                                vakuutukselle</Button></a>
+                            <a href="/laskevakuutus"><Button bsClass="insurance_button">Osta vakuutuksia</Button></a>
                         </Col>
                     </Row>
                 </Grid>
