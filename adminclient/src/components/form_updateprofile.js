@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Link} from 'react-router-dom';
+import { Field, reduxForm, initialize } from 'redux-form';
+import { Link , withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateUserProfile } from '../actions'
 
 class UpdateProfile extends Component {
+
+    componentDidMount() {
+        this.handleInitialize();
+    }
+
+    handleInitialize() {
+        const initData = {
+            "_id": this.props.user._id,
+            "name": this.props.user.name,
+            "email": this.props.user.email,
+            "address": this.props.user.address,
+            "city": this.props.user.city,
+            "phone": this.props.user.phone
+        };
+        this.props.initialize(initData);
+    }
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
@@ -24,7 +40,7 @@ class UpdateProfile extends Component {
         
         this.props.updateUserProfile(values, () =>{
             console.log(this.props);
-            this.context.history.push('/')
+            this.props.history.push('/')
         })
      
     }
@@ -66,7 +82,7 @@ class UpdateProfile extends Component {
                     placeholder="Puh"
                     name="phone"
                     component={this.renderField} />
-                <button type="submit" className="btn btn-primary">Lisää</button>
+                <button type="submit" className="btn btn-primary">Päivitä</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
             </form>
         );
@@ -74,10 +90,12 @@ class UpdateProfile extends Component {
 }
 
 
-// Uuden ravintolan lisäämisen formin virhekäsittely
+const mapStateToProps = (state) => ({
+    user: state.users
+});
 
 export default reduxForm({
     form: 'ProfileUpdateForm' // Arvon pitää olla uniikki
 })(
-    connect(null, { updateUserProfile })(UpdateProfile)
+    connect(mapStateToProps, { updateUserProfile })(UpdateProfile)
 );

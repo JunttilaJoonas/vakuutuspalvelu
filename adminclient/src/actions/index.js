@@ -3,7 +3,7 @@ const ROOT_URL = 'http://localhost:3000/customerprofile/all';
 const USERPROFILE_URL = 'http://localhost:3000/customerprofile/customer';
 const UPDATEPROFILE_URL = 'http://localhost:3000/customerprofile/updatecustomer';
 const ADDPROFILE_URL = 'http://localhost:3000/customerprofile/addprofile';
-import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER } from './types';
+import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER, UPDATE_USER_PROFILE } from './types';
 
 export function fetchUsers(users) {
         return {
@@ -69,15 +69,22 @@ export function postProfile(values) {
     }
 }
 
-// Update customer profile information
-export function updateUserProfile(values, callback) {
-    const request = axios.post(`${UPDATEPROFILE_URL}`, values)
-    .then(() => callback());
+export function updateProfile(profile) {
     return {
-        type: UPDATE_USERPROFILE,
-        payload: request
+        type: UPDATE_USER_PROFILE,
+        profile
     };
 }
+
+export function updateUserProfile(values) {
+    return (dispatch) => {
+        return axios.post(`${UPDATEPROFILE_URL}`, values)
+        .then(res => {
+            dispatch(updateProfile(res.data))
+        });
+    }
+}
+
 
 
 

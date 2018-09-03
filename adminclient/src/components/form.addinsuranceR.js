@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, initialize } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
@@ -17,8 +17,6 @@ class AddInsurance extends Component {
         axios.get("http://localhost:3000/application/all").then(res => {
             this.setState({applications: res.data})})
     }
-
-    
 
 
     renderField(field) {
@@ -55,9 +53,22 @@ class AddInsurance extends Component {
     fetchApplication(id) {
         let applicationid = id;
         axios.get("http://localhost:3000/application/id/" + applicationid).then(res => {
-            this.setState({profile: res.data})}
-        )
+            this.setState({profile: res.data})},
+          
+        ).then(res => {this.handleInitialize().bind(this)})
     }
+
+    handleInitialize() {
+        console.log("are we here?")
+        console.log(this.state.profile)
+        const initData = {
+            "applicationid": this.state.profile._id,
+            "userid": this.state.profile._id,
+            "insurancetype": this.state.profile.insurancetype
+        };
+        this.props.initialize(initData);
+    }
+
 
 
     render() {
@@ -77,7 +88,6 @@ class AddInsurance extends Component {
             <p>{applicationNodes}</p>
 
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Panel> {this.state.profile._id} </Panel>
                 <Field
                     label="Vakuutuksenottajan käyttäjätunnus"
                     placeholder={this.state.profile._id}
@@ -87,14 +97,12 @@ class AddInsurance extends Component {
                     label="Voimassa"
                     name="valid"
                     component={this.renderDropDown} />
-                <Panel> {this.state.profile.userid} </Panel>
                 <Field
                     label="Käyttäjätunnus"
                     name="userid"
                     placeholder={this.state.profile.userid}
                     component={this.renderField}
                      />
-                <Panel> {this.state.profile.insurancetype} </Panel>
                 <Field
                     label="Vakuutuksen tyyppi"
                     placeholder={this.state.profile.insurancetype}
@@ -111,7 +119,8 @@ class AddInsurance extends Component {
 
 
 const mapStateToProps = (state) => ({
-    insurances: state.insurances
+    insurances: state.insurances,
+    profile: state.profile
 });
 
 export default reduxForm({

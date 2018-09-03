@@ -29,6 +29,11 @@ class ShowUserInfo extends Component {
         window.location.reload();
     }
 
+    // Update user profile
+    onClickUpdate() {
+        this.props.history.push('/customer/' + this.props.match.params.id + '/update');
+    }
+
   render() {
     
     const { user } = this.props;
@@ -108,6 +113,8 @@ class ShowUserInfo extends Component {
                     <Link to="/">Takaisin tuloksiin</Link>
                     <Button className="btn btn-danger pull-right" bsSize="small"
                     onClick={this.onClickDelete.bind(this)}>Poista asiakas</Button>
+                    <Button className="btn btn-warning pull-right" bsSize="small"
+                    onClick={this.onClickUpdate.bind(this)}>Päivitä</Button> 
                     <Panel id="collapsible-panel-example-2" defaultExpanded>
                         <Panel.Heading>
                             <Panel.Title toggle>
