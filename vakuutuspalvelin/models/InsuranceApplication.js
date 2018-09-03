@@ -7,8 +7,8 @@ const InsuranceApplicationSchema = new Schema({
         required: [true]
     },
     userid: {
-      type: String,
-      required: [true]
+        type: String,
+        required: [true]
     },
     age: {
         type: String
@@ -30,12 +30,15 @@ const InsuranceApplicationSchema = new Schema({
     },
     deductible: {
         type: Number
-    }, 
+    },
     objectOfInsurance: {
         type: Object
     },
     notification: {
         type: Object
+    },
+    additionalinfo: {
+        type: String
     }
 }, {collection: 'insuranceapplications'});
 
