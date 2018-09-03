@@ -143,7 +143,6 @@ class MyInsurance extends Component {
             </div>
         );
     }
-
 }
 
 export default MyInsurance

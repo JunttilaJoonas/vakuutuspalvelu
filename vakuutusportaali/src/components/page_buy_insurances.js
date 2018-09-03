@@ -27,7 +27,8 @@ export class InsuranceForm extends React.Component {
 
         this.state = {
             insurancesGroupedByCategory: insurancesGrouped,
-            profile: {}
+            profile: {},
+            insurances: insurances
         }
     }
 
@@ -40,20 +41,26 @@ export class InsuranceForm extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.setState({text: ''});
+        this.submitAll();
     }
 
-    submitApplication(insurance, value) {
-        const application = {
-            userid: this.state.profile._id,
-            insurancetype: insurance.name
-        }
-        axios.post('http://localhost:4000/application/create', application)
-            .then(res => {
-                    console.log(res)
-                }
-            );
+    submitAll() {
+        let insurances = this.state.insurances;
+        let userid = this.state.profile._id;
 
+        insurances.forEach(insurance => {
+            const application = {
+                userid: userid,
+                insurancetype: insurance.name
+            };
+
+            axios.post('http://localhost:4000/application/create', application)
+                .then(res => {
+                        console.log("Postattu " + insurance.id);
+                        console.log(res)
+                    }
+                );
+        })
     }
 
     onChange(e) {
@@ -79,10 +86,6 @@ export class InsuranceForm extends React.Component {
                             <option>200</option>
                             <option>250</option>
                         </select>
-                        <button onClick={() => {
-                            this.submitApplication(insurance)
-                        }}>Hae tätä vakuutusta
-                        </button>
                     </li>
 
                 )
@@ -98,7 +101,7 @@ export class InsuranceForm extends React.Component {
 
         return (
             <div>
-                <h1>Osta vakuutuksia</h1>
+                <h1>Viimeistele vakuutushakemus</h1>
                 {categoryNodes}
                 <input type="submit" onClick={this.onSubmit.bind(this)}/>
             </div>
