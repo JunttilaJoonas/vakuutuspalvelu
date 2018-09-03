@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Grid, Row, Col, Panel} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
 import axios from 'axios';
 
 class MyInsurance extends Component {
@@ -17,7 +17,6 @@ class MyInsurance extends Component {
             })}
 
     render() {
-        console.log(this.state.profile);
         let insurances = this.state.profile.profilesinsurances;
         let insuranceNodes = insurances ? insurances.map(ins => {
             return (
@@ -43,8 +42,20 @@ class MyInsurance extends Component {
             )
         }) : [];
 
+        let invoiceList = this.state.profile.profilesinvoices;
+        console.log(this.state.profile.profilesinvoices)
+       let invoiceNodes = invoiceList ? invoiceList.map(invoice => {
+
+               return (
+                   <ListGroup key={invoice._id}>
+                   <ListGroupItem><b>Id: </b>{invoice._id}</ListGroupItem>
+                   <ListGroupItem><b>Eräpäivä </b>{invoice.duedate}</ListGroupItem>
+                   <ListGroupItem><b>Viitenumero: </b><i>{invoice.referenceNumber}</i></ListGroupItem>
+                   </ListGroup>
+               )
+           }): [];
+
         let profileMessages = this.state.profile.profilemessages;
-        console.log(profileMessages);
         let profileMessageNodes = profileMessages ? profileMessages.map(msg => {
             return (
                 <li key={msg.messageId}>
@@ -80,7 +91,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        <p>Vakuutukset ({insuranceNodes.length} kpl)</p>
+                                        Vakuutukset ({insuranceNodes.length})
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
@@ -95,7 +106,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Vahinkotapahtumat
+                                        Vahinkotapahtumat ({insuranceClaimNodes.length})
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
@@ -110,12 +121,12 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Laskut
+                                        Laskut ({invoiceNodes.length})
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        Tänne tulee laskut
+                                        {invoiceNodes}
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
@@ -123,7 +134,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Viestit ({profileMessageNodes.length} kpl)
+                                        Viestit ({profileMessageNodes.length})
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
