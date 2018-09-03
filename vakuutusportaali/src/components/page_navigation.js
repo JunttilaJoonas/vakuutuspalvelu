@@ -76,10 +76,6 @@ class PageNavigation extends Component {
     }
 }
 
-Navbar.propTypes = {
-    logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-};
 
 const mapStateToProps = (state) => ({
     auth: state.auth
