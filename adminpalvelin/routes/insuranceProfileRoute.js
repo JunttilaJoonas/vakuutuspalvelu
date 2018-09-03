@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const profiledbservice = require('../services/profileAdminDBservice');
 const insuranceDBservice = require('../services/insuranceAdminDBservice');
+const invoiceDBservice = require('../services/adminInvoiceService');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
@@ -25,6 +26,11 @@ router.get('/customer/:id', (req, res) => {
 router.delete('/customer/:id', (req, res) => {
     profiledbservice.deleteProfile(req, res)
 });
+
+router.post('/invoice', (req ,res) => {
+    console.log("Are we here?")
+    invoiceDBservice.createInvoice(req, res)
+})
 
 router.post('/insurancedelete', (req, res) => {
     let object = req.body;

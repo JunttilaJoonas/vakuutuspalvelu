@@ -16,7 +16,18 @@ function findByEmail(req, res) {
     Profile.findOne({email: email})
         .populate("profilesinsurances")
         .populate("profileclaims")
+        .populate("profilesinvoices")
         .then(profile => res.json(profile));
+}
+
+function updateCustomerInvoices(customerId, data) {
+    let id = customerId;
+    Profile.findOne({_id: id})
+    .populate("profilesinsurances")
+    .populate("profileclaims")
+    .populate("profilesinvoices")
+    .then(profile => Profile.update({_id: profile._id}, {$push: {"profilesinvoices": data}}))
+
 }
 
 function updateCustomerClaims(customerId, data) {
@@ -24,6 +35,7 @@ function updateCustomerClaims(customerId, data) {
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")
+    .populate("profilesinvoices")
     .then(profile => Profile.update({_id: profile._id}, {$push: {"profileclaims": data}}))
 
 }
@@ -33,6 +45,7 @@ function updateProfileInsurances(data, customerId, applicationId) {
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")
+    .populate("profilesinvoices")
     .then(profile => Profile.updateOne({_id: id}, {$push: {"profilesinsurances": data}})).then(
         promise => {applicationDBservice.deleteOneById(applicationId)}
     )
@@ -60,6 +73,7 @@ function findOneById(req, res, next) {
     Profile.findOne({_id: req.params.id})
         .populate("profilesinsurances")
         .populate("profileclaims")
+        .populate("profilesinvoices")
         .then(profile => res.json(profile));
 }
 
@@ -109,4 +123,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {sendCustomerAMessage, updateProfileInsurances, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {sendCustomerAMessage, updateCustomerInvoices, updateProfileInsurances, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}

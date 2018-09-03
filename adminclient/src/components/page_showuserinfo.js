@@ -86,6 +86,17 @@ class ShowUserInfo extends Component {
             )
         }): [];
 
+        let invoiceList = this.props.user.profilesinvoices;
+        let invoiceNodes = invoiceList ? invoiceList.map(invoice => {
+                return (
+                    <ListGroup key={invoice.id}>
+                    <ListGroupItem><b>Id: </b>{invoice.id}</ListGroupItem>
+                    <ListGroupItem><b>Viesti: </b>{invoice.duedate}</ListGroupItem>
+                    <ListGroupItem><b>Lähettäjä: </b><i>{invoice.referenceNumber}</i></ListGroupItem>
+                    </ListGroup>
+                )
+            }): [];
+            
     return (
       
         <div>
@@ -153,7 +164,7 @@ class ShowUserInfo extends Component {
                         </Panel.Heading>
                         <Panel.Collapse>
                             <Panel.Body>
-                                Tänne tulee laskut
+                                {invoiceNodes}
                             </Panel.Body>
                         </Panel.Collapse>
                     </Panel>

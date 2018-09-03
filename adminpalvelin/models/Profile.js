@@ -30,6 +30,10 @@ const ProfileSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'insurances'
         }],
+        profilesinvoices: [{
+            type: Schema.Types.ObjectId,
+            ref: 'invoices'
+        }],
         profilemessages: {
             type: Object
         }
