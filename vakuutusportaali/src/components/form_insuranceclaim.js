@@ -26,13 +26,11 @@ class form_insuranceclaim extends Component {
     onSubmit(e) {
       e.preventDefault();
       const { user } = this.props.auth;
-      console.log(this.props.auth);
       const newPost = {
         text: this.state.text,
         userid: this.state.profile._id,
         email: this.state.profile.email
       };
-      console.log(newPost);
       this.props.addPost(newPost);
       this.setState({ text: '' });
     }
@@ -44,26 +42,20 @@ class form_insuranceclaim extends Component {
     
   render() {
     return (
-        <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">Say Somthing...</div>
-          <div className="card-body">
             <form onSubmit={this.onSubmit.bind(this)}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  placeholder="Create a post"
+                  placeholder="Kerro vahingosta mahdollisimman yksityiskohtaisesti"
                   name="text"
                   value={this.state.text}
                   onChange={this.onChange.bind(this)}
                 />
               </div>
-              <button type="submit" className="btn btn-dark">
-                Submit
+              <button className="btn btn-danger" type="submit">
+                Lisää
               </button>
             </form>
-          </div>
-        </div>
-      </div>
+
     )
   }
 }

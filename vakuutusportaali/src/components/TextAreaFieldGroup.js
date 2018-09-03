@@ -17,6 +17,7 @@ const TextAreaFieldGroup = ({
         name={name}
         value={value}
         onChange={onChange}
+        rows={10}
       />
       {info && <small className="form-text text-muted">{info}</small>}
     </div>

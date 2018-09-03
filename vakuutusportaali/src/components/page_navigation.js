@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {Nav, Navbar, MenuItem, NavDropdown, NavItem, Grid} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,6 +10,8 @@ class PageNavigation extends Component {
     onLogoutClick(e) {
         e.preventDefault();
         this.props.logoutUser();
+        window.location.reload();
+        this.props.history.push('/');
     }
 
     render() {
@@ -91,4 +93,4 @@ const mapStateToProps  = (state) => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(PageNavigation)
+export default connect(mapStateToProps, { logoutUser })(withRouter(PageNavigation))
