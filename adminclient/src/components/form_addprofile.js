@@ -23,13 +23,9 @@ class AddProfile extends Component {
     }
 
     onSubmit(values) {
-        // Kun formi on lähetetty ohjataan 
-        // käyttäjä takaisin juureen
         
-        this.props.postProfile(values, () =>{
-            
-            this.context.history.push('/')
-        })
+        this.props.postProfile(values);
+        this.props.history.push('/');
      
     }
 

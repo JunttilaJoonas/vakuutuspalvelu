@@ -1,4 +1,4 @@
-import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER } from '../actions/types';
+import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER, UPDATE_USER_PROFILE } from '../actions/types';
 
 export default function users(state = [], action)  {
     switch(action.type) {
@@ -14,6 +14,9 @@ export default function users(state = [], action)  {
         return action.users;
 
         case DELETE_USER_BY_ID:
+        return action.users;
+
+        case UPDATE_USER_PROFILE:
         return action.users;
 
     }
