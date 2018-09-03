@@ -37,7 +37,6 @@ class PageNavigation extends Component {
         );
 
         const authLinks = (
-<<<<<<< HEAD
             
                 <Navbar.Collapse>
                     <Nav pullRight>
@@ -66,31 +65,6 @@ class PageNavigation extends Component {
                     </Nav>
                 </Navbar.Collapse>
          
-=======
-
-            <Navbar.Collapse>
-                <Nav pullRight>
-                    <NavItem eventKey={1} componentClass={Link} href="/" to="/">
-                        Etusivu
-                    </NavItem>
-                    <NavItem eventKey={2} componentClass={Link} href="/vakuutukset" to="/vakuutukset">
-                        Tutustu vakuutuksiin
-                    </NavItem>
-                    <NavItem eventKey={6} componentClass={Link} href="/" to="/laskevakuutus">
-                        Hae vakuutusta
-                    </NavItem>
-                    <NavItem eventKey={3} componentClass={Link} href="/" to="/omavakuutus">
-                        Oma sivu
-                    </NavItem>
-                    <NavItem eventKey={7} componentClass={Link} href="/" to="/vahinkoilmoitus">
-                        Ilmoita vahingosta
-                    </NavItem>
-                    <NavItem eventKey={4} componentClass={Link} href="#" to="#" onClick={this.onLogoutClick.bind(this)}>
-                        Kirjaudu ulos
-                    </NavItem>
-                </Nav>
-            </Navbar.Collapse>
->>>>>>> 184c39a5dde2105a357432b0fc45daccaa19ab49
         );
 
         return (
