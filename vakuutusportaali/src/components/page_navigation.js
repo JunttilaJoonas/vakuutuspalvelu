@@ -58,6 +58,9 @@ class PageNavigation extends Component {
                         <NavItem eventKey={7} componentClass={Link} href="/" to="/vahinkoilmoitus">
                             Ilmoita vahingosta
                         </NavItem>
+                        <NavItem eventKey={7} componentClass={Link} href="/" to="/chat">
+                            Chatti
+                        </NavItem>
                         <NavItem eventKey={4} componentClass={Link} href="#" to="#" onClick={this.onLogoutClick.bind(this)}>
                             Kirjaudu ulos
                         </NavItem>
