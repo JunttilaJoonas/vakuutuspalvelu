@@ -45,13 +45,17 @@
     background-color: #FFF;
     width: 350px;
     padding: 30px;
-    bottom: 0;    
+    bottom: 0;  
+    z-index: 1;
 }
 
 .chat_frame {
     position: fixed;
     bottom: 0;
     background: 0%;
+    right: 0;
+    z-index: 1;
+    margin: 0;
 }
 
 .chat_button {

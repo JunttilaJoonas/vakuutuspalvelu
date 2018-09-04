@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Button, Panel } from 'react-bootstrap';
 
 class Chat extends Component {
+    
+
   constructor(props, context){
     super(props, context);
 
@@ -14,6 +16,8 @@ class Chat extends Component {
         open: false
     };
 
+    
+
     this.socket = io('localhost:4001');
 
     this.socket.on('RECEIVE_MESSAGE', function(data){
@@ -23,6 +27,8 @@ class Chat extends Component {
     const addMessage = data => {
         this.setState({messages: [...this.state.messages, data]});
     };
+
+    
 
     this.sendMessage = ev => {
         ev.preventDefault();
@@ -37,6 +43,7 @@ class Chat extends Component {
 
 
 
+
 componentWillMount() {
   axios.get("http://localhost:4000/profiili/current")
       .then(res => {
@@ -44,11 +51,17 @@ componentWillMount() {
       })}
 
 render(){
+    var chatTitle;
+    if(this.state.open) {
+        chatTitle = 'Sulje chat'
+    } else {
+        chatTitle = 'Avaa chat'
+    }
     return (
     
         <div className="chat_frame">
         <Button bsClass="chat_button" onClick={() => this.setState({ open: !this.state.open })}>
-          Avaa chat
+          {chatTitle}
         </Button>
         <br />
         <Panel id="collapsible-panel"  expanded={this.state.open}>
@@ -72,7 +85,7 @@ render(){
                         </div>
                         <div className="card-footer">
                             <br/>
-                            <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
+                            <input type="text" placeholder="Viesti" className="form-control" value={this.state.message} onChange={ev => this.setState({message: ev.target.value})}/>
                             <br/>
                             <button onClick={this.sendMessage} className="btn btn-primary form-control">Lähetä</button>
                         </div>

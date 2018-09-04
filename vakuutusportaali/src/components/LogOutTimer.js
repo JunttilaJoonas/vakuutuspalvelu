@@ -21,7 +21,7 @@ class LogOutTimer extends Component {
                 ref={ref => { this.idleTimer = ref }}
                 element={document}
                 onIdle={this._onIdle.bind(this)}
-                timeout={5000}/>
+                timeout={5000 * 200}/>
         )
     }
 }
