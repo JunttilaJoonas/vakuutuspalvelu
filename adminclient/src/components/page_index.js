@@ -4,28 +4,24 @@ import ClientList from '../components/page_clientlist';
 
 class IndexPage extends Component {
 
-    
+    /**
+    * @desc This component renders index page to display list of clients
+    */
 
     render() {
-        
-
         return (
             <div>
-            <Grid fluid> 
-               <Row className="show-grid">
-                <Col xs={12} sm={2}></Col>
-                
-                <Col xs={12} sm={8}>
-                
-                {/* Render list of clients */}
-                <ClientList />
+                <Grid fluid>
+                    <Row className="show-grid">
+                        <Col xs={12} sm={2}></Col>
+                        <Col xs={12} sm={8}>
 
-                </Col>
-              
-                <Col xs={12} sm={2}></Col>
-               </Row>
-              
-            </Grid>
+                            <ClientList />
+
+                        </Col>
+                        <Col xs={12} sm={2}></Col>
+                    </Row>
+                </Grid>
             </div>
         );
     }
