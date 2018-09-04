@@ -1,13 +1,17 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
+import { SET_CURRENT_USER } from './types';
 export const REGISTER_ADMIN = 'register_admin';
 export const LOGIN_ADMIN = 'login_admin';
-import { SET_CURRENT_USER } from './types';
 const REGISTER_URL = 'http://localhost:3000/register';
 const LOGIN_URL = 'http://localhost:3000/login';
 
+/**
+  * @desc Here you will find all the actions related to user authentication.
+*/
 
+// Register user
 export function registerUser(values, callback) {
     const request = axios.post(`${REGISTER_URL}`, values)
     .then(() => callback());
@@ -17,6 +21,7 @@ export function registerUser(values, callback) {
     };
 }
 
+// Login user 
 export const loginUser = userData => dispatch => {
     axios.post(`${LOGIN_URL}`, userData)
     .then(res => {
@@ -25,10 +30,10 @@ export const loginUser = userData => dispatch => {
         setAuthToken(token);
         const decoded = jwt_decode(token);
         dispatch(setCurrentUser(decoded));
-    })
+    });
 }
 
-
+// Set current user
 export function setCurrentUser(decoded) {
     return {
         type: SET_CURRENT_USER,

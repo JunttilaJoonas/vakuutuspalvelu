@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap';
 /*import InsuranceForm from './form_addinsurance';*/
-import MessageForm from './form_addmessage';
+import MessageForm from './forms/form_addmessage';
 
 
 export default class page_addinsurance extends Component {

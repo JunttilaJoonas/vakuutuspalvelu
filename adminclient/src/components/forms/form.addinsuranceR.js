@@ -3,7 +3,7 @@ import { Field, reduxForm, initialize } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Grid, Panel, Button, Glyphicon, ListGroup, ListGroupItem, DropdownButton, MenuItem } from 'react-bootstrap';
-import { postInsurances } from '../actions/actions_insurances';
+import { postInsurances } from '../../actions/actions_insurances';
 import axios from 'axios';
 
 class AddInsurance extends Component {

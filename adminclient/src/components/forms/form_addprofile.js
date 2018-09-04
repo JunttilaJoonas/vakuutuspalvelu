@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postProfile } from '../actions/index';
+import { postProfile } from '../../actions';
 
 class AddProfile extends Component {
 

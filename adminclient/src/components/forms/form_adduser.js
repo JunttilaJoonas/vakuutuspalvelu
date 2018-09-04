@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUser } from '../actions/index';
+import { postUser } from '../../actions';
 
 class AddUser extends Component {
 
