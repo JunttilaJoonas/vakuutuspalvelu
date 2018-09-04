@@ -9,8 +9,7 @@ class PageNavigation extends Component {
     onLogoutClick(e) {
         e.preventDefault();
         this.props.logoutUser();
-        window.location.reload();
-        this.props.history.push('/');
+        this.props.history.push('/kirjaudu');
     }
 
     render() {
