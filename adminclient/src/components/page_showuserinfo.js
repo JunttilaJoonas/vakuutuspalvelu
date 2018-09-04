@@ -53,7 +53,8 @@ class ShowUserInfo extends Component {
                 id={ins._id} 
                 onClick={this.onClickDeleteInsurance.bind(this)} glyph="remove" className="pull-right" /></ListGroupItem>
                 <ListGroupItem><b>Tyyppi: </b>{ins.insurancetype}</ListGroupItem>
-                <ListGroupItem><b>Voimassa: </b>{ins.valid}</ListGroupItem>
+                <ListGroupItem><b>Omavastuu: </b>{ins.deductible}</ListGroupItem>
+                <ListGroupItem><b>Lisätiedot: </b>{ins.additionalinfo}</ListGroupItem>
                 </ListGroup>
             )
         }) : [];
