@@ -40,27 +40,27 @@ class AddProfile extends Component {
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
                     label="Name"
-                    placeholder="Anna vakuutuksenottajan käyttäjätunnus"
+                    placeholder="Anna vakuutuksenottajan nimi"
                     name="name"
                     component={this.renderField} />
                 <Field
                     label="email"
-                    placeholder="Onko validi?"
+                    placeholder="Anna vakuutuksenottajan sähköposti"
                     name="email"
                     component={this.renderField} />
                 <Field
                     label="address"
-                    placeholder="Anna vakuutuksen tyyppi"
+                    placeholder="Anna vakuutuksenottajan osoite"
                     name="address"
                     component={this.renderField} />
                 <Field
                     label="City"
-                    placeholder="Anna vakuutukselle tunnsu"
+                    placeholder="Anna vakuutuksenottajan kotikaupunki"
                     name="city"
                     component={this.renderField} />
                 <Field
                     label="Phone"
-                    placeholder="Anna vakuutukselle tunnsu"
+                    placeholder="Anna vakuutuksenottajan puhelinnumero"
                     name="phone"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>

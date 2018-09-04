@@ -62,7 +62,9 @@ class AddInsurance extends Component {
         const initData = {
             "applicationid": this.state.profile._id,
             "userid": this.state.profile.userid,
-            "insurancetype": this.state.profile.insurancetype
+            "insurancetype": this.state.profile.insurancetype,
+            "additionalinfo": this.state.profile.additionalinfo,
+            "deductible": this.state.profile.deductible
         };
         this.props.initialize(initData);
     }
@@ -80,6 +82,8 @@ class AddInsurance extends Component {
                     </ListGroup>
                 )
             }) : [];
+
+        console.log(this.state.profile);
     
         return (
             <div>
@@ -87,16 +91,12 @@ class AddInsurance extends Component {
 
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Vakuutuksenottajan käyttäjätunnus"
+                    label="Vakuutushakemuksen tunnus"
                     placeholder={this.state.profile._id}
                     name="applicationid"
                     component={this.renderField} />
                 <Field
-                    label="Voimassa"
-                    name="valid"
-                    component={this.renderDropDown} />
-                <Field
-                    label="Käyttäjätunnus"
+                    label="Vakuutuksen ottajan tunnus"
                     name="userid"
                     placeholder={this.state.profile.userid}
                     component={this.renderField}
@@ -105,6 +105,16 @@ class AddInsurance extends Component {
                     label="Vakuutuksen tyyppi"
                     placeholder={this.state.profile.insurancetype}
                     name="insurancetype"
+                    component={this.renderField} />
+                <Field
+                    label="Lisätietoja"
+                    placeholder={this.state.profile.additionalinfo}
+                    name="additionalinfo"
+                    component={this.renderField} />
+                <Field
+                    label="Vakuutuksen omavastuu"
+                    placeholder={this.state.profile.deductible}
+                    name="deductible"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>

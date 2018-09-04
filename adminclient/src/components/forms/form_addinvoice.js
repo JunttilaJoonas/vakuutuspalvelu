@@ -32,28 +32,23 @@ class AddInvoice extends Component {
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Vakuutuksentyyppi"
-                    placeholder="Anna vakuutuksenottajan käyttäjätunnus"
+                    label="Vakuutustyyppi"
+                    placeholder="Anna vakuutustyyppi"
                     name="insurancetype"
                     component={this.renderField} />
                 <Field
                     label="Eräpäivä"
-                    placeholder="Onko validi?"
+                    placeholder="Anna eräpäivä"
                     name="duedate"
                     component={this.renderField} />
                 <Field
                     label="Viitenumero"
-                    placeholder="Anna vakuutuksen tyyppi"
+                    placeholder="Anna viitenumero"
                     name="referencenumber"
                     component={this.renderField} />
                 <Field
-                    label="Asiakastili"
-                    placeholder="Anna vakuutukselle tunnsu"
-                    name="accountnumber"
-                    component={this.renderField} />
-                <Field
                     label="Käyttäjätili"
-                    placeholder="Anna vakuutukselle tunnsu"
+                    placeholder="Anna vakuutuksenottajan tunnus"
                     name="userid"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
