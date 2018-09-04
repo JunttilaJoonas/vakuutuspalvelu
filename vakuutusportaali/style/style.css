@@ -3,8 +3,8 @@
 }
 
 .splash {
-    background-image: url('../background.jpg');
-    /*background-color: slategrey;*/
+    /*background-image: url('../background.jpg');*/
+    background-image: linear-gradient(to right, lightgray, black);
     background-size: cover;
     padding-top: 50px;
 }
