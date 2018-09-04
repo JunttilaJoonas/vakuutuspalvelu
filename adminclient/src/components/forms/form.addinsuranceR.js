@@ -59,8 +59,6 @@ class AddInsurance extends Component {
     }
 
     handleInitialize() {
-        console.log("are we here?")
-        console.log(this.state.profile)
         const initData = {
             "applicationid": this.state.profile._id,
             "userid": this.state.profile.userid,

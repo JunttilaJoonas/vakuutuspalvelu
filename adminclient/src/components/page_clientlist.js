@@ -10,7 +10,6 @@ class ClientList extends Component {
 
     componentDidMount() {
         this.props.fetchAllUsers();
-        console.log(this.props);
     }
 
 
@@ -50,7 +49,6 @@ class ClientList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.users)
     return {
         users: state.users  
     };

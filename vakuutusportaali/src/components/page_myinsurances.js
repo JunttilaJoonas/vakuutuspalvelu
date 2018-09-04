@@ -9,12 +9,13 @@ class MyInsurance extends Component {
         profile: {},
         profileclaims: []
     };
-    
+
     componentWillMount() {
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
-            })}
+            })
+    }
 
     render() {
         let insurances = this.state.profile.profilesinsurances;
@@ -43,17 +44,16 @@ class MyInsurance extends Component {
         }) : [];
 
         let invoiceList = this.state.profile.profilesinvoices;
-        console.log(this.state.profile.profilesinvoices)
-       let invoiceNodes = invoiceList ? invoiceList.map(invoice => {
+        let invoiceNodes = invoiceList ? invoiceList.map(invoice => {
 
-               return (
-                   <ListGroup key={invoice._id}>
-                   <ListGroupItem><b>Id: </b>{invoice._id}</ListGroupItem>
-                   <ListGroupItem><b>Eräpäivä </b>{invoice.duedate}</ListGroupItem>
-                   <ListGroupItem><b>Viitenumero: </b><i>{invoice.referenceNumber}</i></ListGroupItem>
-                   </ListGroup>
-               )
-           }): [];
+            return (
+                <ListGroup key={invoice._id}>
+                    <ListGroupItem><b>Id: </b>{invoice._id}</ListGroupItem>
+                    <ListGroupItem><b>Eräpäivä </b>{invoice.duedate}</ListGroupItem>
+                    <ListGroupItem><b>Viitenumero: </b><i>{invoice.referenceNumber}</i></ListGroupItem>
+                </ListGroup>
+            )
+        }) : [];
 
         let profileMessages = this.state.profile.profilemessages;
         let profileMessageNodes = profileMessages ? profileMessages.map(msg => {
@@ -111,9 +111,9 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                       <ol>
-                                {insuranceClaimNodes}
-                                       </ol>
+                                        <ol>
+                                            {insuranceClaimNodes}
+                                        </ol>
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>

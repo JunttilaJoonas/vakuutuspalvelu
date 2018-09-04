@@ -28,8 +28,6 @@ router.delete('/customer/:id', (req, res) => {
 });
 
 router.post('/invoice', (req ,res) => {
-    console.log("Are we here?")
-    console.log(req.body)
     invoiceDBservice.createInvoice(req, res)
 })
 
@@ -50,7 +48,6 @@ router.post('/message',  passport.authenticate('jwt',
 });
 
 router.post('/updatecustomer', (req, res, next) => {
-    console.log("helo");
     profiledbservice.updateCustomerById(req.body)
 })
 

@@ -7,6 +7,4 @@ const SocketManager = require('../../vakuutuspalvelin/SocketManager')
 
 io.on('connection', SocketManager)
 
-app.listen(PORT, () => {
-    console.log("COnnected to port" + PORT)
-})
+app.listen(PORT, () => {})

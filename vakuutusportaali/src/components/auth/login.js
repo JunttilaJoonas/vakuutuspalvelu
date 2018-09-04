@@ -37,11 +37,6 @@ class Login extends Component {
         this.props.loginUser(userData);
     }
 
-    testAuth() {
-        axios.get("http://localhost:4000/profiili/current")
-        .then(res => {console.log("res", res)});
-    }
-
     render() {
         return (
             <div>

@@ -62,8 +62,7 @@ export class InsuranceForm extends React.Component {
 
             axios.post('http://localhost:4000/application/create', application)
                 .then(res => {
-                        console.log("Postattu " + insurance.id);
-                        console.log(res)
+                        res.status(201).send();
                     }
                 );
         })

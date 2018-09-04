@@ -9,8 +9,6 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const User = require('../models/User');
 
-//ROOUTE /application
-
 router.get('/id/:id', (req, res) => {
     applicationDBservice.findOneById(req, res)
 })
@@ -21,10 +19,7 @@ router.post('/create', (req, res) => {
 
 router.post('/save', (req, res) => {
     let id = req.body.applicationid
-    console.log(id);
-    insuranceDBService.createInsuranceAndUpdateCustomer(req, res, id)
-    .then((res) => {console.log("woie")})
-    
+    insuranceDBService.createInsuranceAndUpdateCustomer(req, res, id);
 })
 
 router.get('/all', (req, res) => {

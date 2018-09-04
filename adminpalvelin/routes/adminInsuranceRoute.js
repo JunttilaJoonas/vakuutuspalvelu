@@ -16,7 +16,6 @@ router.get('/id/:id', passport.authenticate('jwt',
   });
 
 router.get('/customer/:id', (req, res) => {
-console.log("are we where?")
     insurancedbservice.deleteCustomerInsurance(req, res);
 });
 

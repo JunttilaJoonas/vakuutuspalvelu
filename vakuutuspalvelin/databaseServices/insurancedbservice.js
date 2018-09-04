@@ -30,14 +30,12 @@ function addOne(data) {
 
 function updateOneById(data) {
     return Insurance.findByIdAndUpdate({_id: data._id}, data, (err, insurance) => {
-        console.log("DATA", data);
         return data;
     });
 }
 
 function deleteOneById(id){
     Insurance.deleteOne({_id: id}, (err, result) => {
-        console.log("poistettu");
     });
 }
 

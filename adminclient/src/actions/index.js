@@ -78,7 +78,6 @@ export function postNewUser(values) {
 
 // Add new user to database
 export function postUser(values) {
-    console.log(values);
     return (dispatch) => {
         return axios.post(`${ADDUSER_URL}`, values)
         .then(res => {
