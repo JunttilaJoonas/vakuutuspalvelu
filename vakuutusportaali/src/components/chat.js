@@ -16,14 +16,16 @@ class Chat extends Component {
             messages: [],
             open: false
         };
-    }
+
 }
 
 
+initializeUserSession() {
 
-    this.socket.emit('join', {email: this.state.profile.email});
-
-    this.socket.on('RECEIVE_MESSAGE', function(data){
+    console.log(this.state.profile);
+    
+    this.socket = io('localhost:4001');
+    this.socket.on('RECEIVE_MESSAGE', function (data) {
         addMessage(data);
     });
 
