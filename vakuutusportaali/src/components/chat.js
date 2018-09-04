@@ -20,6 +20,8 @@ class Chat extends Component {
 
     this.socket = io('localhost:4001');
 
+    this.socket.emit('join', {email: this.state.profile.email});
+
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
