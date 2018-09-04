@@ -21,6 +21,17 @@ initializeSocket() {
         addMessage(data);
     });
 
+    this.socket.emit('INITIALIZE_ADMIN');
+
+    this.socket.on('USER_DISCONNECTED', (username) => {
+        console.log("USERNAME" + username);
+        let disconnectmessage = {
+            author: username,
+            message: "User disconnected"
+        }
+        addMessage(disconnectmessage);
+    })
+
     const addMessage = data => {
         this.setState({messages: [...this.state.messages, data]});
     };

@@ -17,42 +17,41 @@ class Chat extends Component {
             open: false
         };
 
+}
 
+
+initializeUserSession() {
+
+    console.log(this.state.profile);
+    
     this.socket = io('localhost:4001');
-
-
-    this.socket.on('RECEIVE_MESSAGE', function(data){
+    this.socket.on('RECEIVE_MESSAGE', function (data) {
         addMessage(data);
     });
-    
+
+    this.socket.emit('INITIALIZE_USER_SESSION');
+
 
     const addMessage = data => {
-        console.log(data);
         this.setState({messages: [...this.state.messages, data]});
     };
 
-    
-
-    this.sendMessage = ev => {
-        ev.preventDefault();
-        this.socket.emit('SEND_MESSAGE', {
-            author: this.state.profile.email,
-            message: this.state.message,
-            messageid: this.props.auth.user.id
-        })
-        this.setState({message: ''});
-
+this.sendMessage = ev => {
+    ev.preventDefault();
+    this.socket.emit('SEND_MESSAGE', {
+        author: this.state.profile.email,
+        message: this.state.message,
+        messageid: this.state.messageid
+    })
+    this.setState({message: ''});
     }
 }
 
 componentWillMount() {
-console.log(this.props.auth);
-this.socket.emit('join', {id: this.props.auth.user.id})  
-  axios.get("http://localhost:4000/profiili/current")
-      .then(res => {
-          this.setState({profile: res.data});
-      })
-    }
+    axios.get("http://localhost:4000/profiili/current")
+        .then(res => {
+            this.setState({profile: res.data});
+        })}
     
 
 
@@ -67,7 +66,7 @@ this.socket.emit('join', {id: this.props.auth.user.id})
         return (
 
             <div className="chat_frame">
-                <Button bsClass="chat_button" onClick={() => this.setState({open: !this.state.open})}>
+                <Button bsClass="chat_button" onClick={() => this.setState({open: !this.state.open}, this.initializeUserSession.bind(this))}>
                     {chatTitle}
                 </Button>
                 <br/>
