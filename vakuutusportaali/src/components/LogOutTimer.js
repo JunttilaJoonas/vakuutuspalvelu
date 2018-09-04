@@ -4,6 +4,8 @@ import {logoutUser} from '../actions/authActions';
 import {connect} from 'react-redux';
 import IdleTimer from 'react-idle-timer';
 
+const LOG_OUT_TIME = 1000 * 60 * 2;
+const WARN_TIME = 1000 * 30;
 
 class LogOutTimer extends Component {
 
@@ -18,7 +20,6 @@ class LogOutTimer extends Component {
     }
 
     _onActive() {
-        // user is active
         this.idleTimer.reset();
         if (this.state.warning === true) {
             this.setState({warning: false});
@@ -26,12 +27,8 @@ class LogOutTimer extends Component {
     }
 
     _onIdle() {
-
-        //user is idle
-        let elapsedTime = this.idleTimer.getElapsedTime();
-
-        // log out if idle over 5 minutes
-        if (elapsedTime > 1000 * 60 * 5) {
+        if (this.idleTimer.getElapsedTime() > LOG_OUT_TIME) {
+            this.setState({warning: false});
             this.props.logoutUser();
             this.props.history.push('/kirjaudu');
         }
@@ -44,12 +41,8 @@ class LogOutTimer extends Component {
     render() {
 
         let warningMessage;
-
-        if (this.state.warning) {
-            warningMessage =
-                <h3>Olet ollut inaktiivisena minuutin. Sinut kirjataan automaattisesti ulos, jos et tee mitään 4
-                    minuutin sisällä.</h3>
-        }
+        if (this.state.warning) warningMessage = <h3 id={"logout-warning"} style={{textAlign: 'center'}}>Olet ollut inaktiivisena {WARN_TIME / 1000} sekuntia.
+            Sinut kirjataan turvallisuussyistä automaattisesti ulos, jos et tee mitään {LOG_OUT_TIME / 1000 / 60} minuuttiin.</h3>
 
         return (
             <div>
@@ -61,7 +54,7 @@ class LogOutTimer extends Component {
                     element={document}
                     onIdle={this.onIdle}
                     onActive={this.onActive}
-                    timeout={1000 * 60}
+                    timeout={WARN_TIME}
                 />
                 <IdleTimer
                     ref={ref => {
@@ -69,7 +62,7 @@ class LogOutTimer extends Component {
                     }}
                     element={document}
                     onIdle={this.onIdle}
-                    timeout={1000 * 60 * 5}
+                    timeout={LOG_OUT_TIME}
                 />
             </div>
         )
