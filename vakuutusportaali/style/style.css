@@ -4,6 +4,7 @@
 
 .splash {
     background-image: url('../background.jpg');
+    /*background-color: slategrey;*/
     background-size: cover;
     padding-top: 50px;
 }
@@ -80,10 +81,15 @@
 .information h1 {
     color: #FFF;
     text-shadow: 1px 1px #000;
+    text-align: center;
+}
+
+.information input, .information select {
+    margin-left : 10px;
 }
 
 .insurance_button {
-    margin-top: 20px;
+    margin: 20px 0;
     background-color: red;
     text-decoration: none;
     border: 0;
@@ -114,6 +120,12 @@
 }
 
 #insurance-dropbox {
+    padding: 20px;
     border: solid white 2px;
     border-radius: 10px;
+}
+
+#buy_insurances_container {
+    margin: auto;
+    text-align: center;
 }
