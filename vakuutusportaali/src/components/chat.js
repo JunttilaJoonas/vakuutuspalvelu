@@ -14,6 +14,7 @@ class Chat extends Component {
             profile: [],
             message: '',
             messages: [],
+            istyping: "",
             open: false
         };
 
@@ -28,8 +29,39 @@ initializeUserSession() {
     this.socket.on('RECEIVE_MESSAGE', function (data) {
         addMessage(data);
     });
+    
 
     this.socket.emit('INITIALIZE_USER_SESSION');
+
+    this.socket.on('ADMIN_IS_TYPING', function() {
+        console.log("Are we even here");
+        handleTyping();
+    })
+
+    this.socket.on('ADMIN_STOPPED_TYPING', function() {
+        console.log("Did we stop?");
+        setTimeout(handleStopTyping, 1000);
+    })
+
+    const handleStopTyping = () => {
+        //await sleep(1000);
+        this.setState({istyping: "" });
+    }
+
+    /*function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }*/
+      
+    
+
+    const handleTyping = () =>  {
+        console.log(this.state);
+        let data = "Vakuutuspalvelija kirjoittaa viestiä"
+        if(this.state.istyping != "Vakuutuspalvelija kirjoittaa viestiä") {
+        this.setState({istyping: data});
+        }
+    }
+
 
 
     const addMessage = data => {
@@ -54,7 +86,14 @@ componentWillMount() {
         })}
     
 
+keyDown() {
+    
+    this.socket.emit('TYPING_USER');
+}
 
+keyUp() {
+    this.socket.emit('USER_STOPPED_TYPING');
+}
 
     render() {
         let chatTitle;
@@ -65,7 +104,7 @@ componentWillMount() {
         }
         return (
 
-            <div className="chat_frame">
+            <div className="chat_frame" onKeyDown={() => this.keyDown()} onKeyUp={() => this.keyUp()}>
                 <Button bsClass="chat_button" onClick={() => this.setState({open: !this.state.open}, this.initializeUserSession.bind(this))}>
                     {chatTitle}
                 </Button>
@@ -78,7 +117,7 @@ componentWillMount() {
                                     <div className="col-4">
                                         <div className="card">
                                             <div className="card-body">
-                                                <div className="card-title">Vakuutuschat</div>
+                                                <div className="card-title">{this.state.istyping}</div>
                                                 <hr/>
                                                 <div className="messages">
                                                     {this.state.messages.map(message => {
@@ -95,6 +134,7 @@ componentWillMount() {
                                                        value={this.state.message}
                                                        onChange={ev => this.setState({message: ev.target.value})}/>
                                                 <br/>
+                                                
                                                 <button onClick={this.sendMessage}
                                                         className="btn btn-primary form-control">Lähetä
                                                 </button>

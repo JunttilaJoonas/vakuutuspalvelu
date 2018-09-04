@@ -26,6 +26,26 @@ io.on('connection', (socket) => {
         adminsocket = socket.id;
     })
 
+    socket.on('TYPING_USER', function() {
+      
+        io.to(adminsocket).emit('USER_IS_TYPING', usersocket);
+    })
+
+    socket.on('USER_STOPPED_TYPING', function() {
+      
+        io.to(adminsocket).emit('USER_STOPPED_TYPING');
+    })
+
+    socket.on('TYPING_ADMIN', function() {
+      
+        io.to(usersocket).emit('ADMIN_IS_TYPING');
+    })
+
+    socket.on('ADMIN_STOPPED_TYPING', function() {
+      
+        io.to(usersocket).emit('ADMIN_STOPPED_TYPING');
+    })
+
     socket.on('INITIALIZE_USER_SESSION', function() {
         if(usersocket == "") {
             usersocket = socket.id

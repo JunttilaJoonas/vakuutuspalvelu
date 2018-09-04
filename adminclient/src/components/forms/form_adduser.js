@@ -39,7 +39,7 @@ class AddUser extends Component {
                     component={this.renderField} />
                 <Field
                     label="Salasana"
-                    placeholder="Anna salasana"
+                    placeholder="Aseta salasana käyttäjälle"
                     name="password"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
