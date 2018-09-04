@@ -10,8 +10,7 @@ const InvoiceSchema = new Schema({
         type: String
     },
     duedate: {
-      type: Number,
-      required: [true]
+      type: String,
     },
     referenceNumber: {
         type: Number
