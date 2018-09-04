@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {DropdownButton, Grid, MenuItem, Row} from 'react-bootstrap';
 import axios from 'axios';
 import InsuranceInformation from './InsuranceInformation';
 
@@ -14,7 +14,7 @@ class InsuranceIndex extends Component {
         axios.get("http://localhost:4000/insurancetypes")
             .then(res => {
                 const newArrayofInsurance = res.data;
-                this.setState({ arrayofInsurance: newArrayofInsurance }, function () {
+                this.setState({arrayofInsurance: newArrayofInsurance}, function () {
                 });
             })
     }
@@ -24,14 +24,15 @@ class InsuranceIndex extends Component {
         let selectedInsurance;
 
         for (let i = 0; i < this.state.arrayofInsurance.length; i++) {
-            if (this.state.arrayofInsurance[i].name == e) {
+            if (this.state.arrayofInsurance[i].name === e) {
                 selectedInsurance = this.state.arrayofInsurance[i]
             }
         }
-        this.setState({ insuranceToBeDisplayed: selectedInsurance }, () => {
+        this.setState({insuranceToBeDisplayed: selectedInsurance}, () => {
 
         })
     }
+
     /*
         onSelect() {
             let selectedInsurance = target.get.value;
@@ -42,8 +43,8 @@ class InsuranceIndex extends Component {
 
     render() {
         let insuranceData;
-        if (this.state.insuranceToBeDisplayed.length != 0) {
-            insuranceData = <InsuranceInformation selectedInformation={this.state.insuranceToBeDisplayed} />
+        if (this.state.insuranceToBeDisplayed.length > 0) {
+            insuranceData = <InsuranceInformation selectedInformation={this.state.insuranceToBeDisplayed}/>
         } else {
             insuranceData = <p></p>
         }
@@ -61,11 +62,15 @@ class InsuranceIndex extends Component {
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Henkilöauto">Henkilöauto</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Pakettiauto">Pakettiauto</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Moottoripyörä">Moottoripyörä</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Moottoripyörä">Moottoripyörä</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Mopo">Mopo</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Matkailuauto">Matkailuauto</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Matkailuvaunu">Matkailuvaunu</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Moottorikelkka">Moottorikelkka</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Matkailuauto">Matkailuauto</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Matkailuvaunu">Matkailuvaunu</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Moottorikelkka">Moottorikelkka</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Mönkijä">Mönkijä</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Perävaunu">Perävaunu</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Vene">Vene</MenuItem>
@@ -85,7 +90,8 @@ class InsuranceIndex extends Component {
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Paritalo">Paritalo</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Erillistalo">Erillistalo</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Mökki">Mökki</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Sijoitusasunto">Sijoitusasunto</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Sijoitusasunto">Sijoitusasunto</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Metsä">Metsä</MenuItem>
                         </DropdownButton>
 
@@ -95,7 +101,8 @@ class InsuranceIndex extends Component {
                             className="insurance_selector"
                             id={"matka"}
                         >
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Matkavakuutus">Matkavakuutus</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Matkavakuutus">Matkavakuutus</MenuItem>
                         </DropdownButton>
 
 
@@ -106,10 +113,13 @@ class InsuranceIndex extends Component {
                             id={"henkilot"}
                         >
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Vauva">Vauva(raskaus)</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Lapsi">Lapsi(7 vrk - 14 v)</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Lapsi">Lapsi(7 vrk - 14
+                                v)</MenuItem>
                             <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Aikuinen">Aikuinen</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Henkivakuutus">Henkivakuutus</MenuItem>
-                            <MenuItem onSelect={this.onSelect.bind(this)} eventKey="Urheiluvakuutus">Urheiluvakuutus</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Henkivakuutus">Henkivakuutus</MenuItem>
+                            <MenuItem onSelect={this.onSelect.bind(this)}
+                                      eventKey="Urheiluvakuutus">Urheiluvakuutus</MenuItem>
                         </DropdownButton>
 
                         <DropdownButton
@@ -125,12 +135,12 @@ class InsuranceIndex extends Component {
                         </DropdownButton>
 
                     </Row>
-                    </Grid>
-                    <Grid fluid className="info_cards">
+                </Grid>
+                <Grid fluid className="info_cards">
                     <Row className="show-grid cards text-center">
                         {insuranceData}
                     </Row>
-                    </Grid>
+                </Grid>
             </div>
         );
     }

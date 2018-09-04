@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postInvoices } from '../../actions/actions_insurances';
+const uuidv4 = require('uuid/v4');
 
 class AddInvoice extends Component {
 
@@ -20,14 +21,24 @@ class AddInvoice extends Component {
 
     onSubmit(values) {
         // When submitted redirect user to '/'
-        this.props.postInvoices(values)
+        this.props.postInvoices(values);
         this.props.history.push('/');     
+    }
+
+    handleInitialize() {
+        const initData = {
+            "referencenumber": uuidv4()
+            
+        };
+        this.props.initialize(initData);
+    }
+    componentDidMount() {
+        this.handleInitialize();
     }
 
 
     render() {
         const { handleSubmit } = this.props;
-
 
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>

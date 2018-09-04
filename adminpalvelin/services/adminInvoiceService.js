@@ -3,12 +3,12 @@ const Invoice = require('../models/Invoice');
 const profileAdminDBservice = require('../services/profileAdminDBservice');
 
 
-
 function createInvoice(req, res) {
     let customerId = req.body.userid;
+    console.log(req.body);
     Invoice.create(req.body)
         .then((document) =>
-        profileAdminDBservice.updateCustomerInvoices(document.userid, document._id));
+            profileAdminDBservice.updateCustomerInvoices(document.userid, document._id));
 }
 
 function findById(req, res) {

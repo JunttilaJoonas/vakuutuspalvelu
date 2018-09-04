@@ -7,12 +7,13 @@ function findOneById(req, res) {
 
 function findAllByUserID(req, res) {
     Insurance.find({userid: req.params.id})
-    .then((insurance) => {res.json(insurance)})
+        .then((insurance) => {
+            res.json(insurance)
+        })
 }
 
 function deleteCustomerInsurance(id) {
-    Insurance.deleteOne({_id: id})
-    .then((insurance) => {res.json(insurance)})
+    Insurance.deleteOne({_id: id});
 }
 
 function findAll() {
@@ -24,8 +25,10 @@ function findAll() {
 
 function addOne(data) {
     return Insurance.create(data)
-        .then(createdInsurance => {})
-        .catch(error => {});
+        .then(createdInsurance => {
+        })
+        .catch(error => {
+        });
 }
 
 function updateOneById(data) {
@@ -37,13 +40,24 @@ function updateOneById(data) {
 function createInsuranceAndUpdateCustomer(req, res, id) {
     let applicationId = id;
     Insurance.create(req.body).then(document => {
-        profileDBService.updateProfileInsurances(document._id, document.userid, applicationId)})
+        profileDBService.updateProfileInsurances(document._id, document.userid, applicationId)
+    })
 
 }
 
-function deleteOneById(id){
-    Insurance.deleteOne({_id: id}, (err, result) => {});
+function deleteOneById(id) {
+    Insurance.deleteOne({_id: id}, (err, result) => {
+    });
 }
 
-module.exports = {findOneById, createInsuranceAndUpdateCustomer, findAllByUserID, deleteCustomerInsurance, findAll, addOne, updateOneById, deleteOneById};
+module.exports = {
+    findOneById,
+    createInsuranceAndUpdateCustomer,
+    findAllByUserID,
+    deleteCustomerInsurance,
+    findAll,
+    addOne,
+    updateOneById,
+    deleteOneById
+};
 

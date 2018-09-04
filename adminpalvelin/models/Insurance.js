@@ -7,8 +7,8 @@ const InsuranceSchema = new Schema({
         required: [true]
     },
     userid: {
-      type: String,
-      required: [true]
+        type: String,
+        required: [true]
     },
     age: {
         type: String
@@ -29,12 +29,9 @@ const InsuranceSchema = new Schema({
     priceperyear: {
         type: Number
     },
-    additionalinfo: {
-        type: String
-    },
     deductible: {
         type: Number
-    }, 
+    },
     additionalinfo: {
         type: String
     },
@@ -45,7 +42,6 @@ const InsuranceSchema = new Schema({
         type: Object
     }
 }, {collection: 'insurances'});
-
 
 
 const Insurance = mongoose.model('insurances', InsuranceSchema);

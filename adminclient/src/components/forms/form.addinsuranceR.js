@@ -11,7 +11,7 @@ class AddInsurance extends Component {
     state = {
         applications: [],
         profile: []
-    }
+    };
 
     componentDidMount() {
         axios.get("http://localhost:3000/application/all").then(res => {
@@ -51,8 +51,7 @@ class AddInsurance extends Component {
     }
 
     fetchApplication(id) {
-        let applicationid = id;
-        axios.get("http://localhost:3000/application/id/" + applicationid).then(res => {
+        axios.get("http://localhost:3000/application/id/" + id).then(res => {
             this.setState({profile: res.data})},
           
         ).then(res => {this.handleInitialize().bind(this)})

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
+import {Button, Col, Grid, Panel, Row} from 'react-bootstrap';
 
 export class InsuranceForm extends React.Component {
 
@@ -121,12 +121,14 @@ export class InsuranceForm extends React.Component {
 
             <div>
                 <Grid fluid className={"splash"}>
-                    <Row className={"show-grid information"}>
+                    <Row  className={"show-grid information"}>
+                        <h1 id={"buy_insurances"}>Viimeistele vakuutushakemus</h1>
                         <Col xs={12} sm={2}/>
                         <Col xs={12} sm={8} className="userprofile">
-                            <h1>Viimeistele vakuutushakemus</h1>
                             {categoryNodes}
-                            <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>Lähetä</Button>
+                            <div id={"buy_insurances_container"}>
+                                <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>Lähetä</Button>
+                            </div>
                         </Col>
                         <Col xs={12} sm={2}/>
 

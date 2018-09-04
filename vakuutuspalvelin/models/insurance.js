@@ -7,8 +7,8 @@ const InsuranceSchema = new Schema({
         required: [true]
     },
     userid: {
-      type: String,
-      required: [true]
+        type: String,
+        required: [true]
     },
     valid: {
         type: String,
@@ -26,7 +26,7 @@ const InsuranceSchema = new Schema({
     },
     deductible: {
         type: Number
-    }, 
+    },
     objectOfInsurance: {
         type: Object
     },
@@ -34,7 +34,6 @@ const InsuranceSchema = new Schema({
         type: Object
     }
 }, {collection: 'insurances'});
-
 
 
 const Insurance = mongoose.model('insurances', InsuranceSchema);

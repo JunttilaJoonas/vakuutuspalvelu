@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {Grid, Row, Col, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Col, Grid, ListGroup, ListGroupItem, Panel, Row} from 'react-bootstrap';
 import axios from 'axios';
 
 class MyInsurance extends Component {
@@ -23,8 +22,9 @@ class MyInsurance extends Component {
             return (
                 <li key={ins._id}>
                     <p> Vakuutustyyppi: {ins.insurancetype} <br/>
-                        Seuraava maksupäivä: {ins.nextPaymentDate} <br/>
-                        Vakuutuksen tunniste: {ins._id}
+                        Vakuutuksen tunniste: {ins._id} <br/>
+                        Lisätiedot: {ins.additionalinfo} <br/>
+                        Omavastuu: {ins.deductible} <br/>
                     </p>
                 </li>
             )

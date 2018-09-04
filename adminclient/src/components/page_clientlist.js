@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { Table } from 'react-bootstrap';
-import { fetchAllUsers } from '../actions/index';
+import React, {Component} from 'react'
+import {Table} from 'react-bootstrap';
+import {fetchAllUsers} from '../actions/index';
 import _ from 'lodash';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class ClientList extends Component {
 
     /**
-    * @desc This component renders list of customers in database
-    */
+     * @desc This component renders list of customers in database
+     */
 
     componentDidMount() {
         this.props.fetchAllUsers();
@@ -34,14 +34,14 @@ class ClientList extends Component {
         return (
             <Table responsive>
                 <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nimi</th>
-                        <th>Sähköposti</th>
-                    </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Nimi</th>
+                    <th>Sähköposti</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {this.renderUsers()}
+                {this.renderUsers()}
                 </tbody>
             </Table>
         );
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { fetchAllUsers })(ClientList);
+export default connect(mapStateToProps, {fetchAllUsers})(ClientList);

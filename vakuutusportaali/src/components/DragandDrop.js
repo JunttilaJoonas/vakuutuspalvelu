@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Image, Button} from 'react-bootstrap';
+import {Button, Col, Grid, Row} from 'react-bootstrap';
 import axios from 'axios';
 import {Calculator} from "./Calculator";
 
 class DragandDrop extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             price: 0,
@@ -51,7 +51,6 @@ class DragandDrop extends Component {
         });
     };
 
-    
 
     render() {
 
@@ -91,7 +90,7 @@ class DragandDrop extends Component {
             )
         });
 
-        function submitInsurances(){
+        function submitInsurances() {
             let chosenOnes = [];
             insObject.chosenInsurances.forEach(element => {
                 let insurance = {
@@ -107,34 +106,32 @@ class DragandDrop extends Component {
         }
 
         let insButton;
-            if(insObject.chosenInsurances.length != 0) {
-                insButton = <Button bsClass="insurance_button" onClick={submitInsurances}>Lähetä</Button>
-            } else {
-                insButton = <p></p>
-            }
+        if (insObject.chosenInsurances.length > 0) {
+            insButton = <Button bsClass="insurance_button" onClick={submitInsurances}>Hae näitä vakuutuksia</Button>
+        }
 
         return (
             <div>
-                <h1 className="header">Vakuutukset</h1>
-               
+                <h1 className="header">Hae vakuutusta</h1>
                 <Calculator data={insObject.chosenInsurances}/>
                 <Grid fluid className="info_cards">
                     <Row className="show-grid cards text-center">
                         <Col xs={12} sm={4}/>
                         <Col xs={12} sm={4}>
-                        <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
-                             onDrop={(e) => this.onDrop(e, "chosenInsurances")}>
-                            <h4>Pudota vakuutukset tähän</h4>
-                 
-                            {insObject.chosenInsurances}
-                        
-                            {insButton}
-
-                        </div>
+                            <div
+                                className="droppable"
+                                onDragOver={(e) => this.onDragOver(e)}
+                                onDrop={(e) => this.onDrop(e, "chosenInsurances")}
+                                id={"insurance-dropbox"}
+                            >
+                                <h3>Pudota vakuutukset tähän:</h3>
+                                {insObject.chosenInsurances}
+                                {insButton}
+                            </div>
                         </Col>
                         <Col xs={12} sm={4}/>
                         <Grid>
-                        {categoriesToPage}
+                            {categoriesToPage}
                         </Grid>
                     </Row>
                 </Grid>

@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const InsuranceClaimSchema = new Schema({
     text: {
-      type: String,
-      required: [true]
+        type: String,
+        required: [true]
     },
     userid: {
         type: String,
@@ -22,7 +22,7 @@ const InsuranceClaimSchema = new Schema({
         type: Date,
         default: Date.now
     }
-  
+
 }, {collection: 'insuranceclaims'});
 
 
