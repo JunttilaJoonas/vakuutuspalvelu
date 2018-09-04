@@ -23,14 +23,14 @@
 
 .information {
     padding-left: 150px;
-    padding-right: 150px;  
+    padding-right: 150px;
     padding-top: 100px;
-    padding-bottom: 100px; 
+    padding-bottom: 100px;
 }
 
 .information_box {
     padding-left: 150px;
-    padding-right: 150px;  
+    padding-right: 150px;
     padding-bottom: 150px;
 }
 
@@ -45,7 +45,7 @@
     background-color: #FFF;
     width: 350px;
     padding: 30px;
-    bottom: 0;  
+    bottom: 0;
     z-index: 1;
 }
 
@@ -76,12 +76,11 @@
     text-decoration: none;
     box-shadow: 1px 3px 10px rgb(167, 167, 167);
 }
- 
+
 .information h1 {
     color: #FFF;
     text-shadow: 1px 1px #000;
 }
-
 
 .insurance_button {
     margin-top: 20px;
@@ -92,7 +91,6 @@
     padding: 20px;
     color: #FFF;
 }
-
 
 .info_cards {
     margin-top: 20px;

@@ -24,14 +24,14 @@
 
 .information {
     padding-left: 150px;
-    padding-right: 150px;  
+    padding-right: 150px;
     padding-top: 150px;
-    padding-bottom: 150px; 
+    padding-bottom: 150px;
 }
 
 .information_box {
     padding-left: 150px;
-    padding-right: 150px;  
+    padding-right: 150px;
     padding-bottom: 150px;
 }
 
@@ -51,7 +51,6 @@
     color: #FFF;
     text-shadow: 1px 1px #000;
 }
-
 
 .insurance_button {
     margin-top: 20px;

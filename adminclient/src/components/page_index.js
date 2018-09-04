@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Col, Grid, Row} from 'react-bootstrap';
 import ClientList from '../components/page_clientlist';
 
 class IndexPage extends Component {
 
     /**
-    * @desc This component renders index page to display list of clients
-    */
+     * @desc This component renders index page to display list of clients
+     */
 
     render() {
         return (
@@ -16,7 +16,7 @@ class IndexPage extends Component {
                         <Col xs={12} sm={2}></Col>
                         <Col xs={12} sm={8}>
 
-                            <ClientList />
+                            <ClientList/>
 
                         </Col>
                         <Col xs={12} sm={2}></Col>

@@ -8,23 +8,19 @@ const passport = require('passport');
 const User = require('../models/User');
 
 
-
-
 router.get('/id/:id', passport.authenticate('jwt',
-{session: false}), (req, res) => {
+    {session: false}), (req, res) => {
     insurancedbservice.findOneById(req, res);
-  });
+});
 
 router.get('/customer/:id', (req, res) => {
     insurancedbservice.deleteCustomerInsurance(req, res);
 });
 
 
-
-
 router.get('/customer/:id', passport.authenticate('jwt',
-{session: false}), (req, res) => {
-        insurancedbservice.findAllByUserID(req, res)
+    {session: false}), (req, res) => {
+    insurancedbservice.findAllByUserID(req, res)
 });
 
 router.post('/create', (req, res) => {
@@ -42,5 +38,4 @@ router.post('/update', (req, res, next) => {
 //DEV ROUTE add a claim to the claim database from Customer Clien
 
 
-
-module.exports = router; 
+module.exports = router;

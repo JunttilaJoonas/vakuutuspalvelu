@@ -22,8 +22,10 @@ router.post('/create', (req, res) => {
 router.post('/save', (req, res) => {
     let id = req.body.id
     insuranceDBService.addOne(req.body)
-    .then(applicationDBservice.deleteOneById(id, req, res)).then
-    (data => {res.json(data)})
+        .then(applicationDBservice.deleteOneById(id, req, res)).then
+    (data => {
+        res.json(data)
+    })
 })
 
 router.get('/all', (req, res) => {

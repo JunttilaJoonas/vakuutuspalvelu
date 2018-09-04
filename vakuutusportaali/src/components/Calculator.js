@@ -1,7 +1,7 @@
 import React from "react";
 
 export class Calculator extends React.Component {
-    render(){
+    render() {
         const data = this.props.data;
         let totalPrice = 0;
 

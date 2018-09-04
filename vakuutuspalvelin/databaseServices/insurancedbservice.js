@@ -25,7 +25,7 @@ function addOne(data) {
             return createdInsurance;
         }).catch(error => {
             return error;
-    });
+        });
 }
 
 function updateOneById(data) {
@@ -34,7 +34,7 @@ function updateOneById(data) {
     });
 }
 
-function deleteOneById(id){
+function deleteOneById(id) {
     Insurance.deleteOne({_id: id}, (err, result) => {
     });
 }

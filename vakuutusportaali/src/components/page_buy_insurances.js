@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
+import {Button, Col, Grid, Panel, Row} from 'react-bootstrap';
 
 export class InsuranceForm extends React.Component {
 

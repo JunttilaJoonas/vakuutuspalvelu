@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
         });
 });
 
-router.get("/user/:id",  (req, res) => {
+router.get("/user/:id", (req, res) => {
     insuranceService.findAllByUser(req.params.id)
         .then(insurances => {
             res.json(insurances);
@@ -27,7 +27,7 @@ router.get("/user/:id",  (req, res) => {
 
 router.get("/", (req, res) => {
     insuranceService.findAll()
-        .then (insurances => {
+        .then(insurances => {
             res.json(insurances);
         });
 });

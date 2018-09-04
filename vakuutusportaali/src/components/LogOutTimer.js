@@ -1,27 +1,31 @@
 import React, {Component} from 'react';
-import {Link, withRouter} from 'react-router-dom';
-import IdleTimer from 'react-idle-timer';
+import {withRouter} from 'react-router-dom';
 import {logoutUser} from '../actions/authActions';
 import {connect} from 'react-redux';
-import {Navbar} from "react-bootstrap";
-import PropTypes from 'prop-types';
+import IdleTimer from 'react-idle-timer';
 
 
 class LogOutTimer extends Component {
 
     constructor(props) {
-        super(props)
-        this.idleTimer = null
-        this.onIdle = this._onIdle.bind(this)
+        super(props);
+        this.idleTimer = null;
+        this.onIdle = this._onIdle.bind(this);
         this.onActive = this._onActive.bind(this);
+        this.state = {
+            warning: false,
+        }
     }
 
-    _onActive(e) {
+    _onActive() {
         // user is active
         this.idleTimer.reset();
+        if (this.state.warning === true) {
+            this.setState({warning: false});
+        }
     }
 
-    _onIdle(e) {
+    _onIdle() {
 
         //user is idle
         let elapsedTime = this.idleTimer.getElapsedTime();
@@ -32,23 +36,37 @@ class LogOutTimer extends Component {
             this.props.history.push('/kirjaudu');
         }
 
-        // TODO: replace console.log warning with a modal window (not alert because it stops the timer)
-        else if (elapsedTime > 1000 * 15) {
-            console.log("Olet ollut inaktiivisena 15 sekuntia. Sinut kirjataan automaattisesti ulos, jos et tee mitään 5 minuutin sisällä.")
+        else {
+            this.setState({warning: true});
         }
     }
 
     render() {
+
+        let warningMessage;
+
+        if (this.state.warning) {
+            warningMessage =
+                <h3>Olet ollut inaktiivisena minuutin. Sinut kirjataan automaattisesti ulos, jos et tee mitään 4
+                    minuutin sisällä.</h3>
+        }
+
         return (
             <div>
+                {warningMessage}
                 <IdleTimer
-                ref={ref => {this.idleTimer = ref}}
-                element={document}
-                onIdle={this.onIdle}
-                timeout={1000 * 15}
+                    ref={ref => {
+                        this.idleTimer = ref
+                    }}
+                    element={document}
+                    onIdle={this.onIdle}
+                    onActive={this.onActive}
+                    timeout={1000 * 60}
                 />
                 <IdleTimer
-                    ref={ref => {this.idleTimer = ref}}
+                    ref={ref => {
+                        this.idleTimer = ref
+                    }}
                     element={document}
                     onIdle={this.onIdle}
                     timeout={1000 * 60 * 5}

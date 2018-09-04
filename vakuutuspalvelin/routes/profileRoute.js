@@ -13,9 +13,9 @@ const User = require('../models/User');
 //TODO THIS WILL CHANGE WHEN AUTHENTICATION IS ADDED
 
 router.get('/current', passport.authenticate('jwt',
-{session: false}), (req, res) => {
+    {session: false}), (req, res) => {
     profiledbservice.findOneById(req, res)
-  });
+});
 
 
 /*router.get('/current', passport.authenticate('jwt',
@@ -43,7 +43,7 @@ router.post('/omavakuutus/paivitatietoja', (req, res, next) => {
 });
 
 router.get('/testi', passport.authenticate('jwt',
-{session: false}), (req, res) => {
+    {session: false}), (req, res) => {
     res.json("Testi toimii")
 });
 
@@ -58,65 +58,65 @@ router.post('/login', (req, res) => {
     const password = req.body.password;
 
     // Find user by email TODO REPLACE WITH OAUTH
-    
-    User.findOne({ email }).then(user => {
-      // Check for user
-      if (!user) {
-        return res.status(404);
-      }
-      // Check Password
-      bcrypt.compare(password, user.password).then(isMatch => {
-        if (isMatch) {
-          // User Matched
-          const payload = { id: user.id, name: user.name}; // Create JWT Payload
-          // Sign Token
-          jwt.sign(
-            payload,
-            keys.secretOrKey,
-            { expiresIn: 3600 },
-            (err, token) => {
-              res.json({
-                success: true,
-                token: 'Bearer ' + token
-              });
-            }
-          );
-        } else {
-          errors.password = 'Password incorrect';
-          return res.status(400).json(errors);
+
+    User.findOne({email}).then(user => {
+        // Check for user
+        if (!user) {
+            return res.status(404);
         }
-      });
+        // Check Password
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if (isMatch) {
+                // User Matched
+                const payload = {id: user.id, name: user.name}; // Create JWT Payload
+                // Sign Token
+                jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    {expiresIn: 3600},
+                    (err, token) => {
+                        res.json({
+                            success: true,
+                            token: 'Bearer ' + token
+                        });
+                    }
+                );
+            } else {
+                errors.password = 'Password incorrect';
+                return res.status(400).json(errors);
+            }
+        });
     });
-  });
-  
+});
+
 router.post('/register', (req, res) => {
 
     User.findOne({email: req.body.email})
         .then(user => {
-            if(user) {
-  
-                return res.status(400);
-            } else {
-      
-                const newUser = new User({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password
-                    
-                });
-                bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if(err) throw err;
-                        newUser.password = hash;
-                        newUser.save()
-                            .then( user => res.json(user))
-                            .catch(err => console.log(err));
-                        })
-                } 
-            )
+                if (user) {
+
+                    return res.status(400);
+                } else {
+
+                    const newUser = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password
+
+                    });
+                    bcrypt.genSalt(10, (err, salt) => {
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                if (err) throw err;
+                                newUser.password = hash;
+                                newUser.save()
+                                    .then(user => res.json(user))
+                                    .catch(err => console.log(err));
+                            })
+                        }
+                    )
+                }
             }
-        }
-    )
+        )
 });
 
 

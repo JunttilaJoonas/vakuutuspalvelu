@@ -1,38 +1,45 @@
-import { GET_USERS, POST_USER, GET_USER_BY_ID, DELETE_USER_BY_ID, ADD_PROFILE_TO_USER, UPDATE_USER_PROFILE } from '../actions/types';
+import {
+    ADD_PROFILE_TO_USER,
+    DELETE_USER_BY_ID,
+    GET_USER_BY_ID,
+    GET_USERS,
+    POST_USER,
+    UPDATE_USER_PROFILE
+} from '../actions/types';
 
-export default function users(state = [], action)  {
+export default function users(state = [], action) {
 
     /**
-    * @desc Action types for user handling
-    */
+     * @desc Action types for user handling
+     */
 
-    switch(action.type) {
+    switch (action.type) {
 
         // Get all users
         case GET_USERS:
-        return action.users;
+            return action.users;
         default:
-        return state;
+            return state;
 
         // Get one user by id
         case GET_USER_BY_ID:
-        return action.users;
-        
+            return action.users;
+
         // Add new user
         case POST_USER:
-        return action.users;
-        
+            return action.users;
+
         // Add profile to new user
         case ADD_PROFILE_TO_USER:
-        return action.users;
+            return action.users;
 
         // Delete user 
         case DELETE_USER_BY_ID:
-        return action.users;
+            return action.users;
 
         // Update user information
         case UPDATE_USER_PROFILE:
-        return action.users;
+            return action.users;
 
     }
 };

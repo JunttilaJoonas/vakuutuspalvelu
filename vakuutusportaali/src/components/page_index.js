@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {Grid, Row, Col, Image, Button} from 'react-bootstrap';
+import {Button, Col, Grid, Image, Row} from 'react-bootstrap';
 
 class IndexPage extends Component {
 
