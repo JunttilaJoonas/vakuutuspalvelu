@@ -75,6 +75,7 @@ this.sendMessage = ev => {
         message: this.state.message,
         messageid: this.state.messageid
     })
+
     this.setState({message: ''});
     }
 }
@@ -130,14 +131,20 @@ keyUp() {
                                             </div>
                                             <div className="card-footer">
                                                 <br/>
+                                                <form>
                                                 <input type="text" placeholder="Viesti" className="form-control"
                                                        value={this.state.message}
                                                        onChange={ev => this.setState({message: ev.target.value})}/>
                                                 <br/>
+<<<<<<< HEAD
                                                 
                                                 <button onClick={this.sendMessage}
+=======
+                                                <button type="submit" onClick={this.sendMessage}
+>>>>>>> 1885d52ef106010cb093ea261626b78c0ebfdea6
                                                         className="btn btn-primary form-control">Lähetä
                                                 </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
