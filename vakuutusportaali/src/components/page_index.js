@@ -3,7 +3,7 @@ import {Button, Col, Grid, Image, Row} from 'react-bootstrap';
 
 class IndexPage extends Component {
 
-    render() {
+    render() { 
         return (
             <div>
                 <Grid fluid className="splash">
