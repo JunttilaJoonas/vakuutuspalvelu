@@ -5,10 +5,8 @@ const insuranceService = require("../databaseServices/insurancedbservice");
 router.get("/:id", (req, res) => {
     insuranceService.findOneById(req.params.id)
         .then(insurance => {
-            console.log("insurance", insurance);
 
             if (insurance) {
-                console.log("insu:", insurance);
                 res.json(insurance);
                 res.status(200).send();
             }
@@ -19,20 +17,6 @@ router.get("/:id", (req, res) => {
             }
         });
 });
-
-/* THIS IS A PRELIMINARY PLAN FOR THE FEATURE
-router.get("/user/:id", passport.authenticate('jwt',
-{session: false}),  (req, res) => {
-    if(req.user.role == "ADMIN") {
-    insuranceService.findAllByUser(req.params.id)
-        .then(insurances => {
-            res.json(insurances);
-        })
-    } else {
-        res.send("unauthorized")
-    }
-});
-*/
 
 router.get("/user/:id",  (req, res) => {
     insuranceService.findAllByUser(req.params.id)
@@ -63,7 +47,6 @@ router.post("/", (req, res) => {
 router.put("/", (req, res) => {
     insuranceService.updateOneById(req.body)
         .then(result => {
-            console.log("RESULT", result);
             res.status(200);
             res.json(result);
         })

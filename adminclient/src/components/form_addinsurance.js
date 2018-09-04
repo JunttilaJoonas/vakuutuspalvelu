@@ -45,7 +45,6 @@ handleInitialize() {
         userid: this.state.userid,
         valid: this.state.valid
       };
-      console.log(newPost);
       this.props.addPost(newPost);
       this.setState({ insurancetype: '',
      userid: '', 
@@ -53,7 +52,6 @@ handleInitialize() {
     }
   
     onChange(e) {
-      console.log("why")
       this.setState({ [e.target.name]: e.target.value });
     }
 

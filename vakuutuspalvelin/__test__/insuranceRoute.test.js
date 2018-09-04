@@ -19,7 +19,6 @@ describe('Insurance REST', () => {
             .expect("Content-Type", /json/)
             .then(res => {
                 id = res.body._id;
-                console.log("id", id);
             })
     });
 

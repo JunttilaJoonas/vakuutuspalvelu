@@ -14,7 +14,6 @@ function findOneById(req, res) {
 }
 
 function addInsuranceType(req, res) {
-    console.log(req.body);
     InsuranceType.create(req.body)
     .then((insurance) => {res.json(insurance)});
 }

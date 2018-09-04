@@ -12,7 +12,6 @@ function findAll(req, res) {
 
 function findByEmail(req, res) {
     let email = req.body.email;
-    console.log(email);
     Profile.findOne({email: email})
         .populate("profilesinsurances")
         .populate("profileclaims")
@@ -52,7 +51,6 @@ function updateProfileInsurances(data, customerId, applicationId) {
 }
 
 function sendCustomerAMessage(req, res) {
-    console.log(req.body);
     const message= {
         "id" : req.body.id,
         "Message" : req.body.Message,
@@ -68,8 +66,6 @@ function sendCustomerAMessage(req, res) {
 // FINDS PROFILE BY ID
 
 function findOneById(req, res, next) {
-    console.log(req.params);
-    console.log('Hello Hallo');
     Profile.findOne({_id: req.params.id})
         .populate("profilesinsurances")
         .populate("profileclaims")
@@ -89,7 +85,7 @@ function deleteOneById(req, res) {
 
 }
 
-//ADDSS INSURANCE TO THE CUSTOMER
+//ADDS INSURANCE TO THE CUSTOMER
 
 function AddInsuranceToACustomer(req, res) {
     /* The following should happen: 1) Insurance is created and added to the database. 2) InsuranceID
@@ -101,10 +97,7 @@ function AddInsuranceToACustomer(req, res) {
 }
 
 function updateCustomerById(data) {
-    console.log(data);
     return Profile.findByIdAndUpdate({_id: data._id}, data, (err, profile) => {
-        console.log("DATA", data);
-        console.log('PROFILE', profile);
         return data;
     });
 }
@@ -115,7 +108,6 @@ function AddProfile(req, res) {
 }
 
 function deleteProfile(req, res) {
-    console.log("ollaanko delete profilessa?")
     Profile.deleteOne({_id: req.params.id}, (err, profile) => {
         res.send('Profile deleted')
     })

@@ -102,8 +102,6 @@ class DragandDrop extends Component {
                 };
                 chosenOnes.push(insurance);
             });
-
-            console.log("Haettavat vakuutukset:",chosenOnes);
             sessionStorage.setItem("chosenOnes", JSON.stringify(chosenOnes));
             history.push("/haevakuutusta");
         }

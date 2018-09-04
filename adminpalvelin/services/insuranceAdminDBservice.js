@@ -11,7 +11,6 @@ function findAllByUserID(req, res) {
 }
 
 function deleteCustomerInsurance(id) {
-    console.log(id)
     Insurance.deleteOne({_id: id})
     .then((insurance) => {res.json(insurance)})
 }
@@ -24,18 +23,13 @@ function findAll() {
 }
 
 function addOne(data) {
-    console.log(data)
     return Insurance.create(data)
-        .then(createdInsurance => {
-            console.log(createdInsurance);
-        }).catch(error => {
-            console.log("VIRHE")
-    });
+        .then(createdInsurance => {})
+        .catch(error => {});
 }
 
 function updateOneById(data) {
     return Insurance.findByIdAndUpdate({_id: data._id}, data, (err, insurance) => {
-        console.log("DATA", data);
         return data;
     });
 }
@@ -48,9 +42,7 @@ function createInsuranceAndUpdateCustomer(req, res, id) {
 }
 
 function deleteOneById(id){
-    Insurance.deleteOne({_id: id}, (err, result) => {
-        console.log("poistettu");
-    });
+    Insurance.deleteOne({_id: id}, (err, result) => {});
 }
 
 module.exports = {findOneById, createInsuranceAndUpdateCustomer, findAllByUserID, deleteCustomerInsurance, findAll, addOne, updateOneById, deleteOneById};

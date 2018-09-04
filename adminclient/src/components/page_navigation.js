@@ -14,8 +14,6 @@ class PageNavigation extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
-
-        console.log(this.props);
         const guestLinks = (
 
             <Navbar.Collapse>

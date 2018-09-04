@@ -15,7 +15,6 @@ class InsuranceIndex extends Component {
             .then(res => {
                 const newArrayofInsurance = res.data;
                 this.setState({ arrayofInsurance: newArrayofInsurance }, function () {
-                    // console.log(this.state.arrayofInsurance);
                 });
             })
     }
@@ -29,9 +28,8 @@ class InsuranceIndex extends Component {
                 selectedInsurance = this.state.arrayofInsurance[i]
             }
         }
-        // console.log(selectedInsurance);
         this.setState({ insuranceToBeDisplayed: selectedInsurance }, () => {
-            // console.log(this.state.insuranceToBeDisplayed)
+
         })
     }
     /*
