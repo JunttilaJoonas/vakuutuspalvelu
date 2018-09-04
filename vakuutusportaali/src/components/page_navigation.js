@@ -27,9 +27,6 @@ class PageNavigation extends Component {
                     <NavItem eventKey={4} componentClass={Link} href="/" to="/kirjaudu">
                         Kirjaudu sisään
                     </NavItem>
-                    <NavItem eventKey={5} componentClass={Link} href="/" to="/rekisteroidy">
-                        Rekisteröidy
-                    </NavItem>
                 </Nav>
             </Navbar.Collapse>
         );
@@ -52,9 +49,6 @@ class PageNavigation extends Component {
                     </NavItem>
                     <NavItem eventKey={7} componentClass={Link} href="/" to="/vahinkoilmoitus">
                         Ilmoita vahingosta
-                    </NavItem>
-                    <NavItem eventKey={7} componentClass={Link} href="/" to="/chat">
-                        Chatti
                     </NavItem>
                     <NavItem eventKey={4} componentClass={Link} href="#" to="#" onClick={this.onLogoutClick.bind(this)}>
                         Kirjaudu ulos

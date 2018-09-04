@@ -112,3 +112,8 @@
 .info_image {
     margin-bottom: 20px;
 }
+
+#insurance-dropbox {
+    border: solid white 2px;
+    border-radius: 10px;
+}

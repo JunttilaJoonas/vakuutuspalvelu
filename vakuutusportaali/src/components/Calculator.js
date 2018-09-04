@@ -10,8 +10,16 @@ export class Calculator extends React.Component {
             totalPrice += insurance.price;
         }
 
+        let nodes;
+        if (totalPrice > 0) nodes =
+            <div>
+                <h1>Arvioitu hinta: {totalPrice} euroa</h1>
+            </div>;
+
         return (
-            <h1>Arvioitu hinta: {totalPrice} euroa</h1>
+            <div>
+                {nodes}
+            </div>
         )
     }
 }

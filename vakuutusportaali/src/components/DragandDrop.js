@@ -106,29 +106,27 @@ class DragandDrop extends Component {
         }
 
         let insButton;
-        if (insObject.chosenInsurances.length != 0) {
-            insButton = <Button bsClass="insurance_button" onClick={submitInsurances}>Lähetä</Button>
-        } else {
-            insButton = <p></p>
+        if (insObject.chosenInsurances.length > 0) {
+            insButton = <Button bsClass="insurance_button" onClick={submitInsurances}>Hae näitä vakuutuksia</Button>
         }
 
         return (
             <div>
-                <h1 className="header">Vakuutukset</h1>
-
+                <h1 className="header">Hae vakuutusta</h1>
                 <Calculator data={insObject.chosenInsurances}/>
                 <Grid fluid className="info_cards">
                     <Row className="show-grid cards text-center">
                         <Col xs={12} sm={4}/>
                         <Col xs={12} sm={4}>
-                            <div className="droppable" onDragOver={(e) => this.onDragOver(e)}
-                                 onDrop={(e) => this.onDrop(e, "chosenInsurances")}>
-                                <h4>Pudota vakuutukset tähän</h4>
-
+                            <div
+                                className="droppable"
+                                onDragOver={(e) => this.onDragOver(e)}
+                                onDrop={(e) => this.onDrop(e, "chosenInsurances")}
+                                id={"insurance-dropbox"}
+                            >
+                                <h3>Pudota vakuutukset tähän:</h3>
                                 {insObject.chosenInsurances}
-
                                 {insButton}
-
                             </div>
                         </Col>
                         <Col xs={12} sm={4}/>
