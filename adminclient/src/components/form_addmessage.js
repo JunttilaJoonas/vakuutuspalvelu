@@ -20,7 +20,6 @@ class AddMessage extends Component {
 
     onSubmit(values) {
         // When submitted redirect user to '/'
-        console.log("are we here?")  
         this.props.postMessages(values)
         this.props.history.push('/');     
     }

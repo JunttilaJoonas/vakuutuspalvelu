@@ -39,7 +39,6 @@ class UpdateProfile extends Component {
         // käyttäjä takaisin juureen
         
         this.props.updateUserProfile(values, () =>{
-            console.log(this.props);
             this.props.history.push('/')
         })
      
