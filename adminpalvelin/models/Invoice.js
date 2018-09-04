@@ -13,7 +13,7 @@ const InvoiceSchema = new Schema({
       type: String,
     },
     referenceNumber: {
-        type: Number
+        type: String
     },
     accountnumber: {
         type: Number
