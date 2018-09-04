@@ -43,6 +43,7 @@ this.sendMessage = ev => {
         message: this.state.message,
         messageid: this.state.messageid
     })
+
     this.setState({message: ''});
     }
 }
@@ -91,13 +92,15 @@ componentWillMount() {
                                             </div>
                                             <div className="card-footer">
                                                 <br/>
+                                                <form>
                                                 <input type="text" placeholder="Viesti" className="form-control"
                                                        value={this.state.message}
                                                        onChange={ev => this.setState({message: ev.target.value})}/>
                                                 <br/>
-                                                <button onClick={this.sendMessage}
+                                                <button type="submit" onClick={this.sendMessage}
                                                         className="btn btn-primary form-control">Lähetä
                                                 </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

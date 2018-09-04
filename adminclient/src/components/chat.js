@@ -72,14 +72,17 @@ this.sendMessage = ev => {
                             </div>
                             <div className="card-footer">
                                 <br/>
+                                <form>
                                 <input type="text" placeholder="Message" className="form-control"
                                        value={this.state.message}
                                        onChange={ev => this.setState({message: ev.target.value})}/>
                                 <br/>
-                                <button onClick={this.sendMessage} className="btn btn-primary form-control">Send
+                                <button  type="submit" onClick={this.sendMessage} className="btn btn-primary form-control">Send
                                 </button>
+                                </form>
                                 <button onClick={this.initializeSocket.bind(this)} className="btn btn-primary form-control">Connect
-</button>
+                                </button>
+                                
                             </div>
                         </div>
                     </div>
