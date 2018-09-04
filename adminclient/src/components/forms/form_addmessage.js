@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUser } from '../actions/index';
+import { postMessages } from '../../actions/actions_insurances';
 
-class AddUser extends Component {
-
+class AddMessage extends Component {
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
@@ -20,27 +19,37 @@ class AddUser extends Component {
     }
 
     onSubmit(values) {
-        this.props.postUser(values);
-
+        // When submitted redirect user to '/'
+        this.props.postMessages(values)
+        this.props.history.push('/');     
     }
 
 
-
     render() {
-        const { handleSubmit, pristine } = this.props;
-       
+        const { handleSubmit } = this.props;
+
 
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Sähköposti"
-                    placeholder="Anna vakuutuksenottajan sähköposti"
-                    name="email"
+                    label="Viestinsaajan käyttäjätunnus"
+                    placeholder="Anna vakuutuksenottajan käyttäjätunnus"
+                    name="id"
                     component={this.renderField} />
                 <Field
-                    label="Salasana"
-                    placeholder="Anna salasana"
-                    name="password"
+                    label="Viesti"
+                    placeholder="Onko validi?"
+                    name="Message"
+                    component={this.renderField} />
+                <Field
+                    label="Viestin lähettäjä"
+                    placeholder="Anna vakuutuksen tyyppi"
+                    name="Sender"
+                    component={this.renderField} />
+                <Field
+                    label="Viestin id"
+                    placeholder="Anna vakuutukselle tunnsu"
+                    name="messageId"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
@@ -51,12 +60,12 @@ class AddUser extends Component {
 
 
 const mapStateToProps = (state) => ({
-    user: state.users,
-    isPressed: false
+    insurances: state.insurances,
+    user: state.users
 });
 
 export default reduxForm({
-    form: 'NewUserNewForm' // Arvon pitää olla uniikki
+    form: 'MessageNewForm' // Arvon pitää olla uniikki
 })(
-    connect(mapStateToProps, { postUser })(withRouter(AddUser))
+    connect(mapStateToProps, { postMessages })(withRouter(AddMessage))
 );

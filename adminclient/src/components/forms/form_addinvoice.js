@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postProfile } from '../actions/index';
+import { postInvoices } from '../../actions/actions_insurances';
 
-class AddProfile extends Component {
-
-    state = {
-        profile: []
-    }
+class AddInvoice extends Component {
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;
@@ -23,45 +19,42 @@ class AddProfile extends Component {
     }
 
     onSubmit(values) {
-        
-        this.props.postProfile(values);
-        this.props.history.push('/');
-     
+        // When submitted redirect user to '/'
+        this.props.postInvoices(values)
+        this.props.history.push('/');     
     }
 
 
-
     render() {
-        
         const { handleSubmit } = this.props;
 
 
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Name"
+                    label="Vakuutuksentyyppi"
                     placeholder="Anna vakuutuksenottajan käyttäjätunnus"
-                    name="name"
+                    name="insurancetype"
                     component={this.renderField} />
                 <Field
-                    label="email"
+                    label="Eräpäivä"
                     placeholder="Onko validi?"
-                    name="email"
+                    name="duedate"
                     component={this.renderField} />
                 <Field
-                    label="address"
+                    label="Viitenumero"
                     placeholder="Anna vakuutuksen tyyppi"
-                    name="address"
+                    name="referencenumber"
                     component={this.renderField} />
                 <Field
-                    label="City"
+                    label="Asiakastili"
                     placeholder="Anna vakuutukselle tunnsu"
-                    name="city"
+                    name="accountnumber"
                     component={this.renderField} />
                 <Field
-                    label="Phone"
+                    label="Käyttäjätili"
                     placeholder="Anna vakuutukselle tunnsu"
-                    name="phone"
+                    name="userid"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
                 <Link to="/" className="btn btn-danger">Poistu</Link>
@@ -72,11 +65,12 @@ class AddProfile extends Component {
 
 
 const mapStateToProps = (state) => ({
+    insurances: state.insurances,
     user: state.users
 });
 
 export default reduxForm({
-    form: 'ProfileNewForm' // Arvon pitää olla uniikki
+    form: 'InvoiceNewForm' // Arvon pitää olla uniikki
 })(
-    connect(mapStateToProps, { postProfile })(withRouter(AddProfile))
+    connect(mapStateToProps, { postInvoices })(withRouter(AddInvoice))
 );

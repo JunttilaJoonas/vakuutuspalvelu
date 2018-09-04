@@ -3,9 +3,14 @@ const POSTMESSAGE_URL = 'http://localhost:3000/customerprofile/message';
 const POSTINSURANCES_URL = 'http://localhost:3000/application/save';
 const DELETEINSURANCE_URL = 'http://localhost:3000/customerprofile/insurancedelete';
 const POSTINVOICE_URL = 'http://localhost:3000/customerprofile/invoice';
-
 import { POST_INSURANCE, POST_MESSAGE, DELETE_USER_INSURANCE } from './types';
 
+/**
+  * @desc Here you will find all the actions related to insurances
+*/
+
+
+// Post new message to user
 export function postMessage(message) {
     return {
         type: POST_MESSAGE,
@@ -22,6 +27,7 @@ export function postMessages(values) {
     }
 }
 
+// Post new invoice to user
 export function postInvoice(value) {
     return {
         type: POST_INVOICES,
@@ -38,6 +44,7 @@ export function postInvoices(values) {
     }
 }
 
+// Post new insurance to customer
 export function postInsurance(insurances) {
    return {
        type: POST_INSURANCE,
@@ -54,6 +61,7 @@ export function postInsurances(values) {
     }
 }
 
+// Delete insurance from user by id
 export function deleteInsuranceById(insurances) {
     return {
         type: DELETE_USER_INSURANCE,

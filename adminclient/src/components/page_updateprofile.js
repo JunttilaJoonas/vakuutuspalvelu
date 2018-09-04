@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap';
-import UpdateUserForm from './form_updateprofile';
+import UpdateUserForm from './forms/form_updateprofile';
 
 
 export default class UpdateUserProfile extends Component {

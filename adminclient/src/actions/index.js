@@ -6,6 +6,11 @@ const ADDPROFILE_URL = 'http://localhost:3000/customerprofile/addprofile';
 const ADDUSER_URL =  'http://localhost:4000/profiili/register';
 import { GET_USERS, GET_USER_BY_ID, DELETE_USER_BY_ID, POST_USER, ADD_PROFILE_TO_USER, UPDATE_USER_PROFILE } from './types';
 
+/**
+  * @desc Here you will find all the actions related to users.
+*/
+
+// Fetch all users from database
 export function fetchUsers(users) {
         return {
             type: GET_USERS,
@@ -22,6 +27,7 @@ export function fetchAllUsers() {
     }
 }
 
+// Fetch single user by id from database
 export function fetchUserById(users) {
     return {
         type: GET_USER_BY_ID,
@@ -38,6 +44,7 @@ export function fetchUserProfile(id) {
     }
 }
 
+// Delete user by id from database
 export function deleteUserById(users) {
     return {
         type: DELETE_USER_BY_ID,
@@ -54,6 +61,7 @@ export function deleteUserProfile(id) {
     }
 }
 
+// Add profile to existing user in database
 export function addProfile(profile) {
     return {
         type: ADD_PROFILE_TO_USER,
@@ -68,6 +76,7 @@ export function postNewUser(values) {
     };
 }
 
+// Add new user to database
 export function postUser(values) {
     return (dispatch) => {
         return axios.post(`${ADDUSER_URL}`, values)
@@ -86,6 +95,7 @@ export function postProfile(values) {
     }
 }
 
+// Update user profile information
 export function updateProfile(profile) {
     return {
         type: UPDATE_USER_PROFILE,
