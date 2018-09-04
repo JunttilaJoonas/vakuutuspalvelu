@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
+import {connect} from 'react-redux';
 import axios from 'axios';
 import { Button, Panel } from 'react-bootstrap';
 
@@ -20,11 +21,14 @@ class Chat extends Component {
 
     this.socket = io('localhost:4001');
 
+
+
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
 
     const addMessage = data => {
+        console.log(data);
         this.setState({messages: [...this.state.messages, data]});
     };
 
@@ -34,7 +38,8 @@ class Chat extends Component {
         ev.preventDefault();
         this.socket.emit('SEND_MESSAGE', {
             author: this.state.profile.email,
-            message: this.state.message
+            message: this.state.message,
+            messageid: this.props.auth.user.id
         })
         this.setState({message: ''});
 
@@ -44,13 +49,19 @@ class Chat extends Component {
 
 
 
+
 componentWillMount() {
+console.log(this.props.auth);
+this.socket.emit('join', {id: this.props.auth.user.id})  
   axios.get("http://localhost:4000/profiili/current")
       .then(res => {
           this.setState({profile: res.data});
-      })}
+      })
+    }
+    
 
 render(){
+  
     var chatTitle;
     if(this.state.open) {
         chatTitle = 'Sulje chat'
@@ -101,5 +112,9 @@ render(){
     );
 }
 }
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+    user: state.users
+});
 
-export default Chat;
+export default connect(mapStateToProps)(Chat)

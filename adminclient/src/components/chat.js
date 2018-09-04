@@ -9,6 +9,7 @@ class Chat extends Component {
     this.state = {
         username: "Vakuutuspalvelija",
         message: '',
+        messageid: "adminviesti",
         messages: []
     };
 
@@ -23,9 +24,10 @@ class Chat extends Component {
 
     this.sendMessage = ev => {
         ev.preventDefault();
-        this.socket.emit('SEND_MESSAGE', {
+        this.socket.emit('SEND_ADMIN_MESSAGE', {
             author: this.state.username,
-            message: this.state.message
+            message: this.state.message,
+            messageid: this.state.messageid
         })
         this.setState({message: ''});
 
