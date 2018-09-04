@@ -1,7 +1,7 @@
 const InsuranceType = require('../models/insurancetype');
 
 
-function findAll (req, res) {
+function findAll(req, res) {
     InsuranceType.find({}, (err, insurances) => {
         res.json(insurances)
     })   //findAllProfile
@@ -15,7 +15,9 @@ function findOneById(req, res) {
 
 function addInsuranceType(req, res) {
     InsuranceType.create(req.body)
-    .then((insurance) => {res.json(insurance)});
+        .then((insurance) => {
+            res.json(insurance)
+        });
 }
 
 

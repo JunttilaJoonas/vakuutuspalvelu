@@ -8,7 +8,7 @@ class AddProfile extends Component {
 
     state = {
         profile: []
-    }
+    };
 
     renderField(field) {
         const className = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`;

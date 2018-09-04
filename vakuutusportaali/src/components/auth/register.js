@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, Button, Col, ControlLabel } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authActions';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {registerUser} from '../../actions/authActions';
 
 class Register extends Component {
     constructor() {
@@ -21,13 +21,13 @@ class Register extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.errors) {
+        if (nextProps.errors) {
             this.setState({errors: nextProps.errors});
         }
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value});
+        this.setState({[e.target.name]: e.target.value});
     }
 
     onSubmit(e) {
@@ -46,19 +46,19 @@ class Register extends Component {
     render() {
         return (
             <div>
-                
+
                 <Form onSubmit={this.onSubmit} horizontal>
-                <FormGroup controlId="formHorizontalName">
+                    <FormGroup controlId="formHorizontalName">
                         <Col componentClass={ControlLabel} sm={2}>
                             Name
                         </Col>
                         <Col sm={10}>
-                            <FormControl 
-                            value={this.state.name} 
-                            onChange={this.onChange} 
-                            type="text" 
-                            name="name"
-                            placeholder="Name" />
+                            <FormControl
+                                value={this.state.name}
+                                onChange={this.onChange}
+                                type="text"
+                                name="name"
+                                placeholder="Name"/>
                         </Col>
                     </FormGroup>
 
@@ -67,12 +67,12 @@ class Register extends Component {
                             Email
                         </Col>
                         <Col sm={10}>
-                            <FormControl 
-                            value={this.state.email} 
-                            onChange={this.onChange} 
-                            type="email" 
-                            name="email"
-                            placeholder="Email" />
+                            <FormControl
+                                value={this.state.email}
+                                onChange={this.onChange}
+                                type="email"
+                                name="email"
+                                placeholder="Email"/>
                         </Col>
                     </FormGroup>
 
@@ -81,26 +81,26 @@ class Register extends Component {
                             Password
                         </Col>
                         <Col sm={10}>
-                            <FormControl 
-                            value={this.state.password} 
-                            onChange={this.onChange} 
-                            type="password" 
-                            name="password"
-                            placeholder="Password" />
+                            <FormControl
+                                value={this.state.password}
+                                onChange={this.onChange}
+                                type="password"
+                                name="password"
+                                placeholder="Password"/>
                         </Col>
                     </FormGroup>
 
-                     <FormGroup controlId="formHorizontalPassword2">
+                    <FormGroup controlId="formHorizontalPassword2">
                         <Col componentClass={ControlLabel} sm={2}>
                             Password
                         </Col>
                         <Col sm={10}>
-                            <FormControl 
-                            value={this.state.password2} 
-                            onChange={this.onChange} 
-                            type="password" 
-                            name="password2"
-                            placeholder="Password again" />
+                            <FormControl
+                                value={this.state.password2}
+                                onChange={this.onChange}
+                                type="password"
+                                name="password2"
+                                placeholder="Password again"/>
                         </Col>
                     </FormGroup>
 
@@ -125,4 +125,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(withRouter(Register));
+export default connect(mapStateToProps, {registerUser})(withRouter(Register));

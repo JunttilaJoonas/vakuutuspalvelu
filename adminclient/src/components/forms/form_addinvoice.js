@@ -21,7 +21,7 @@ class AddInvoice extends Component {
 
     onSubmit(values) {
         // When submitted redirect user to '/'
-        this.props.postInvoices(values)
+        this.props.postInvoices(values);
         this.props.history.push('/');     
     }
 

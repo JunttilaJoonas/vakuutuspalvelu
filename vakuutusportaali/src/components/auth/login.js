@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, Button, Col, ControlLabel, Grid, Row } from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Button, Col, ControlLabel, Form, FormControl, FormGroup, Grid, Row} from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import {loginUser} from '../../actions/authActions';
 
 class Login extends Component {
     constructor() {
@@ -19,13 +18,13 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.auth.isAuthenticated) {
+        if (nextProps.auth.isAuthenticated) {
             this.props.history.push('dashboard');
-        } 
+        }
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value});
+        this.setState({[e.target.name]: e.target.value});
     }
 
     onSubmit(e) {
@@ -40,38 +39,40 @@ class Login extends Component {
     render() {
         return (
             <div>
-                 <Grid fluid className="splash">
+                <Grid fluid className="splash">
                     <Row className="show-grid information">
-                    <Col xs={12} sm={2}/>
-                    <Col xs={12} sm={8} className="userprofile text-center">
-                    <h4>Kirjaudu sisään</h4>
-                <Form onSubmit={this.onSubmit} horizontal>
-                    <FormGroup controlId="formHorizontalEmail">
-                        <Col componentClass={ControlLabel} sm={1}>
-                           
-                        </Col>
-                        <Col sm={10}>
-                            <FormControl value={this.state.email} onChange={this.onChange} type="email" name="email" placeholder="Sähköposti" />
-                        </Col>
-                    </FormGroup>
+                        <Col xs={12} sm={2}/>
+                        <Col xs={12} sm={8} className="userprofile text-center">
+                            <h4>Kirjaudu sisään</h4>
+                            <Form onSubmit={this.onSubmit} horizontal>
+                                <FormGroup controlId="formHorizontalEmail">
+                                    <Col componentClass={ControlLabel} sm={1}>
 
-                    <FormGroup controlId="formHorizontalPassword">
-                        <Col componentClass={ControlLabel} sm={1}>
-                           
-                        </Col>
-                        <Col sm={10}>
-                            <FormControl value={this.state.password} onChange={this.onChange} type="password" name="password" placeholder="Salasana" />
-                        </Col>
-                    </FormGroup>
+                                    </Col>
+                                    <Col sm={10}>
+                                        <FormControl value={this.state.email} onChange={this.onChange} type="email"
+                                                     name="email" placeholder="Sähköposti"/>
+                                    </Col>
+                                </FormGroup>
 
-                    <FormGroup>
-                        <Col>
-                            <Button type="submit" bsStyle="btn btn-danger">Kirjaudu</Button>
+                                <FormGroup controlId="formHorizontalPassword">
+                                    <Col componentClass={ControlLabel} sm={1}>
+
+                                    </Col>
+                                    <Col sm={10}>
+                                        <FormControl value={this.state.password} onChange={this.onChange}
+                                                     type="password" name="password" placeholder="Salasana"/>
+                                    </Col>
+                                </FormGroup>
+
+                                <FormGroup>
+                                    <Col>
+                                        <Button type="submit" bsStyle="btn btn-danger">Kirjaudu</Button>
+                                    </Col>
+                                </FormGroup>
+                            </Form>
                         </Col>
-                    </FormGroup>
-                </Form>
-                </Col>
-                    <Col xs={12} sm={2}/>
+                        <Col xs={12} sm={2}/>
                     </Row>
                 </Grid>
             </div>
@@ -90,4 +91,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps,  { loginUser })(Login);
+export default connect(mapStateToProps, {loginUser})(Login);

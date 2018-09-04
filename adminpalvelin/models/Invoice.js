@@ -10,7 +10,7 @@ const InvoiceSchema = new Schema({
         type: String
     },
     duedate: {
-      type: String,
+        type: String,
     },
     referenceNumber: {
         type: String
@@ -19,7 +19,6 @@ const InvoiceSchema = new Schema({
         type: Number
     }
 }, {collection: 'invoices'});
-
 
 
 const Invoice = mongoose.model('invoices', InvoiceSchema);

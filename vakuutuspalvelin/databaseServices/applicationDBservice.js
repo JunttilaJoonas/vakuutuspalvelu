@@ -3,14 +3,16 @@ const InsuranceApplication = require('../models/InsuranceApplication');
 
 
 function findOneById(req, res, next) {
-    let id = req.body.id
+    let id = req.body.id;
     InsuranceApplication.findOne({_id: id})
         .then(application => res.json(application));
 }
 
 function createOne(req, res) {
     InsuranceApplication.create(req.body)
-        .then((application) => {res.json(application)})
+        .then((application) => {
+            res.json(application)
+        })
 }
 
 function findAll(req, res, next) {
@@ -19,8 +21,8 @@ function findAll(req, res, next) {
 }
 
 function deleteOneById(id, req, res) {
-    InsuranceApplication.deleteOne({_id: id}, function(err, insurance) {
-      }).catch(next);
+    InsuranceApplication.deleteOne({_id: id}, function (err, insurance) {
+    }).catch(next);
 }
 
-module.exports = {createOne, findOneById, deleteOneById, findAll}
+module.exports = {createOne, findOneById, deleteOneById, findAll};

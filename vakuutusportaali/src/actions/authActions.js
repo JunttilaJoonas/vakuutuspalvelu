@@ -1,11 +1,11 @@
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import {GET_ERRORS, SET_CURRENT_USER} from './types';
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 /**
-* @desc Here you will find all the actions related to user authentication.
-*/
+ * @desc Here you will find all the actions related to user authentication.
+ */
 
 // Register user
 export const registerUser = (userData, history) => dispatch => {
@@ -24,7 +24,7 @@ export const loginUser = userData => dispatch => {
     axios.post('http://localhost:4000/profiili/login', userData)
         .then(res => {
             // Save to localstorage
-            const { token } = res.data;
+            const {token} = res.data;
             // Set token to localstorage
             localStorage.setItem('jwtToken', token);
             // Set token to Auth header

@@ -1,7 +1,7 @@
 const express = require('express');
 const Profile = require('../models/Profile');
 const InsuranceClaim = require('../models/InsuranceClaim');
-const applicationDBservice = require ('../services/applicationDBservice')
+const applicationDBservice = require('../services/applicationDBservice');
 
 //FINDS ALL PROFILES
 
@@ -24,42 +24,43 @@ function updateCustomerInvoices(customerId, data) {
     console.log(id);
     console.log(data);
     Profile.findOne({_id: id})
-    .populate("profilesinsurances")
-    .populate("profileclaims")
-    .populate("profilesinvoices")
-    .then(profile => Profile.update({_id: profile._id}, {$push: {"profilesinvoices": data}}))
+        .populate("profilesinsurances")
+        .populate("profileclaims")
+        .populate("profilesinvoices")
+        .then(profile => Profile.update({_id: profile._id}, {$push: {"profilesinvoices": data}}))
 
 }
 
 function updateCustomerClaims(customerId, data) {
-    let id = customerId;
-    Profile.findOne({_id: id})
-    .populate("profilesinsurances")
-    .populate("profileclaims")
-    .populate("profilesinvoices")
-    .then(profile => Profile.update({_id: profile._id}, {$push: {"profileclaims": data}}))
+    Profile.findOne({_id: customerId})
+        .populate("profilesinsurances")
+        .populate("profileclaims")
+        .populate("profilesinvoices")
+        .then(profile => Profile.update({_id: profile._id}, {$push: {"profileclaims": data}}))
 
 }
 
 function updateProfileInsurances(data, customerId, applicationId) {
     let id = customerId;
     Profile.findOne({_id: id})
-    .populate("profilesinsurances")
-    .populate("profileclaims")
-    .populate("profilesinvoices")
-    .then(profile => Profile.updateOne({_id: id}, {$push: {"profilesinsurances": data}})).then(
-        promise => {applicationDBservice.deleteOneById(applicationId)}
+        .populate("profilesinsurances")
+        .populate("profileclaims")
+        .populate("profilesinvoices")
+        .then(profile => Profile.updateOne({_id: id}, {$push: {"profilesinsurances": data}})).then(
+        promise => {
+            applicationDBservice.deleteOneById(applicationId)
+        }
     )
 }
 
 function sendCustomerAMessage(req, res) {
-    const message= {
-        "id" : req.body.id,
-        "Message" : req.body.Message,
-        "Sender" : req.body.Sender,
+    const message = {
+        "id": req.body.id,
+        "Message": req.body.Message,
+        "Sender": req.body.Sender,
         "messageId": req.body.messageId
     };
-    Profile.update({_id: req.body.id}, {$push: {"profilemessages" : message}}).then(profile => {
+    Profile.update({_id: req.body.id}, {$push: {"profilemessages": message}}).then(profile => {
         res.json(profile)
     })
 }
@@ -117,4 +118,18 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {sendCustomerAMessage, updateCustomerInvoices, updateProfileInsurances, updateCustomerClaims, deleteProfile, findByEmail, AddProfile, findAll, updateCustomerById, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer}
+module.exports = {
+    sendCustomerAMessage,
+    updateCustomerInvoices,
+    updateProfileInsurances,
+    updateCustomerClaims,
+    deleteProfile,
+    findByEmail,
+    AddProfile,
+    findAll,
+    updateCustomerById,
+    updateOneById,
+    deleteOneById,
+    findOneById,
+    AddInsuranceToACustomer
+};

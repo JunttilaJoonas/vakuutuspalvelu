@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { logoutUser } from '../actions/authActions';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {Nav, Navbar, NavItem} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {logoutUser} from '../actions/authActions';
 
 class PageNavigation extends Component {
 
     /**
-    * @desc This component handles navigation on page.
-    */
+     * @desc This component handles navigation on page.
+     */
 
     // When clicked calls logoutUser action from authActions. Then push user to '/'.
     onLogoutClick(e) {
@@ -18,7 +18,7 @@ class PageNavigation extends Component {
     }
 
     render() {
-        const { isAuthenticated } = this.props.auth;
+        const {isAuthenticated} = this.props.auth;
 
         // If user is not logged in display these links in navigation bar.
         const guestLinks = (
@@ -27,13 +27,13 @@ class PageNavigation extends Component {
                 <Nav pullRight>
                     <NavItem eventKey={1} componentClass={Link} href="/" to="/">
                         Etusivu
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={5} componentClass={Link} href="/" to="/rekisteröidy">
                         Rekisteröidy
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={6} componentClass={Link} href="/" to="/kirjaudu">
                         Kirjaudu
-                        </NavItem>
+                    </NavItem>
                 </Nav>
             </Navbar.Collapse>
         );
@@ -45,25 +45,25 @@ class PageNavigation extends Component {
                 <Nav pullRight>
                     <NavItem eventKey={1} componentClass={Link} href="/" to="/">
                         Etusivu
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={2} componentClass={Link} href="/" to="/addinsurance">
                         Lisää vakuutus
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={3} componentClass={Link} href="/" to="/createmessage">
                         Lisää viesti
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={4} componentClass={Link} href="/" to="/createprofile">
                         Lisää profiili
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={5} componentClass={Link} href="/" to="/addinvoice">
                         Laskutus
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={5} componentClass={Link} href="/" to="/chat">
                         Chatti
-                        </NavItem>
+                    </NavItem>
                     <NavItem eventKey={4} componentClass={Link} href="#" to="#" onClick={this.onLogoutClick.bind(this)}>
                         Kirjaudu ulos
-                        </NavItem>
+                    </NavItem>
 
                 </Nav>
             </Navbar.Collapse>
@@ -76,7 +76,7 @@ class PageNavigation extends Component {
                     <Navbar.Brand>
                         <a href="#home">Vakuutushallinta</a>
                     </Navbar.Brand>
-                    <Navbar.Toggle />
+                    <Navbar.Toggle/>
                 </Navbar.Header>
                 {isAuthenticated ? authLinks : guestLinks}
             </Navbar>
@@ -90,4 +90,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser })(withRouter(PageNavigation))
+export default connect(mapStateToProps, {logoutUser})(withRouter(PageNavigation))
