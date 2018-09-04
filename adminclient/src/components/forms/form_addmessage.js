@@ -38,17 +38,17 @@ class AddMessage extends Component {
                     component={this.renderField} />
                 <Field
                     label="Viesti"
-                    placeholder="Onko validi?"
+                    placeholder="Kirjoita viesti"
                     name="Message"
                     component={this.renderField} />
                 <Field
                     label="Viestin lähettäjä"
-                    placeholder="Anna vakuutuksen tyyppi"
+                    placeholder="Lähettäjä"
                     name="Sender"
                     component={this.renderField} />
                 <Field
                     label="Viestin id"
-                    placeholder="Anna vakuutukselle tunnsu"
+                    placeholder="Anna viestille yksilöllinen tunnus"
                     name="messageId"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>

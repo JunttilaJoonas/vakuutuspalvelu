@@ -21,6 +21,8 @@ function findByEmail(req, res) {
 
 function updateCustomerInvoices(customerId, data) {
     let id = customerId;
+    console.log(id);
+    console.log(data);
     Profile.findOne({_id: id})
     .populate("profilesinsurances")
     .populate("profileclaims")

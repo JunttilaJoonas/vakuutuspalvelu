@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postInvoices } from '../../actions/actions_insurances';
+const uuidv4 = require('uuid/v4');
 
 class AddInvoice extends Component {
 
@@ -24,36 +25,41 @@ class AddInvoice extends Component {
         this.props.history.push('/');     
     }
 
+    handleInitialize() {
+        const initData = {
+            "referencenumber": uuidv4()
+            
+        };
+        this.props.initialize(initData);
+    }
+    componentDidMount() {
+        this.handleInitialize();
+    }
+
 
     render() {
         const { handleSubmit } = this.props;
 
-
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
-                    label="Vakuutuksentyyppi"
-                    placeholder="Anna vakuutuksenottajan käyttäjätunnus"
+                    label="Vakuutustyyppi"
+                    placeholder="Anna vakuutustyyppi"
                     name="insurancetype"
                     component={this.renderField} />
                 <Field
                     label="Eräpäivä"
-                    placeholder="Onko validi?"
+                    placeholder="Anna eräpäivä"
                     name="duedate"
                     component={this.renderField} />
                 <Field
                     label="Viitenumero"
-                    placeholder="Anna vakuutuksen tyyppi"
+                    placeholder="Anna viitenumero"
                     name="referencenumber"
                     component={this.renderField} />
                 <Field
-                    label="Asiakastili"
-                    placeholder="Anna vakuutukselle tunnsu"
-                    name="accountnumber"
-                    component={this.renderField} />
-                <Field
                     label="Käyttäjätili"
-                    placeholder="Anna vakuutukselle tunnsu"
+                    placeholder="Anna vakuutuksenottajan tunnus"
                     name="userid"
                     component={this.renderField} />
                 <button type="submit" className="btn btn-primary">Lisää</button>
