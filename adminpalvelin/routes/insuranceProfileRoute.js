@@ -29,12 +29,12 @@ router.delete('/customer/:id', (req, res) => {
 
 router.post('/invoice', (req, res) => {
     invoiceDBservice.createInvoice(req, res)
-})
+});
 
 router.post('/insurancedelete', (req, res) => {
     let object = req.body;
 
-    let id = (Object.keys(object)[0])
+    let id = (Object.keys(object)[0]);
     insuranceDBservice.deleteCustomerInsurance(id)
 });
 
@@ -49,12 +49,12 @@ router.post('/message', passport.authenticate('jwt',
 
 router.post('/updatecustomer', (req, res, next) => {
     profiledbservice.updateCustomerById(req.body)
-})
+});
 
 router.post('/addprofile', passport.authenticate('jwt',
     {session: false}), (req, res) => {
     profiledbservice.AddProfile(req, res)
-})
+});
 
 router.post('/createProfile', (req, res) => {
     User.findOne({email: req.body.email})
@@ -81,7 +81,6 @@ router.post('/createProfile', (req, res) => {
                     }
                 )
             }
-            ;
         });
 });
 

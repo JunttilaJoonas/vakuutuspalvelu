@@ -33,7 +33,7 @@ class Chat extends Component {
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.profile.email,
                 message: this.state.message
-            })
+            });
             this.setState({message: ''});
 
         }
@@ -48,7 +48,7 @@ class Chat extends Component {
     }
 
     render() {
-        var chatTitle;
+        let chatTitle;
         if (this.state.open) {
             chatTitle = 'Sulje chat'
         } else {

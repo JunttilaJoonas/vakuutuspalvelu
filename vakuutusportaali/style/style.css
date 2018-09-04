@@ -19,14 +19,11 @@
 .droppable {
     margin: 30px;
     opacity: 0.8;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0;
 }
 
 .information {
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding: 100px 150px;
 }
 
 .information_box {
@@ -53,7 +50,7 @@
 .chat_frame {
     position: fixed;
     bottom: 0;
-    background: 0%;
+    background: 0;
     right: 0;
     z-index: 1;
     margin: 0;

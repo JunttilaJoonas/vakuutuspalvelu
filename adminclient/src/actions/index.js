@@ -24,8 +24,7 @@ export function fetchUsers(users) {
         type: GET_USERS,
         users
     }
-};
-
+}
 export function fetchAllUsers() {
     return (dispatch) => {
         return axios.get(`${ROOT_URL}`)
@@ -41,8 +40,7 @@ export function fetchUserById(users) {
         type: GET_USER_BY_ID,
         users
     }
-};
-
+}
 export function fetchUserProfile(id) {
     return (dispatch) => {
         return axios.get(`${USERPROFILE_URL}/${id}`)

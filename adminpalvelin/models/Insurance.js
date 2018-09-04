@@ -29,9 +29,6 @@ const InsuranceSchema = new Schema({
     priceperyear: {
         type: Number
     },
-    additionalinfo: {
-        type: String
-    },
     deductible: {
         type: Number
     },

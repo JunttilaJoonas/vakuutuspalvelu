@@ -24,7 +24,7 @@ class InsuranceIndex extends Component {
         let selectedInsurance;
 
         for (let i = 0; i < this.state.arrayofInsurance.length; i++) {
-            if (this.state.arrayofInsurance[i].name == e) {
+            if (this.state.arrayofInsurance[i].name === e) {
                 selectedInsurance = this.state.arrayofInsurance[i]
             }
         }
@@ -43,7 +43,7 @@ class InsuranceIndex extends Component {
 
     render() {
         let insuranceData;
-        if (this.state.insuranceToBeDisplayed.length != 0) {
+        if (this.state.insuranceToBeDisplayed.length > 0) {
             insuranceData = <InsuranceInformation selectedInformation={this.state.insuranceToBeDisplayed}/>
         } else {
             insuranceData = <p></p>

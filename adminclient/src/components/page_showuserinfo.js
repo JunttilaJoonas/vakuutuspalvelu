@@ -26,7 +26,7 @@ class ShowUserInfo extends Component {
     // Delete user profile
     onClickDelete() {
         const {id} = this.props.match.params;
-        this.props.deleteUserProfile(id)
+        this.props.deleteUserProfile(id);
         this.props.history.push('/');
     }
 
@@ -34,7 +34,7 @@ class ShowUserInfo extends Component {
     onClickDeleteInsurance(e) {
         let iidee = e.target.id;
         let id = this.props.match.params.id;
-        this.props.deleteUserInsurance(iidee)
+        this.props.deleteUserInsurance(iidee);
         this.props.history.push('/customer/' + id);
         window.location.reload();
     }

@@ -32,7 +32,7 @@ export const loginUser = userData => dispatch => {
             const decoded = jwt_decode(token);
             dispatch(setCurrentUser(decoded));
         });
-}
+};
 
 // Set current user
 export function setCurrentUser(decoded) {

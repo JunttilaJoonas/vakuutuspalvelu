@@ -26,7 +26,7 @@ class Chat extends Component {
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.username,
                 message: this.state.message
-            })
+            });
             this.setState({message: ''});
 
         }

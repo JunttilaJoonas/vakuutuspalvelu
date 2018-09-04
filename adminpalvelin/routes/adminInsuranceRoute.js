@@ -25,7 +25,7 @@ router.get('/customer/:id', passport.authenticate('jwt',
 
 router.post('/create', (req, res) => {
     insurancedbservice.createInsuranceAndUpdateCustomer(req, res)
-})
+});
 
 //@Route /omavakuutus/:vakuutusID
 //GET this shows the information of one information

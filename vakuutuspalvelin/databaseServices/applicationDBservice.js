@@ -3,7 +3,7 @@ const InsuranceApplication = require('../models/InsuranceApplication');
 
 
 function findOneById(req, res, next) {
-    let id = req.body.id
+    let id = req.body.id;
     InsuranceApplication.findOne({_id: id})
         .then(application => res.json(application));
 }
@@ -25,4 +25,4 @@ function deleteOneById(id, req, res) {
     }).catch(next);
 }
 
-module.exports = {createOne, findOneById, deleteOneById, findAll}
+module.exports = {createOne, findOneById, deleteOneById, findAll};

@@ -1,7 +1,7 @@
 const express = require('express');
 const Profile = require('../models/Profile');
 const InsuranceClaim = require('../models/InsuranceClaim');
-const applicationDBservice = require('../services/applicationDBservice')
+const applicationDBservice = require('../services/applicationDBservice');
 
 //FINDS ALL PROFILES
 
@@ -32,8 +32,7 @@ function updateCustomerInvoices(customerId, data) {
 }
 
 function updateCustomerClaims(customerId, data) {
-    let id = customerId;
-    Profile.findOne({_id: id})
+    Profile.findOne({_id: customerId})
         .populate("profilesinsurances")
         .populate("profileclaims")
         .populate("profilesinvoices")
@@ -133,4 +132,4 @@ module.exports = {
     deleteOneById,
     findOneById,
     AddInsuranceToACustomer
-}
+};
