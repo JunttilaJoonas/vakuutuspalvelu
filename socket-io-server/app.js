@@ -6,7 +6,7 @@ var redis = require('socket.io-redis');
 
 io.adapter(redis({ host: 'localhost', port: 6379 }));
 
-
+let queue = 0;
 let sockets = {user: ""};
 let usersocket = "";
 let adminsocket = "";
@@ -29,25 +29,28 @@ io.on('connection', (socket) => {
     socket.on('INITIALIZE_USER_SESSION', function() {
         if(usersocket == "") {
             usersocket = socket.id
+            console.log("Hello");
         let userconnect = {
             author: socket.id,
             message: 'has connected'}
         io.to(adminsocket).emit('RECEIVE_MESSAGE', userconnect);
         } else {
+            queue ++;
             let userconnect = {
                 author: "Vakuutusportaali",
                 message: "Palvelussamme on ruuhkaa. Odottakaa hetki."
             }
+            let userinqueue = {
+                author: "ADMIN NOTIFICATION",
+                message: "There is " + queue + "people in line"
+            }
             io.to(`${socket.id}`).emit('RECEIVE_MESSAGE', userconnect);
+            io.to(adminsocket).emit('RECEIVE_MESSAGE', userinqueue);
         }
     })
     socket.on('SEND_MESSAGE', function(data) {
         console.log(socket.id);
         sockets.user = socket.id;
-        console.log("THIS IS USER MESSAGE");
-        console.log("SENDER SOCKETID");
-        console.log(socket.id);
-        console.log(sockets);
         if(usersocket != socket.id) {
             const data2 = {
                 author: 'Vakuutusportaali',
@@ -61,9 +64,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('SEND_ADMIN_MESSAGE', function(data) {
-        if(usersocket == "") {
-        usersocket = sockets.user;
-        }
+      
         io.to(`${usersocket}`).emit('RECEIVE_MESSAGE', data);
         io.to(adminsocket).emit('RECEIVE_MESSAGE', data);
        
@@ -71,6 +72,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', function() {
         if(socket.id == usersocket) {
         io.to(adminsocket).emit('USER_DISCONNECTED', usersocket)
+        queue--;
         usersocket ="";
       
         }
