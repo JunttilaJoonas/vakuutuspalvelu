@@ -4,33 +4,40 @@ import io from "socket.io-client";
 
 class Chat extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "Vakuutuspalvelija",
-            message: '',
-            messages: []
-        };
+  constructor(props){
+    super(props);
+    this.state = {
+        username: "Vakuutuspalvelija",
+        message: '',
+        messageid: "adminviesti",
+        messages: []
+    };
+}
 
-        this.socket = io('localhost:4001');
-        this.socket.on('RECEIVE_MESSAGE', function (data) {
-            addMessage(data);
-        });
+initializeSocket() {
+    
+    this.socket = io('localhost:4001');
+    this.socket.on('RECEIVE_MESSAGE', function (data) {
+        addMessage(data);
+    });
 
-        const addMessage = data => {
-            this.setState({messages: [...this.state.messages, data]});
-        };
+    const addMessage = data => {
+        this.setState({messages: [...this.state.messages, data]});
+    };
 
-        this.sendMessage = ev => {
-            ev.preventDefault();
-            this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
-                message: this.state.message
-            });
-            this.setState({message: ''});
+this.sendMessage = ev => {
+    ev.preventDefault();
+    this.socket.emit('SEND_ADMIN_MESSAGE', {
+        author: this.state.username,
+        message: this.state.message,
+        messageid: this.state.messageid
+    })
+    this.setState({message: ''});
 
-        }
     }
+}
+
+
 
     render() {
         return (
@@ -58,6 +65,8 @@ class Chat extends Component {
                                 <br/>
                                 <button onClick={this.sendMessage} className="btn btn-primary form-control">Send
                                 </button>
+                                <button onClick={this.initializeSocket.bind(this)} className="btn btn-primary form-control">Connect
+</button>
                             </div>
                         </div>
                     </div>
