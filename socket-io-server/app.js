@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -7,12 +6,6 @@ var redis = require('socket.io-redis');
 
 io.adapter(redis({ host: 'localhost', port: 6379 }));
 
-=======
-const express = require('express');
-const socket = require('socket.io');
-
-const app = express();
->>>>>>> 9614890c09f4ebfbc7bf9b27653b5beefe9ef32c
 
 let sockets = {user: ""};
 let usersocket = "";
@@ -44,7 +37,6 @@ io.on('connection', (socket) => {
         }
     })
 
-<<<<<<< HEAD
     socket.on('SEND_ADMIN_MESSAGE', function(data) {
         console.log("This is admin message");
         console.log("SENDER SOCKETID");
@@ -63,14 +55,9 @@ io.on('connection', (socket) => {
         }
     } )
   
-=======
-server = app.listen(4001, function () {
-    console.log('Server is running on port 4001')
->>>>>>> 9614890c09f4ebfbc7bf9b27653b5beefe9ef32c
 });
 
 
-<<<<<<< HEAD
 
 
 server.listen(4001, function(){
@@ -104,10 +91,3 @@ console.log("SESSIONDATA" + sessiondata);
 io.sockets.in(sessiondata).emit('new_msg', {msg: 'hello joonas'});
 
 */
-=======
-io.on('connection', (socket) => {
-    socket.on('SEND_MESSAGE', function (data) {
-        io.emit('RECEIVE_MESSAGE', data);
-    })
-});
->>>>>>> 9614890c09f4ebfbc7bf9b27653b5beefe9ef32c

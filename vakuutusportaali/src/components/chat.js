@@ -18,12 +18,13 @@ class Chat extends Component {
         };
 
 
-<<<<<<< HEAD
+    this.socket = io('localhost:4001');
 
 
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
+    
 
     const addMessage = data => {
         console.log(data);
@@ -43,31 +44,6 @@ class Chat extends Component {
 
     }
 }
-=======
-        this.socket = io('localhost:4001');
-
-        this.socket.on('RECEIVE_MESSAGE', function (data) {
-            addMessage(data);
-        });
-
-        const addMessage = data => {
-            this.setState({messages: [...this.state.messages, data]});
-        };
->>>>>>> 9614890c09f4ebfbc7bf9b27653b5beefe9ef32c
-
-
-        this.sendMessage = ev => {
-            ev.preventDefault();
-            this.socket.emit('SEND_MESSAGE', {
-                author: this.state.profile.email,
-                message: this.state.message
-            });
-            this.setState({message: ''});
-
-        }
-    }
-
-<<<<<<< HEAD
 
 componentWillMount() {
 console.log(this.props.auth);
@@ -79,22 +55,7 @@ this.socket.emit('join', {id: this.props.auth.user.id})
     }
     
 
-render(){
-  
-    var chatTitle;
-    if(this.state.open) {
-        chatTitle = 'Sulje chat'
-    } else {
-        chatTitle = 'Avaa chat'
-=======
 
-    componentWillMount() {
-        axios.get("http://localhost:4000/profiili/current")
-            .then(res => {
-                this.setState({profile: res.data});
-            })
->>>>>>> 9614890c09f4ebfbc7bf9b27653b5beefe9ef32c
-    }
 
     render() {
         let chatTitle;
