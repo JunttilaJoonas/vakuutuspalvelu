@@ -10,12 +10,14 @@ class PageNavigation extends Component {
      * @desc This component handles navigation on page.
      */
 
+    
     // When clicked calls logoutUser action from authActions. Then push user to '/'.
     onLogoutClick(e) {
         e.preventDefault();
         this.props.logoutUser();
         this.props.history.push('/kirjaudu');
     }
+
 
     render() {
         const {isAuthenticated} = this.props.auth;

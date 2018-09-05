@@ -13,7 +13,12 @@ function findAllByUserID(req, res) {
 }
 
 function deleteCustomerInsurance(id) {
-    Insurance.deleteOne({_id: id});
+    let insuranceid = id;
+    console.log('insuranceid')
+    console.log(insuranceid);
+    Insurance.deleteOne({_id: insuranceid}).then(res => {
+        console.log('deleted');
+    });
 }
 
 function findAll() {

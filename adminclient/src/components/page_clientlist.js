@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {Table} from 'react-bootstrap';
-import {fetchAllUsers} from '../actions/index';
+import { fetchAllUsers } from '../actions/index';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class ClientList extends Component {
 
@@ -14,6 +14,7 @@ class ClientList extends Component {
     componentDidMount() {
         this.props.fetchAllUsers();
     }
+
 
     // Renders Table row to use inside main render function.
     renderUsers() {
@@ -31,6 +32,11 @@ class ClientList extends Component {
 
     // Renders main Table and calls renderUser() to display users.
     render() {
+
+        if(!localStorage.jwtToken) {
+            this.props.history.push('/kirjaudu');
+        }
+
         return (
             <Table responsive>
                 <thead>
@@ -50,8 +56,9 @@ class ClientList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users
+        users: state.users,
+        auth: state.auth
     };
 };
 
-export default connect(mapStateToProps, {fetchAllUsers})(ClientList);
+export default connect(mapStateToProps, {fetchAllUsers})(withRouter(ClientList));

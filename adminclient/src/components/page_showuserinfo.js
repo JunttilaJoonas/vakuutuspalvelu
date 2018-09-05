@@ -78,15 +78,6 @@ class ShowUserInfo extends Component {
                     <ListGroupItem><b>Id: </b>{claims._id}</ListGroupItem>
                     <ListGroupItem><b>Syy: </b>{claims.text}</ListGroupItem>
                     <ListGroupItem><b>Tila: </b>{claims.handled}</ListGroupItem>
-                    <ListGroupItem><DropdownButton
-                        title={"Tila"}
-                        key={"claims"}
-                        className="insurance_selector"
-                        id="claims"
-                    >
-                        <MenuItem eventKey="Handled">Käsitelty</MenuItem>
-                        <MenuItem eventKey="Pending">Käsittelyssä</MenuItem>
-                    </DropdownButton></ListGroupItem>
                 </ListGroup>
             )
         }) : [];
