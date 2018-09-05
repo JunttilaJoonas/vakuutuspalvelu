@@ -31,12 +31,15 @@ if (localStorage.jwtToken) {
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(decoded));
 
+    var chatBot = <Chat/>
+
 }
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
+                {chatBot}
                 <Navigation/>
                 <Switch>
                     <Route exact path="/customer/:id" component={UserInfoPage}/>

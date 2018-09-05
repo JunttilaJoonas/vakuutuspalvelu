@@ -110,6 +110,10 @@ class DragandDrop extends Component {
             insButton = <Button bsClass="insurance_button" onClick={submitInsurances}>Hae näitä vakuutuksia</Button>
         }
 
+        if (!localStorage.jwtToken) {
+            insButton = '';
+        }
+
         return (
             <div>
                 <h1 className="header">Hae vakuutusta</h1>

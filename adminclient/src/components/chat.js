@@ -1,15 +1,16 @@
 import React, {Component} from "react";
 import io from "socket.io-client";
-
+import {Button, Panel} from 'react-bootstrap';
 
 class Chat extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             username: "Vakuutuspalvelija",
             message: '',
             messageid: "adminviesti",
+            open: false,
             istyping: "   ",
             messages: []
         };
@@ -90,18 +91,33 @@ class Chat extends Component {
 
 
     render() {
+        let chatTitle;
+        if (this.state.open) {
+            chatTitle = 'Sulje chat'
+        } else {
+            chatTitle = 'Avaa chat'
+        }
         return (
-            <div className="container" onKeyDown={() => this.keyDown()} onKeyUp={() => this.keyUp()}>
-                <div className="row">
-                    <div className="col-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="card-title">{this.state.istyping}</div>
-                                <hr/>
-                                <div className="messages">
+            <div className="chat_frame" onKeyDown={() => this.keyDown()} onKeyUp={() => this.keyUp()}>
+            <Button bsClass="chat_button"
+                        onClick={() => this.setState({open: !this.state.open}, this.initializeSocket.bind(this))}>
+                    {chatTitle}
+                </Button>
+                <br />
+                <Panel id="collapsible-panel" expanded={this.state.open}>
+                    <Panel.Collapse className="panel_body_chat">
+                        <Panel.Body className="panel_body_chat">
+                            <div className="chat_container">
+                                <div className="row">
+                                    <div className="col-4">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <div className="card-title"></div>
+                                                <hr/>
+                                                <div className="messages">
                                     {this.state.messages.map(message => {
                                         return (
-                                            <div>{message.author}: {message.message}</div>
+                                            <div><b>{message.author}</b>: {message.message}</div>
                                         )
                                     })}
                                 </div>
@@ -110,21 +126,23 @@ class Chat extends Component {
                             <div className="card-footer">
                                 <br/>
                                    <form>
-                                    <input type="text" placeholder="Message" className="form-control"
+                                    <input type="text" placeholder={this.state.istyping} className="form-control"
                                            value={this.state.message}
                                            onChange={ev => this.setState({message: ev.target.value})}/>
                                     <br/>
                                     <button type="submit" onClick={this.sendMessage}
-                                            className="btn btn-primary form-control">Send
+                                            className="btn btn-primary form-control">Lähetä
                                     </button>
                                 </form>
-                                <button onClick={this.initializeSocket.bind(this)}
-                                        className="btn btn-primary form-control">Connect
-                                </button>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            </Panel.Body>
+                    </Panel.Collapse>
+                </Panel>
             </div>
         );
     }

@@ -44,6 +44,7 @@ class ClientList extends Component {
                     <th>#</th>
                     <th>Nimi</th>
                     <th>Sähköposti</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>

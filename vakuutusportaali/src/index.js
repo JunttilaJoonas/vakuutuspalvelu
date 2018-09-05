@@ -21,8 +21,6 @@ import LogOutTimer from "./components/LogOutTimer";
 // Check for auth token
 if (localStorage.jwtToken) {
 
-
-
     // Set auth token header
     setAuthToken(localStorage.jwtToken);
 
@@ -32,7 +30,10 @@ if (localStorage.jwtToken) {
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(decoded));
 
-    const chatBot = <Chat/>
+}
+
+if(localStorage.jwtToken) {
+    var chatBot = <Chat/>
 }
 
 ReactDOM.render(

@@ -39,6 +39,7 @@ class Login extends Component {
 
     onSubmit(values) {
         this.props.loginUser(values)
+        window.location.reload();
     }
     
     render() {
