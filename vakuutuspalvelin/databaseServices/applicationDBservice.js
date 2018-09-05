@@ -15,6 +15,10 @@ function createOne(req, res) {
         })
 }
 
+function findByCustomerId(id) {
+    return InsuranceApplication.find({userid: id});
+}
+
 function findAll(req, res, next) {
     InsuranceApplication.find({})
         .then(applications => res.json(applications));
@@ -25,4 +29,4 @@ function deleteOneById(id, req, res) {
     }).catch(next);
 }
 
-module.exports = {createOne, findOneById, deleteOneById, findAll};
+module.exports = {createOne, findOneById, deleteOneById, findAll, findByCustomerId};

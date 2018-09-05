@@ -15,6 +15,15 @@ router.get('/id', (req, res) => {
     applicationDBservice.findOneById(req, res)
 });
 
+router.get('/customer/:id', (req, res) => {
+    let id = req.params.id;
+    applicationDBservice.findByCustomerId(id)
+        .then(applications => {
+            res.status(200);
+            res.json(applications);
+        })
+});
+
 router.post('/create', (req, res) => {
     applicationDBservice.createOne(req, res)
 });
