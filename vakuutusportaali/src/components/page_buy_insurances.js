@@ -29,7 +29,8 @@ export class InsuranceForm extends React.Component {
         this.state = {
             insurancesGroupedByCategory: insurancesGrouped,
             profile: {},
-            insurances: insurances
+            insurances: insurances,
+            submitted: false
         }
     }
 
@@ -63,6 +64,7 @@ export class InsuranceForm extends React.Component {
             axios.post('http://localhost:4000/application/create', application)
                 .then(res => {
                         res.status(201).send();
+                        this.setState({submitted: true});
                     }
                 );
         })
@@ -116,8 +118,10 @@ export class InsuranceForm extends React.Component {
             );
         });
 
-        return (
+        let submitText = "Lähetä hakemus";
+        if (this.state.submitted) submitText = "Lähetetty!";
 
+        return (
 
             <div>
                 <Grid fluid className={"splash"}>
@@ -127,7 +131,7 @@ export class InsuranceForm extends React.Component {
                         <Col xs={12} sm={8} className="userprofile">
                             {categoryNodes}
                             <div id={"buy_insurances_container"}>
-                                <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>Lähetä</Button>
+                                <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>{submitText}</Button>
                             </div>
                         </Col>
                         <Col xs={12} sm={2}/>
