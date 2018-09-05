@@ -13,12 +13,9 @@ class InsuranceIndex extends Component {
     componentDidMount() {
         axios.get("http://localhost:4000/insurancetypes")
             .then(res => {
-                const newArrayofInsurance = res.data;
-                this.setState({arrayofInsurance: newArrayofInsurance}, function () {
-                });
+                this.setState({arrayofInsurance: res.data});
             })
     }
-
 
     onSelect(e) {
         let selectedInsurance;
@@ -28,18 +25,8 @@ class InsuranceIndex extends Component {
                 selectedInsurance = this.state.arrayofInsurance[i]
             }
         }
-        this.setState({insuranceToBeDisplayed: selectedInsurance}, () => {
-
-        })
+        this.setState({insuranceToBeDisplayed: selectedInsurance});
     }
-
-    /*
-        onSelect() {
-            let selectedInsurance = target.get.value;
-            selectedInsurance = arrayofInsurance.selectedInsurance;
-            this.setState({selectedInsurance})
-        }
-    */
 
     render() {
         let insuranceData;
@@ -144,7 +131,6 @@ class InsuranceIndex extends Component {
             </div>
         );
     }
-
 }
 
 export default InsuranceIndex
