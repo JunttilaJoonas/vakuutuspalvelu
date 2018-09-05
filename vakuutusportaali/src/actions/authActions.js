@@ -36,7 +36,7 @@ export const loginUser = userData => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: console.log(err)
+                payload: alert("Virhe kirjautumisessa. Tarkista, että kirjautumistiedot ovat oikein.")
             })
         );
 };

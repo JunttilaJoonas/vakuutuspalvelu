@@ -27,39 +27,36 @@ class MyInsurance extends Component {
         let insurances = this.state.profile.profilesinsurances;
         let insuranceNodes = insurances ? insurances.map(ins => {
             return (
-                <li key={ins._id}>
-                    <p> Vakuutustyyppi: {ins.insurancetype} <br/>
-                        Vakuutuksen tunniste: {ins._id} <br/>
-                        Lisätiedot: {ins.additionalinfo} <br/>
-                        Omavastuu: {ins.deductible} euroa <br/>
-                    </p>
-                </li>
+                <ListGroup key={ins._id}>
+                    <ListGroupItem><b>Vakuutustyyppi:</b> {ins.insurancetype} </ListGroupItem>
+                    <ListGroupItem><b>Vakuutuksen tunniste:</b> {ins._id} </ListGroupItem>
+                    <ListGroupItem><b>Lisätiedot: </b>{ins.additionalinfo} </ListGroupItem>
+                    <ListGroupItem><b>Omavastuu:</b> {ins.deductible} euroa</ListGroupItem>
+                </ListGroup>
             )
         }) : [];
 
         let applications = this.state.applications;
         let applicationNodes = applications ? applications.map(application => {
             return (
-                <li key={application._id}>
-                    <p> Vakuutustyyppi: {application.insurancetype} <br/>
-                        Hakemuksen tunniste: {application._id} <br/>
-                        Omavastuu: {application.deductible} euroa <br/>
-                        Lisätiedot: {application.additionalinfo} <br/>
-                    </p>
-                </li>
+                <ListGroup key={application._id}>
+                    <ListGroupItem><b>Vakuutustyyppi:</b> {application.insurancetype}</ListGroupItem>
+                    <ListGroupItem><b>Hakemuksen tunniste:</b> {application._id}</ListGroupItem>
+                    <ListGroupItem><b>Omavastuu:</b> {application.deductible} euroa</ListGroupItem>
+                    <ListGroupItem><b>Lisätiedot: </b>{application.additionalinfo} </ListGroupItem>
+                </ListGroup>
             )
         }) : [];
 
         let insuranceClaims = this.state.profile.profileclaims;
         let insuranceClaimNodes = insuranceClaims ? insuranceClaims.map(ins => {
             return (
-                <li key={ins._id}>
-                    <p> Vakuutustyyppi: {ins.text} <br/>
-                        Vakuutuksen tila: {ins.handled} <br/>
-                        Vakuutuksen tunniste: {ins._id} <br/>
-                        Hakemuspäivä: {ins.date} <br/>
-                    </p>
-                </li>
+                <ListGroup key={ins._id}>
+                    <ListGroupItem><b>Vakuutustyyppi:</b> {ins.text}</ListGroupItem>
+                    <ListGroupItem><b>Vakuutuksen tila: </b>{ins.handled}</ListGroupItem>
+                    <ListGroupItem><b>Vakuutuksen tunniste: </b>{ins._id}</ListGroupItem>
+                    <ListGroupItem><b>Hakemuspäivä: </b>{ins.date}</ListGroupItem>
+                </ListGroup>
             )
         }) : [];
 
@@ -78,11 +75,10 @@ class MyInsurance extends Component {
         let profileMessages = this.state.profile.profilemessages;
         let profileMessageNodes = profileMessages ? profileMessages.map(msg => {
             return (
-                <li key={msg.messageId}>
-                    <p> Viesti: {msg.Message} <br/>
-                        Lähettäjä: {msg.Sender} <br/>
-                    </p>
-                </li>
+                <ListGroup key={msg.messageId}>
+                    <ListGroupItem><b>Viesti:</b> {msg.Message}</ListGroupItem>
+                    <ListGroupItem><b>Lähettäjä: </b>{msg.Sender}</ListGroupItem>
+                </ListGroup>
             )
         }) : [];
 
@@ -101,9 +97,11 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        <p>Nimi: {this.state.profile.name}</p>
-                                        <p>Sähköposti: {this.state.profile.email}</p>
-                                        <p>Puhelin: {this.state.profile.phone}</p>
+                                        <ListGroup>
+                                            <ListGroupItem><b>Nimi:</b> {this.state.profile.name}</ListGroupItem>
+                                            <ListGroupItem><b>Sähköposti:</b> {this.state.profile.email}</ListGroupItem>
+                                            <ListGroupItem><b>Puhelin:</b> {this.state.profile.phone}</ListGroupItem>
+                                        </ListGroup>
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
@@ -116,9 +114,7 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        <ol>
-                                            {insuranceNodes}
-                                        </ol>
+                                        {insuranceNodes}
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
@@ -131,9 +127,7 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        <ol>
-                                            {applicationNodes}
-                                        </ol>
+                                        {applicationNodes}
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
@@ -146,9 +140,7 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        <ol>
-                                            {insuranceClaimNodes}
-                                        </ol>
+                                        {insuranceClaimNodes}
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
