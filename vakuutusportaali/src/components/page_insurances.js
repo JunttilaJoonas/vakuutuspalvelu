@@ -43,7 +43,7 @@ class InsuranceIndex extends Component {
 
     render() {
         let insuranceData;
-        if (this.state.insuranceToBeDisplayed.length > 0) {
+        if (this.state.insuranceToBeDisplayed.length != 0) {
             insuranceData = <InsuranceInformation selectedInformation={this.state.insuranceToBeDisplayed}/>
         } else {
             insuranceData = <p></p>
