@@ -109,7 +109,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Vakuutukset ({insuranceNodes.length})
+                                        Voimassaolevat vakuutukset ({insuranceNodes.length})
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
@@ -122,7 +122,7 @@ class MyInsurance extends Component {
                             <Panel id="collapsible-panel-example-2">
                                 <Panel.Heading>
                                     <Panel.Title toggle>
-                                        Vakuutushakemukset ({applicationNodes.length})
+                                        Käsittelyssä olevat hakemukset ({applicationNodes.length})
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Collapse>
