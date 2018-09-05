@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm, initialize } from 'redux-form';
 import { Link , withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateUserProfile } from '../../actions/actions_insurances'
+import { updateUserProfile } from '../../actions/index';
 
 class UpdateProfile extends Component {
 
