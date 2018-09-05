@@ -15,7 +15,8 @@ class Chat extends Component {
             message: '',
             messages: [],
             istyping: "",
-            open: false
+            open: false,
+            hasClicked: false
         };
 
     }
@@ -23,9 +24,13 @@ class Chat extends Component {
 
     initializeUserSession() {
 
+        if(this.state.hasClicked == true) {
+            return null;
+        }
+        this.setState({hasClicked: true})
         console.log(this.state.profile);
 
-        this.socket = io('http://ec2-3-120-130-39.eu-central-1.compute.amazonaws.com:4001/');
+        this.socket = io('ec2-3-120-155-27.eu-central-1.compute.amazonaws.com:4001');
         this.socket.on('RECEIVE_MESSAGE', function (data) {
             addMessage(data);
         });
@@ -40,7 +45,7 @@ class Chat extends Component {
 
         this.socket.on('ADMIN_STOPPED_TYPING', function () {
             console.log("Did we stop?");
-            setTimeout(handleStopTyping, 1000);
+            setTimeout(handleStopTyping, 1500);
         })
 
         const handleStopTyping = () => {
@@ -118,7 +123,7 @@ class Chat extends Component {
                                     <div className="col-4">
                                         <div className="card">
                                             <div className="card-body">
-                                                <div className="card-title">{this.state.istyping}</div>
+                                                <div className="card-title"></div>
                                                 <hr/>
                                                 <div className="messages">
                                                     {this.state.messages.map(message => {
@@ -132,7 +137,7 @@ class Chat extends Component {
                                             <div className="card-footer">
                                                 <br/>
                                                 <form>
-                                                    <input type="text" placeholder="Viesti" className="form-control"
+                                                    <input type="text" placeholder={this.state.istyping} className="form-control"
                                                            value={this.state.message}
                                                            onChange={ev => this.setState({message: ev.target.value})}/>
                                                     <br/>

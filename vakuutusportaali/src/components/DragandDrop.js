@@ -130,7 +130,7 @@ class DragandDrop extends Component {
                             </div>
                         </Col>
                         <Col xs={12} sm={4}/>
-                        <Grid>
+                        <Grid fluid>
                             {categoriesToPage}
                         </Grid>
                     </Row>

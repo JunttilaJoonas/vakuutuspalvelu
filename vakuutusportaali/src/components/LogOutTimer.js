@@ -33,11 +33,13 @@ class LogOutTimer extends Component {
     render() {
         let warningMessage;
         if (this.state.warning) warningMessage =
-            <h3 id={"logout-warning"} style={{textAlign: 'center'}}>
+            <div id={"logout-warning"} class="alert alert-danger warn_inactive">
+            <strong>
                 Olet ollut inaktiivisena {WARN_TIME / 1000} sekuntia.
                 Sinut kirjataan turvallisuussyistä automaattisesti ulos, jos et tee
-                mitään {LOG_OUT_TIME / 1000 / 60} minuuttiin.</h3>;
-
+                mitään {LOG_OUT_TIME / 1000 / 60} minuuttiin.
+            </strong>
+            </div>
         return (
             <div>
                 {warningMessage}

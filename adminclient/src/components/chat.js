@@ -17,7 +17,7 @@ class Chat extends Component {
 
     initializeSocket() {
 
-        this.socket = io('http://ec2-3-120-130-39.eu-central-1.compute.amazonaws.com:4001/');
+        this.socket = io('ec2-3-120-155-27.eu-central-1.compute.amazonaws.com:4001');
         this.socket.on('RECEIVE_MESSAGE', function (data) {
             addMessage(data);
         });

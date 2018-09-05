@@ -73,6 +73,8 @@
     border: 0;
     text-decoration: none;
     box-shadow: 1px 3px 10px rgb(167, 167, 167);
+    overflow-y: auto;
+    height: 300px;
 }
 
 .information h1 {
@@ -93,6 +95,20 @@
     border-radius: 5px;
     padding: 20px;
     color: #FFF;
+}
+
+.warn_inactive {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    text-align: center;
+    background: 0;
+    z-index: 1;
+    margin: 0;
+    display: inline-block;
 }
 
 .info_cards {
