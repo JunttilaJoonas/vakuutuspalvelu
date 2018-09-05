@@ -6,14 +6,21 @@ class MyInsurance extends Component {
 
     state = {
         profile: {},
-        profileclaims: []
+        profileclaims: [],
+        applications: []
     };
 
     componentWillMount() {
         axios.get("http://localhost:4000/profiili/current")
             .then(res => {
                 this.setState({profile: res.data});
+                let id = this.state.profile._id;
+                axios.get("http://localhost:4000/application/customer/" + id)
+                    .then(res => {
+                        this.setState({applications: res.data})
+                    })
             })
+
     }
 
     render() {
@@ -24,7 +31,20 @@ class MyInsurance extends Component {
                     <p> Vakuutustyyppi: {ins.insurancetype} <br/>
                         Vakuutuksen tunniste: {ins._id} <br/>
                         Lisätiedot: {ins.additionalinfo} <br/>
-                        Omavastuu: {ins.deductible} <br/>
+                        Omavastuu: {ins.deductible} euroa <br/>
+                    </p>
+                </li>
+            )
+        }) : [];
+
+        let applications = this.state.applications;
+        let applicationNodes = applications ? applications.map(application => {
+            return (
+                <li key={application._id}>
+                    <p> Vakuutustyyppi: {application.insurancetype} <br/>
+                        Hakemuksen tunniste: {application._id} <br/>
+                        Omavastuu: {application.deductible} euroa <br/>
+                        Lisätiedot: {application.additionalinfo} <br/>
                     </p>
                 </li>
             )
@@ -81,9 +101,9 @@ class MyInsurance extends Component {
                                 </Panel.Heading>
                                 <Panel.Collapse>
                                     <Panel.Body>
-                                        <p>{this.state.profile.email}</p>
-                                        <p>{this.state.profile.name}</p>
-                                        <p>{this.state.profile.phone}</p>
+                                        <p>Nimi: {this.state.profile.name}</p>
+                                        <p>Sähköposti: {this.state.profile.email}</p>
+                                        <p>Puhelin: {this.state.profile.phone}</p>
                                     </Panel.Body>
                                 </Panel.Collapse>
                             </Panel>
@@ -98,6 +118,21 @@ class MyInsurance extends Component {
                                     <Panel.Body>
                                         <ol>
                                             {insuranceNodes}
+                                        </ol>
+                                    </Panel.Body>
+                                </Panel.Collapse>
+                            </Panel>
+
+                            <Panel id="collapsible-panel-example-2">
+                                <Panel.Heading>
+                                    <Panel.Title toggle>
+                                        Vakuutushakemukset ({applicationNodes.length})
+                                    </Panel.Title>
+                                </Panel.Heading>
+                                <Panel.Collapse>
+                                    <Panel.Body>
+                                        <ol>
+                                            {applicationNodes}
                                         </ol>
                                     </Panel.Body>
                                 </Panel.Collapse>
