@@ -32,7 +32,7 @@ if (localStorage.jwtToken) {
     // Set user and isAuthenticated
     store.dispatch(setCurrentUser(decoded));
 
-    var chatBot = <Chat/>
+    const chatBot = <Chat/>
 }
 
 ReactDOM.render(

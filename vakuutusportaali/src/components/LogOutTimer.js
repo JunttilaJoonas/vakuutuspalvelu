@@ -10,9 +10,7 @@ const WARN_TIME = 1000 * 15;
 class LogOutTimer extends Component {
 
     constructor(props) {
-        super(props);
-        this.idleTimer = null;
-        this.onIdle = this._onIdle.bind(this);
+        super(props); this.idleTimer = null; this.onIdle = this._onIdle.bind(this);
         this.onActive = this._onActive.bind(this);
         this.state = {warning: false}
     }
@@ -43,13 +41,9 @@ class LogOutTimer extends Component {
         return (
             <div>
                 {warningMessage}
-                <IdleTimer ref={ref => {
-                    this.idleTimer = ref
-                }} element={document}
+                <IdleTimer ref={ref => {this.idleTimer = ref}} element={document}
                            onIdle={this.onIdle} onActive={this.onActive} timeout={WARN_TIME}/>
-                <IdleTimer ref={ref => {
-                    this.idleTimer = ref
-                }} element={document}
+                <IdleTimer ref={ref => {this.idleTimer = ref}} element={document}
                            onIdle={this.onIdle} timeout={LOG_OUT_TIME}/>
             </div>
         )
