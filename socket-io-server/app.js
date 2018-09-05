@@ -71,20 +71,21 @@ io.on('connection', (socket) => {
     socket.on('SEND_MESSAGE', function(data) {
         console.log(socket.id);
         sockets.user = socket.id;
-        if(usersocket != socket.id) {
+        if(usersocket != socket.id && usersocket != "") {
             const data2 = {
                 author: 'Vakuutusportaali',
                 message: 'Palvelussamme on ruuhkaa, olkaa hyvä ja odottakaa'
             }
             io.to(`${socket.id}`).emit('RECEIVE_MESSAGE', data2);
         } else {
+        usersocket = socket.id;
         io.to(`${socket.id}`).emit('RECEIVE_MESSAGE', data);
         io.to(adminsocket).emit('RECEIVE_MESSAGE', data);
         }
     })
 
     socket.on('SEND_ADMIN_MESSAGE', function(data) {
-      
+        console.log("USER SOCKET IS :" + usersocket);
         io.to(`${usersocket}`).emit('RECEIVE_MESSAGE', data);
         io.to(adminsocket).emit('RECEIVE_MESSAGE', data);
        
