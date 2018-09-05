@@ -109,8 +109,7 @@ class Chat extends Component {
                             </div>
                             <div className="card-footer">
                                 <br/>
-                                <input type="text" placeholder={this.state.istyping} className="form-control"/>
-                                <form>
+                                   <form>
                                     <input type="text" placeholder="Message" className="form-control"
                                            value={this.state.message}
                                            onChange={ev => this.setState({message: ev.target.value})}/>
