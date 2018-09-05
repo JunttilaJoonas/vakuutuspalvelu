@@ -3,14 +3,14 @@ import {Button, Col, Grid, Image, Row} from 'react-bootstrap';
 
 class IndexPage extends Component {
 
-    render() { 
+    render() {
         return (
             <div>
                 <Grid fluid className="splash">
                     <Row className="show-grid text-center information">
                         <Col xs={12} sm={12}>
                             <h1>
-                                Vakuutusportaali on uudenlainen tapa käsitellä vakuutusasioitasi.
+                                else if on uudenlainen tapa käsitellä vakuutusasioitasi.
                             </h1>
                             <a href="/laskevakuutus"><Button bsClass="insurance_button">Osta vakuutuksia</Button></a>
                         </Col>
