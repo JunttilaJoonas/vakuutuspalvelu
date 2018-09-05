@@ -4,8 +4,8 @@ import {logoutUser} from '../actions/authActions';
 import {connect} from 'react-redux';
 import IdleTimer from 'react-idle-timer';
 
-const LOG_OUT_TIME = 1000 * 60 * 2;
-const WARN_TIME = 1000 * 30;
+const LOG_OUT_TIME = 1000 * 60 * 5;
+const WARN_TIME = 1000 * 15;
 
 class LogOutTimer extends Component {
 
