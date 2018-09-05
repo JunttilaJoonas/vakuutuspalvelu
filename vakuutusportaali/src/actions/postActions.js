@@ -5,7 +5,7 @@ import {ADD_POST, GET_ERRORS} from './types';
 //THIS NEEDS TO POST TO THE CUSTOMER SERVER, NOT TO THE ADMIN SERVER. SHOULD BE EASY TO FIX /KPU
 export const addPost = postData => dispatch => {
     axios
-        .post('http://localhost:3000/createinsuranceclaims', postData)
+        .post('http://localhost:4000/application/createinsuranceclaims', postData)
         .then(res => {
             dispatch({
                 type: ADD_POST,

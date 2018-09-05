@@ -3,6 +3,7 @@ const router = express.Router();
 const profiledbservice = require('../databaseServices/profiledbservice');
 const applicationDBservice = require('../databaseServices/applicationDBservice');
 const insuranceDBService = require('../databaseServices/insurancedbservice');
+const InsuranceClaimService = require('../databaseServices/InsuranceClaimService')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const keys = require('../config/keys');
@@ -27,6 +28,11 @@ router.get('/customer/:id', (req, res) => {
 router.post('/create', (req, res) => {
     applicationDBservice.createOne(req, res)
 });
+
+router.post('/createinsuranceclaims', (req, res) => {
+    InsuranceClaimService.createClaim(req, res)
+});
+
 
 router.post('/save', (req, res) => {
     let id = req.body.id;
