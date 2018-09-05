@@ -46,6 +46,11 @@ export class InsuranceForm extends React.Component {
         this.submitAll();
     }
 
+    redirect() {
+        this.props.history.push("/omavakuutus");
+    }
+
+
     submitAll() {
         let insurances = this.state.insurances;
         let userid = this.state.profile._id;
@@ -63,7 +68,6 @@ export class InsuranceForm extends React.Component {
 
             axios.post('http://localhost:4000/application/create', application)
                 .then(res => {
-                        res.status(201).send();
                         this.setState({submitted: true});
                     }
                 );
@@ -118,11 +122,10 @@ export class InsuranceForm extends React.Component {
             );
         });
 
-        let submitText = "Lähetä hakemus";
-        if (this.state.submitted) submitText = "Lähetetty!";
+        let submitButton = <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>Lähetä hakemus</Button>;
+        if (this.state.submitted) submitButton = <Button bsClass="insurance_button" onClick={this.redirect.bind(this)}>Lähetetty! Paina tästä siirtyäksesi Omalle sivulle.</Button>;
 
         return (
-
             <div>
                 <Grid fluid className={"splash"}>
                     <Row  className={"show-grid information"}>
@@ -131,16 +134,14 @@ export class InsuranceForm extends React.Component {
                         <Col xs={12} sm={8} className="userprofile">
                             {categoryNodes}
                             <div id={"buy_insurances_container"}>
-                                <Button bsClass="insurance_button" onClick={this.onSubmit.bind(this)}>{submitText}</Button>
+                                {submitButton}
                             </div>
                         </Col>
                         <Col xs={12} sm={2}/>
 
                     </Row>
                 </Grid>
-
             </div>
-
         )
     }
 }
