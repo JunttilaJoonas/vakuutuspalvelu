@@ -3,9 +3,7 @@ const Profile = require('../models/profile');
 const InsuranceClaims = require('../models/InsuranceClaim');
 const Invoices = require('../models/Invoice');
 
-function findAll() {
-    //findAllProfile
-}
+
 
 function findOneById(req, res, next) {
     let email = req.user.email;
@@ -16,22 +14,15 @@ function findOneById(req, res, next) {
         .then(profile => res.json(profile));
 }
 
-function updateOneById(req, res) {
+function updateCustomerClaims(customerId, data) {
+    Profile.findOne({_id: customerId})
+        .populate("profilesinsurances")
+        .populate("profileclaims")
+        .populate("profilesinvoices")
+        .then(profile => Profile.update({_id: profile._id}, {$push: {"profileclaims": data}}))
 
 }
 
-function deleteOneById(req, res) {
-
-}
-
-function AddInsuranceToACustomer(req, res) {
-    /* The following should happen: 1) Insurance is created and added to the database. 2) InsuranceID
-    is then set into the profile.*/
-
-    Profile.findByIdandUpdate({_id: req.body.id}, req.body, (err, profile) => {
-        res.send("Profile updated")
-    });
-}
 
 function AddProfile(req, res) {
     Profile.create(req.body)
@@ -46,4 +37,4 @@ function deleteProfile(req, res) {
 
 // here all kinds of features: update profile, update one part of a profile, delete profile ...
 
-module.exports = {AddProfile, findAll, updateOneById, deleteOneById, findOneById, AddInsuranceToACustomer};
+module.exports = {AddProfile, updateCustomerClaims, findOneById};

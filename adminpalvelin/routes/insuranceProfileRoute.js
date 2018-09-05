@@ -33,7 +33,10 @@ router.post('/invoice', (req, res) => {
 
 router.post('/insurancedelete', (req, res) => {
     let object = req.body;
+
     let id = (Object.keys(object)[0]);
+    console.log("ID");
+    console.log(id);
     insuranceDBservice.deleteCustomerInsurance(id)
 });
 
