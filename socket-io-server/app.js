@@ -6,16 +6,11 @@ var redis = require('socket.io-redis');
 
 io.adapter(redis({ host: 'localhost', port: 6379 }));
 
-let queue = 0;
+let queue = [];
 let sockets = {user: ""};
 let usersocket = "";
 let adminsocket = "";
 io.on('connection', (socket) => {
-    let socketid = socket.id;
-    console.log(socketid);
-    console.log("SOCKETS");
-    sockets[socketid] = socketid;
-    console.log(sockets);
     socket.on('join', function (data) {
         socket.join("room");
         // We are using room of socket io
@@ -49,32 +44,31 @@ io.on('connection', (socket) => {
     socket.on('INITIALIZE_USER_SESSION', function() {
         if(usersocket == "") {
             usersocket = socket.id
-            console.log("Hello");
         let userconnect = {
             author: socket.id,
             message: 'has connected'}
         io.to(adminsocket).emit('RECEIVE_MESSAGE', userconnect);
         } else {
-            queue ++;
+            queue.push(socket.id);
+            
             let userconnect = {
                 author: "Vakuutusportaali",
-                message: "Palvelussamme on ruuhkaa. Odottakaa hetki."
+                message: "Palvelussamme on ruuhkaa." + " Olette " + queue.length + " henkilö jonossa."
             }
             let userinqueue = {
                 author: "ADMIN NOTIFICATION",
-                message: "There is " + queue + "people in line"
+                message: "There is " + queue.length + "people in line"
             }
             io.to(`${socket.id}`).emit('RECEIVE_MESSAGE', userconnect);
             io.to(adminsocket).emit('RECEIVE_MESSAGE', userinqueue);
         }
     })
     socket.on('SEND_MESSAGE', function(data) {
-        console.log(socket.id);
-        sockets.user = socket.id;
         if(usersocket != socket.id && usersocket != "") {
+            let userposition = queue.indexOf(socket.id) + 1;
             const data2 = {
                 author: 'Vakuutusportaali',
-                message: 'Palvelussamme on ruuhkaa, olkaa hyvä ja odottakaa'
+                message: 'Olette ' + userposition + ". henkilö jonossa."
             }
             io.to(`${socket.id}`).emit('RECEIVE_MESSAGE', data2);
         } else {
@@ -92,11 +86,20 @@ io.on('connection', (socket) => {
     })
     socket.on('disconnect', function() {
         if(socket.id == usersocket) {
-        io.to(adminsocket).emit('USER_DISCONNECTED', usersocket)
-        queue--;
-        usersocket ="";
-      
+        let usermessage = {
+            author: "Vakuutuspalvelija",
+            message: "Hei, kuinka voimme auttaa?"
         }
+        io.to(adminsocket).emit('USER_DISCONNECTED', usersocket)
+        io.to(queue[0]).emit('RECEIVE_MESSAGE', usermessage);
+        if(queue.length > 0) {
+        usersocket = queue[0];
+        queue.shift();
+        } else {
+            console.log(queue)
+            usersocket = "";
+        }
+        } 
     } )
   
 });
